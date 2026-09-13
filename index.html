@@ -183,8 +183,7 @@
 <script src="translations.js?v=20260913"></script>
 <script src="app.js?v=20260913"></script>
 <script>
-/* Mobile language uses the same translation system if the existing app.js exposes
-   a language selector listener. Keep desktop selector untouched. */
+/* Mobile-only polish. Desktop content/behavior remains untouched. */
 document.addEventListener("DOMContentLoaded", function(){
   const mobileLang = document.getElementById("mobileLanguageSelect");
   const desktopLang = document.getElementById("languageSelect");
@@ -194,6 +193,41 @@ document.addEventListener("DOMContentLoaded", function(){
       desktopLang.value = this.value;
       desktopLang.dispatchEvent(new Event("change", {bubbles:true}));
     });
+  }
+
+  /* One-time hero typing animation on mobile only. */
+  if(window.matchMedia("(max-width: 900px)").matches){
+    const title = document.querySelector(".hero h1");
+    if(title && !sessionStorage.getItem("ljhHeroTyped")){
+      const first = "Jobs in Siliguri,";
+      const second = " for the people of Siliguri.";
+      title.innerHTML = "";
+      const line1 = document.createElement("span");
+      const line2 = document.createElement("span");
+      line2.className = "typing-highlight";
+      title.append(line1, document.createElement("br"), line2);
+
+      let i = 0;
+      let j = 0;
+      const speed = 45;
+      function typeFirst(){
+        if(i < first.length){
+          line1.textContent += first[i++];
+          setTimeout(typeFirst, speed);
+        }else{
+          setTimeout(typeSecond, 120);
+        }
+      }
+      function typeSecond(){
+        if(j < second.length){
+          line2.textContent += second[j++];
+          setTimeout(typeSecond, speed);
+        }else{
+          sessionStorage.setItem("ljhHeroTyped","1");
+        }
+      }
+      typeFirst();
+    }
   }
 });
 </script>
