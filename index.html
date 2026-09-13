@@ -195,13 +195,14 @@ document.addEventListener("DOMContentLoaded", function(){
     });
   }
 
-  /* One-time hero typing animation on mobile only. */
+  /* Mobile hero typing animation: one pass on every page load. */
   if(window.matchMedia("(max-width: 900px)").matches){
     const title = document.querySelector(".hero h1");
-    if(title && !sessionStorage.getItem("ljhHeroTyped")){
+    if(title){
       const first = "Jobs in Siliguri,";
       const second = " for the people of Siliguri.";
       title.innerHTML = "";
+
       const line1 = document.createElement("span");
       const line2 = document.createElement("span");
       line2.className = "typing-highlight";
@@ -210,22 +211,23 @@ document.addEventListener("DOMContentLoaded", function(){
       let i = 0;
       let j = 0;
       const speed = 45;
+
       function typeFirst(){
         if(i < first.length){
           line1.textContent += first[i++];
           setTimeout(typeFirst, speed);
         }else{
-          setTimeout(typeSecond, 120);
+          setTimeout(typeSecond, 100);
         }
       }
+
       function typeSecond(){
         if(j < second.length){
           line2.textContent += second[j++];
           setTimeout(typeSecond, speed);
-        }else{
-          sessionStorage.setItem("ljhHeroTyped","1");
         }
       }
+
       typeFirst();
     }
   }
