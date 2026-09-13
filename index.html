@@ -195,40 +195,48 @@ document.addEventListener("DOMContentLoaded", function(){
     });
   }
 
-  /* Mobile hero typing animation: one pass on every page load. */
+  /* Mobile hero typing animation: repeat once every 3 seconds. */
   if(window.matchMedia("(max-width: 900px)").matches){
     const title = document.querySelector(".hero h1");
     if(title){
       const first = "Jobs in Siliguri,";
       const second = " for the people of Siliguri.";
-      title.innerHTML = "";
+      const originalTitle = title.innerHTML;
+      let timer = null;
 
-      const line1 = document.createElement("span");
-      const line2 = document.createElement("span");
-      line2.className = "typing-highlight";
-      title.append(line1, document.createElement("br"), line2);
+      function runTyping(){
+        title.innerHTML = "";
+        const line1 = document.createElement("span");
+        const line2 = document.createElement("span");
+        line2.className = "typing-highlight";
+        title.append(line1, document.createElement("br"), line2);
 
-      let i = 0;
-      let j = 0;
-      const speed = 45;
+        let i = 0;
+        let j = 0;
+        const speed = 45;
 
-      function typeFirst(){
-        if(i < first.length){
-          line1.textContent += first[i++];
-          setTimeout(typeFirst, speed);
-        }else{
-          setTimeout(typeSecond, 100);
+        function typeFirst(){
+          if(i < first.length){
+            line1.textContent += first[i++];
+            timer = setTimeout(typeFirst, speed);
+          }else{
+            timer = setTimeout(typeSecond, 120);
+          }
         }
+
+        function typeSecond(){
+          if(j < second.length){
+            line2.textContent += second[j++];
+            timer = setTimeout(typeSecond, speed);
+          }else{
+            timer = setTimeout(runTyping, 3000);
+          }
+        }
+
+        typeFirst();
       }
 
-      function typeSecond(){
-        if(j < second.length){
-          line2.textContent += second[j++];
-          setTimeout(typeSecond, speed);
-        }
-      }
-
-      typeFirst();
+      runTyping();
     }
   }
 });
