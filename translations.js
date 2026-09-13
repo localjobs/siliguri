@@ -369,3 +369,344 @@ window.translations.hi.heroTitle =
   window.translations.hi.hero.title;
 window.translations.hi.heroSubtitle =
   window.translations.hi.hero.subtitle;
+/* =========================================================
+   LANGUAGE SWITCHER - LOCALJOBHUB
+   Works with the current index.html
+   ========================================================= */
+
+(function () {
+
+  function applyLanguage(lang) {
+
+    if (!window.translations || !window.translations[lang]) {
+      lang = "en";
+    }
+
+    const t = window.translations[lang];
+
+    /* ---------------- NAVIGATION ---------------- */
+
+    const navLinks = document.querySelectorAll("#mainNav a");
+
+    if (navLinks.length >= 7) {
+      navLinks[0].textContent = t.nav.home;
+      navLinks[1].textContent = t.nav.jobs;
+      navLinks[2].textContent = t.nav.categories;
+      navLinks[3].textContent = t.nav.locations;
+      navLinks[4].textContent = t.nav.consultancies;
+      navLinks[5].textContent = t.nav.about;
+      navLinks[6].textContent = t.nav.contact;
+    }
+
+    /* Login / Register buttons */
+
+    document.querySelectorAll('a[href="login.html"]').forEach(function (el) {
+      el.textContent = t.nav.login;
+    });
+
+    document.querySelectorAll('a[href="register.html"]').forEach(function (el) {
+      if (!el.href.includes("?type=employer")) {
+        el.textContent = t.nav.register;
+      }
+    });
+
+
+    /* ---------------- HERO ---------------- */
+
+    const heroEyebrow = document.querySelector(".hero .eyebrow");
+    if (heroEyebrow) {
+      heroEyebrow.textContent = "● " + t.hero.area;
+    }
+
+    const heroTitle = document.querySelector(".hero-copy h1");
+    if (heroTitle) {
+      if (lang === "bn") {
+        heroTitle.innerHTML =
+          "আপনার দক্ষতার সঙ্গে মিলবে<br><span>এমন স্থানীয় চাকরি খুঁজুন</span>";
+      } else if (lang === "hi") {
+        heroTitle.innerHTML =
+          "अपने कौशल के अनुसार<br><span>स्थानीय नौकरी खोजें</span>";
+      } else {
+        heroTitle.innerHTML =
+          "Find Local Jobs That Match<br><span>Your Skills</span>";
+      }
+    }
+
+    const heroText = document.querySelector(".hero-copy > p");
+    if (heroText) {
+      heroText.textContent = t.hero.subtitle;
+    }
+
+    const keywordInput = document.querySelector("#keyword");
+    if (keywordInput) {
+      keywordInput.placeholder = t.hero.keywordPlaceholder;
+    }
+
+    const locationInput = document.querySelector("#location");
+    if (locationInput) {
+      locationInput.placeholder = t.hero.locationPlaceholder;
+    }
+
+    const searchButton = document.querySelector("#jobSearch button");
+    if (searchButton) {
+      searchButton.textContent = t.hero.search + " →";
+    }
+
+    /* Hero trust row */
+
+    const trustItems = document.querySelectorAll(".trust-row span");
+
+    if (trustItems.length >= 3) {
+      trustItems[0].textContent = "✓ " + t.hero.trusted;
+      trustItems[1].textContent = "✓ " + t.hero.local;
+      trustItems[2].textContent = "✓ " + t.hero.easy;
+    }
+
+
+    /* ---------------- QUICK ACTIONS ---------------- */
+
+    const quickActions = document.querySelectorAll(".quick-actions a");
+
+    if (quickActions.length >= 4) {
+
+      const quickTitles = [
+        t.quick.jobs,
+        t.quick.consultancies,
+        t.quick.post,
+        t.quick.application
+      ];
+
+      quickActions.forEach(function (item, index) {
+
+        const title = item.querySelector("b");
+
+        if (title && quickTitles[index]) {
+          title.textContent = quickTitles[index];
+        }
+
+      });
+    }
+
+
+    /* ---------------- JOB SECTION ---------------- */
+
+    const jobHeading = document.querySelector("#jobs .section-head h2");
+
+    if (jobHeading) {
+      jobHeading.textContent = "🛡 " + t.jobs.title;
+    }
+
+    const showAllJobs = document.querySelector("#showAllJobs");
+
+    if (showAllJobs) {
+      showAllJobs.textContent = t.jobs.viewAll + " →";
+    }
+
+
+    /* ---------------- CONSULTANCY ---------------- */
+
+    const consultancyHeading =
+      document.querySelector("#consultancies h3");
+
+    if (consultancyHeading) {
+      consultancyHeading.textContent = "🏢 " + t.consultancy.title;
+    }
+
+    const consultancyVerified =
+      document.querySelector("#consultancies .verified");
+
+    if (consultancyVerified) {
+      consultancyVerified.textContent =
+        "✓ " + t.consultancy.verified;
+    }
+
+
+    /* ---------------- LOCATIONS ---------------- */
+
+    const locationHeading =
+      document.querySelector("#locations .section-head h2");
+
+    if (locationHeading) {
+      locationHeading.textContent = "📍 " + t.locations.title;
+    }
+
+    const locationViewAll =
+      document.querySelector("#locations .section-head > a");
+
+    if (locationViewAll) {
+      locationViewAll.textContent = t.locations.viewAll + " →";
+    }
+
+
+    /* ---------------- CATEGORIES ---------------- */
+
+    const categoryHeading =
+      document.querySelector("#categories .section-head h2");
+
+    if (categoryHeading) {
+      categoryHeading.textContent = "♟ " + t.categories.title;
+    }
+
+    const categoryMap = {
+      Security: t.categories.security,
+      Delivery: t.categories.delivery,
+      Retail: t.categories.retail,
+      Computer: t.categories.computer,
+      Technician: t.categories.technician,
+      Hotel: t.categories.hotel,
+      Factory: t.categories.construction,
+      Driver: t.categories.driver
+    };
+
+    document.querySelectorAll("[data-category]").forEach(function (item) {
+
+      const category = item.getAttribute("data-category");
+      const span = item.querySelector("span");
+
+      if (span && categoryMap[category]) {
+        span.textContent = categoryMap[category];
+      }
+
+    });
+
+
+    /* ---------------- SUCCESS STORIES ---------------- */
+
+    const successHeading =
+      document.querySelector(".success-section .section-head h2");
+
+    if (successHeading) {
+      successHeading.textContent = "💚 " + t.success.title;
+    }
+
+    const successSubtitle =
+      document.querySelector(".success-section .section-head p");
+
+    if (successSubtitle) {
+      successSubtitle.textContent = t.success.subtitle;
+    }
+
+
+    /* ---------------- ABOUT ---------------- */
+
+    const aboutHeading =
+      document.querySelector(".about h2");
+
+    if (aboutHeading) {
+      aboutHeading.textContent = t.about.title;
+    }
+
+    const aboutText =
+      document.querySelector(".about p");
+
+    if (aboutText) {
+      aboutText.textContent = t.about.text;
+    }
+
+
+    /* ---------------- CTA ---------------- */
+
+    const ctaHeading =
+      document.querySelector(".cta-banner h2");
+
+    const ctaText =
+      document.querySelector(".cta-banner p");
+
+    const ctaButton =
+      document.querySelector(".cta-banner .btn");
+
+    if (ctaHeading) {
+      if (lang === "bn") {
+        ctaHeading.innerHTML =
+          "আপনার পরবর্তী সুযোগ<br>হয়তো খুব কাছেই।";
+      } else if (lang === "hi") {
+        ctaHeading.innerHTML =
+          "आपका अगला अवसर<br>शायद बहुत करीब है।";
+      } else {
+        ctaHeading.innerHTML =
+          "Your next opportunity<br>may be very close.";
+      }
+    }
+
+    if (ctaText) {
+      ctaText.textContent =
+        lang === "bn"
+          ? "আজই স্থানীয় চাকরি খুঁজুন।"
+          : lang === "hi"
+          ? "आज ही स्थानीय नौकरी खोजें।"
+          : "Find local jobs today.";
+    }
+
+    if (ctaButton) {
+      ctaButton.textContent = t.cta.button + " →";
+    }
+
+
+    /* ---------------- FOOTER ---------------- */
+
+    const copyright =
+      document.querySelector(".copyright");
+
+    if (copyright) {
+      copyright.textContent = t.footer.copyright;
+    }
+
+
+    /* Save selected language */
+
+    localStorage.setItem("localjobhub_language", lang);
+
+    document.documentElement.lang = lang;
+
+  }
+
+
+  /* ---------------- LANGUAGE SELECT ---------------- */
+
+  function initializeLanguageSwitcher() {
+
+    const select =
+      document.getElementById("languageSelect");
+
+    if (!select) return;
+
+    let savedLanguage =
+      localStorage.getItem("localjobhub_language") || "en";
+
+    if (!window.translations[savedLanguage]) {
+      savedLanguage = "en";
+    }
+
+    select.value = savedLanguage;
+
+    /* Apply language when page opens */
+
+    applyLanguage(savedLanguage);
+
+    /* Apply language when user changes dropdown */
+
+    select.addEventListener("change", function () {
+
+      applyLanguage(this.value);
+
+    });
+
+  }
+
+
+  /* ---------------- START ---------------- */
+
+  if (document.readyState === "loading") {
+
+    document.addEventListener(
+      "DOMContentLoaded",
+      initializeLanguageSwitcher
+    );
+
+  } else {
+
+    initializeLanguageSwitcher();
+
+  }
+
+})();
