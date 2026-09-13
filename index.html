@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>LocalJobHub | Local Jobs · Trusted Consultancies</title>
 <meta name="description" content="LocalJobHub connects job seekers with local jobs, trusted consultancies and employers.">
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="style.css?v=20260913">
 </head>
 <body>
 <header class="site-header">
@@ -16,11 +16,7 @@
       <a href="index.html">Home</a><a href="#jobs">Find Jobs</a><a href="#categories">Categories</a><a href="#locations">Locations</a><a href="#consultancies">Consultancies</a><a href="#about">About Us</a><a href="#contact">Contact</a>
     </nav>
     <div class="nav-actions">
-      <select id="languageSelect" aria-label="Language">
-  <option value="en">English</option>
-  <option value="bn">বাংলা</option>
-  <option value="hi">हिन्दी</option>
-</select>
+      <select id="languageSelect" aria-label="Language"><option value="en">English</option><option value="bn">বাংলা</option><option value="hi">हिन्दी</option></select>
       <a class="btn btn-outline" href="login.html">Login</a><a class="btn btn-primary" href="register.html">Register</a>
     </div>
   </div>
@@ -55,7 +51,48 @@
 <section class="section container" id="jobs">
   <div class="section-head"><div><h2>🛡 Latest Local Jobs</h2><p>Fresh opportunities from local employers</p></div><a href="#jobs" id="showAllJobs">View all jobs →</a></div>
   <div class="content-layout"><div class="job-grid" id="jobGrid"></div>
-    <aside class="side-card" id="consultancies"><h3>🏢 Your area's trusted Consultancy</h3><div class="consultancy-photo"></div><h4>ABC Consultancy <span class="verified">✓ Verified</span></h4><p>⭐ 4.7 (120+ reviews)</p><p>⌖ Sevoke Road, Siliguri</p><p>♧ 32 Active Jobs</p><a class="btn btn-primary full" href="#jobs">View Consultancy Jobs →</a></aside>
+    <aside class="side-card consultancy-box" id="consultancies">
+  <h3>🏢 Your area's trusted Consultancy</h3>
+  <div class="consultancy-photo"></div>
+
+  <div class="best-consultancy">
+    <span class="best-badge">BEST</span>
+    <h4>ABC Consultancy <span class="verified">✓ Verified</span></h4>
+    <p>⭐ 4.7 (120+ reviews)</p><p>⌖ Sevoke Road, Siliguri</p><p>♧ 32 Active Jobs</p>
+    <a class="btn btn-primary full" href="#jobs">View Consultancy Jobs →</a>
+  </div>
+
+  <div class="best-consultancy">
+    <span class="best-badge">BEST</span>
+    <h4>Unique Consultancy <span class="verified">✓ Verified</span></h4>
+    <p>⭐ 4.8 (98+ reviews)</p><p>⌖ Pradhan Nagar, Siliguri</p><p>♧ 28 Active Jobs</p>
+    <a class="btn btn-primary full" href="#jobs">View Consultancy Jobs →</a>
+  </div>
+
+  <div class="best-consultancy">
+    <span class="best-badge">BEST</span>
+    <h4>Fast Track Consultancy <span class="verified">✓ Verified</span></h4>
+    <p>⭐ 4.6 (86+ reviews)</p><p>⌖ Matigara, Siliguri</p><p>♧ 24 Active Jobs</p>
+    <a class="btn btn-primary full" href="#jobs">View Consultancy Jobs →</a>
+  </div>
+
+  <button type="button" class="more-consultancy-btn" id="moreConsultancyBtn">More Consultancies →</button>
+
+  <div class="more-consultancy-area" id="moreConsultancyArea">
+    <div class="consultancy-search"><span>🔍</span><input type="search" id="consultancySearch" placeholder="Search consultancy name..." autocomplete="off"></div>
+    <div class="consultancy-list" id="consultancyList">
+      <div class="consultancy-item"><h4>North Bengal Consultancy</h4><span>✓ Verified</span><p>📍 Sevoke Road, Siliguri</p></div>
+      <div class="consultancy-item"><h4>TechPoint Consultancy</h4><span>✓ Verified</span><p>📍 Hill Cart Road, Siliguri</p></div>
+      <div class="consultancy-item"><h4>Siliguri Career Consultancy</h4><span>✓ Verified</span><p>📍 Pradhan Nagar, Siliguri</p></div>
+      <div class="consultancy-item"><h4>Career Point Consultancy</h4><span>✓ Verified</span><p>📍 Matigara, Siliguri</p></div>
+      <div class="consultancy-item"><h4>Bright Future Consultancy</h4><span>✓ Verified</span><p>📍 Bagdogra</p></div>
+      <div class="consultancy-item"><h4>North East Career Consultancy</h4><span>✓ Verified</span><p>📍 Siliguri</p></div>
+      <div class="consultancy-item"><h4>Job Point Consultancy</h4><span>✓ Verified</span><p>📍 Matigara</p></div>
+      <div class="consultancy-item"><h4>Career Link Consultancy</h4><span>✓ Verified</span><p>📍 Sevoke Road, Siliguri</p></div>
+    </div>
+    <p id="noConsultancyResult" class="no-consultancy-result">No consultancy found.</p>
+  </div>
+</aside>
   </div>
 </section>
 
@@ -81,5 +118,5 @@
 <section class="section container about" id="about"><h2>Local jobs. Real opportunities.</h2><p>LocalJobHub is designed to connect local job seekers, employers and trusted consultancies in one simple platform.</p></section>
 </main>
 <footer id="contact"><div class="container footer-grid"><div class="brand footer-brand"><span class="brand-mark">◉</span><span><b>Local<span>JobHub</span></b><small>Local Jobs · Trusted Consultancy</small></span></div><div><a href="#jobs">Find Jobs</a><a href="register.html?type=employer">Post a Job</a><a href="#consultancies">Consultancies</a></div><div><a href="#about">About Us</a><a href="#contact">Contact</a><a href="login.html">Login</a></div><div><a href="register.html">Register</a><a href="#">Privacy</a><a href="#">Terms</a></div></div><div class="copyright">© 2026 LocalJobHub. All rights reserved.</div></footer>
-<script src="translations.js"></script><script src="app.js"></script>
+<script src="translations.js?v=20260913"></script><script src="app.js?v=20260913"></script>
 </body></html>
