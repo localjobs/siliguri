@@ -1718,3 +1718,143 @@ td{
     grid-template-columns:1fr;
   }
 }
+
+
+/* FINAL MOBILE POLISH — desktop remains untouched */
+@media(max-width:900px){
+  .site-header{
+    box-shadow:0 3px 14px rgba(17,50,77,.08);
+  }
+
+  .nav-wrap{
+    grid-template-columns:minmax(0,1fr) auto;
+    grid-template-areas:
+      "brand brand"
+      "nav actions";
+    gap:9px 6px;
+    padding:8px 0 9px;
+  }
+
+  .brand{
+    padding-bottom:2px;
+  }
+
+  .brand b{
+    letter-spacing:-.2px;
+  }
+
+  .site-header nav{
+    min-width:0;
+    gap:5px;
+    padding:4px 5px;
+    background:#f7fafb;
+    border:1px solid #e5edf1;
+    border-radius:9px;
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.8);
+  }
+
+  .site-header nav > a,
+  .site-header nav > a:nth-child(2)::after,
+  .mobile-more > summary{
+    font-size:8px;
+    line-height:1;
+  }
+
+  .site-header nav > a{
+    padding:5px 1px;
+  }
+
+  .mobile-more > summary{
+    padding:5px 1px;
+  }
+
+  .mobile-more-menu{
+    top:31px;
+    left:0;
+    min-width:145px;
+    padding:6px;
+    border-radius:11px;
+  }
+
+  .mobile-more-menu a,
+  .mobile-more-menu .mobile-language{
+    padding:10px 11px;
+    font-size:10px !important;
+  }
+
+  .nav-actions{
+    padding:3px 0;
+    gap:4px;
+  }
+
+  .nav-actions .btn{
+    min-height:30px;
+    padding:6px 8px;
+    border-radius:8px;
+    font-size:8px;
+    box-shadow:none;
+  }
+
+  /* Hero feels like a real job-search landing screen on phones. */
+  .hero-grid{
+    padding-top:38px;
+    padding-bottom:25px;
+  }
+
+  .hero-copy{
+    width:100%;
+  }
+
+  .hero h1{
+    max-width:340px;
+    font-size:29px;
+    letter-spacing:-.4px;
+  }
+
+  .hero h1 span{
+    display:inline;
+  }
+
+  .search-box{
+    margin-top:14px;
+    box-shadow:0 12px 28px rgba(0,0,0,.22);
+  }
+
+  .search-box .btn{
+    min-height:43px;
+    font-size:11px;
+  }
+}
+
+@media(max-width:430px){
+  .nav-wrap{
+    padding-left:0;
+    padding-right:0;
+  }
+
+  .site-header nav{
+    gap:4px;
+    padding:4px;
+  }
+
+  .site-header nav > a,
+  .site-header nav > a:nth-child(2)::after,
+  .mobile-more > summary{
+    font-size:7.5px;
+  }
+
+  .site-header nav > a{
+    padding-left:1px;
+    padding-right:1px;
+  }
+
+  .nav-actions .btn{
+    min-height:29px;
+    padding:5px 6px;
+    font-size:7px;
+  }
+
+  .hero h1{
+    font-size:27px;
+  }
+}
