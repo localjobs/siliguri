@@ -2022,3 +2022,94 @@ td{
   .job-grid .job-card .job-body h3,
   .job-grid .job-card .job-body h3.job-title-visible{font-size:12px !important}
 }
+
+/* FLIPKART-INSPIRED MOBILE EXPERIENCE — desktop untouched */
+.mobile-bottom-nav{display:none}
+
+@media (max-width:900px){
+  .site-header{position:sticky;top:0;z-index:50}
+  .nav-wrap{
+    display:grid;
+    grid-template-columns:1fr;
+    justify-items:center;
+    gap:9px;
+    padding:10px 8px 11px;
+  }
+  .site-header .brand{
+    justify-content:center;
+    width:100%;
+    min-width:0;
+    text-align:center;
+  }
+  .site-header .brand > span:last-child{display:flex;flex-direction:column;align-items:center}
+  .site-header nav{order:2;width:100%;box-sizing:border-box}
+  .nav-actions{
+    order:3;
+    width:100%;
+    justify-content:center;
+    flex-wrap:nowrap;
+  }
+  .nav-actions #languageSelect{display:none}
+
+  /* compact shopping-style search/navigation rhythm */
+  .hero{margin-top:0}
+  .hero-grid{padding-top:26px}
+  .search-box{
+    background:#fff;
+    border:1px solid #d7e2e8;
+    border-radius:12px;
+    padding:7px;
+    box-shadow:0 4px 16px rgba(20,55,80,.09);
+  }
+  .search-box label{background:#f7fafb;border-radius:8px}
+  .search-box button{border-radius:9px}
+
+  .quick-actions{
+    grid-template-columns:repeat(4,1fr);
+    overflow-x:auto;
+    scrollbar-width:none;
+    padding-bottom:2px;
+  }
+  .quick-actions::-webkit-scrollbar{display:none}
+  .quick-actions>a{
+    min-width:120px;
+    border-radius:10px;
+  }
+
+  .mobile-bottom-nav{
+    position:fixed;
+    left:0;right:0;bottom:0;
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+    height:58px;
+    background:#fff;
+    border-top:1px solid #dce5e9;
+    box-shadow:0 -5px 18px rgba(20,55,80,.10);
+    z-index:100;
+    padding-bottom:env(safe-area-inset-bottom);
+  }
+  .mobile-bottom-nav a{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:3px;
+    min-width:0;
+    color:#49616f;
+    text-decoration:none;
+  }
+  .mobile-bottom-nav a span{font-size:19px;line-height:1}
+  .mobile-bottom-nav a b{font-size:8px;line-height:1.1;white-space:nowrap}
+  .mobile-bottom-nav a.active{color:#2874f0}
+
+  body{padding-bottom:66px}
+  footer{padding-bottom:18px}
+}
+
+@media (max-width:430px){
+  .nav-wrap{padding-left:6px;padding-right:6px}
+  .site-header nav > a,.mobile-more > summary{font-size:9.5px}
+  .mobile-bottom-nav{height:56px}
+  .mobile-bottom-nav a span{font-size:18px}
+  .mobile-bottom-nav a b{font-size:7.5px}
+}
