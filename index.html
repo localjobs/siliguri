@@ -19,13 +19,7 @@
       </span>
     </a>
 
-    <button
-      class="menu-btn"
-      id="menuBtn"
-      aria-label="Menu"
-      aria-expanded="false"
-      type="button"
-    >☰</button>
+    <button class="menu-btn" id="menuBtn" aria-label="Menu" aria-expanded="false" type="button">☰</button>
 
     <nav id="mainNav">
       <a href="index.html">Home</a>
@@ -35,6 +29,20 @@
       <a href="#consultancies">Consultancies</a>
       <a href="#about">About Us</a>
       <a href="#contact">Contact</a>
+
+      <details class="mobile-more">
+        <summary>More</summary>
+        <div class="mobile-more-menu">
+          <a href="#locations">Locations</a>
+          <a href="#about">About Us</a>
+          <a href="#contact">Contact</a>
+          <select class="mobile-language" id="mobileLanguageSelect" aria-label="Language">
+            <option value="en">English</option>
+            <option value="bn">বাংলা</option>
+            <option value="hi">हिन्दी</option>
+          </select>
+        </div>
+      </details>
     </nav>
 
     <div class="nav-actions">
@@ -54,619 +62,141 @@
 
 <section class="hero">
   <div class="hero-bg"></div>
-
   <div class="container hero-grid">
-
     <div class="hero-copy">
-
-      <div class="eyebrow">
-        ● Siliguri & Nearby Areas
-      </div>
-
-      <h1>
-        Jobs in Siliguri,
-        <br>
-        <span>for the people of Siliguri.</span>
-      </h1>
-
-      <p>
-        Find jobs from trusted local consultancies and apply directly.
-      </p>
-
+      <div class="eyebrow">● Siliguri & Nearby Areas</div>
+      <h1>Jobs in Siliguri,<br><span>for the people of Siliguri.</span></h1>
+      <p>Find jobs from trusted local consultancies and apply directly.</p>
       <form class="search-box" id="jobSearch">
-
-        <label>
-          <span>⌕</span>
-          <input
-            id="keyword"
-            type="search"
-            placeholder="Job title, skill or keyword"
-            autocomplete="off"
-          >
-        </label>
-
-        <label>
-          <span>⌖</span>
-          <input
-            id="location"
-            type="search"
-            placeholder="Location e.g. Siliguri"
-            autocomplete="off"
-          >
-        </label>
-
-        <button
-          class="btn btn-primary"
-          type="submit"
-        >
-          Find Jobs →
-        </button>
-
+        <label><span>⌕</span><input id="keyword" type="search" placeholder="Job title, skill or keyword" autocomplete="off"></label>
+        <label><span>⌖</span><input id="location" type="search" placeholder="Location e.g. Siliguri" autocomplete="off"></label>
+        <button class="btn btn-primary" type="submit">Find Jobs →</button>
       </form>
-
       <div class="trust-row">
-        <span>✓ Verified Consultancies</span>
-        <span>✓ Local Jobs</span>
-        <span>✓ Easy Application</span>
+        <span>✓ Verified Consultancies</span><span>✓ Local Jobs</span><span>✓ Easy Application</span>
       </div>
-
     </div>
-
     <aside class="hero-stats">
-
-      <div>
-        <b id="jobCount">1,250+</b>
-        <span>Active Jobs</span>
-      </div>
-
-      <div>
-        <b id="consultancyCount">85+</b>
-        <span>Consultancies</span>
-      </div>
-
-      <div>
-        <b>12,000+</b>
-        <span>Registered Seekers</span>
-      </div>
-
+      <div><b id="jobCount">1,250+</b><span>Active Jobs</span></div>
+      <div><b id="consultancyCount">85+</b><span>Consultancies</span></div>
+      <div><b>12,000+</b><span>Registered Seekers</span></div>
     </aside>
-
   </div>
 </section>
-
 
 <section class="quick-actions container">
-
-  <a href="#jobs">
-    <span class="qa-icon">⌕</span>
-    <div>
-      <b>Find Jobs</b>
-      <small>Search local opportunities</small>
-    </div>
-    <strong>›</strong>
-  </a>
-
-  <a href="#consultancies">
-    <span class="qa-icon blue">▦</span>
-    <div>
-      <b>Find Consultancies</b>
-      <small>Trusted local consultancies</small>
-    </div>
-    <strong>›</strong>
-  </a>
-
-  <a href="register.html?type=employer">
-    <span class="qa-icon green">▤</span>
-    <div>
-      <b>Post a Job</b>
-      <small>For employers</small>
-    </div>
-    <strong>›</strong>
-  </a>
-
-  <a href="seeker-dashboard.html">
-    <span class="qa-icon purple">♙</span>
-    <div>
-      <b>My Application</b>
-      <small>Check application status</small>
-    </div>
-    <strong>›</strong>
-  </a>
-
+  <a href="#jobs"><span class="qa-icon">⌕</span><div><b>Find Jobs</b><small>Search local opportunities</small></div><strong>›</strong></a>
+  <a href="#consultancies"><span class="qa-icon blue">▦</span><div><b>Find Consultancies</b><small>Trusted local consultancies</small></div><strong>›</strong></a>
+  <a href="register.html?type=employer"><span class="qa-icon green">▤</span><div><b>Post a Job</b><small>For employers</small></div><strong>›</strong></a>
+  <a href="seeker-dashboard.html"><span class="qa-icon purple">♙</span><div><b>My Application</b><small>Check application status</small></div><strong>›</strong></a>
 </section>
-
 
 <section class="section container" id="jobs">
-
   <div class="section-head">
-
-    <div>
-      <h2>🛡 Latest Local Jobs</h2>
-      <p>Fresh opportunities from local employers</p>
-    </div>
-
-    <a href="#jobs" id="showAllJobs">
-      View all jobs →
-    </a>
-
+    <div><h2>🛡 Latest Local Jobs</h2><p>Fresh opportunities from local employers</p></div>
+    <a href="#jobs" id="showAllJobs">View all jobs →</a>
   </div>
-
   <div class="content-layout">
-
     <div class="job-grid" id="jobGrid"></div>
-
-
-    <aside
-      class="side-card consultancy-box"
-      id="consultancies"
-    >
-
-      <h3>
-        🏢 Your area's trusted Consultancy
-      </h3>
-
+    <aside class="side-card consultancy-box" id="consultancies">
+      <h3>🏢 Your area's trusted Consultancy</h3>
       <div class="consultancy-photo"></div>
 
+      <div class="best-consultancy"><span class="best-badge">BEST</span><h4>ABC Consultancy <span class="verified">✓ Verified</span></h4><p>⭐ 4.7 (120+ reviews)</p><p>⌖ Sevoke Road, Siliguri</p><p>♧ 32 Active Jobs</p><a class="btn btn-primary full" href="#jobs">View Consultancy Jobs →</a></div>
+      <div class="best-consultancy"><span class="best-badge">BEST</span><h4>Unique Consultancy <span class="verified">✓ Verified</span></h4><p>⭐ 4.8 (98+ reviews)</p><p>⌖ Pradhan Nagar, Siliguri</p><p>♧ 28 Active Jobs</p><a class="btn btn-primary full" href="#jobs">View Consultancy Jobs →</a></div>
+      <div class="best-consultancy"><span class="best-badge">BEST</span><h4>Fast Track Consultancy <span class="verified">✓ Verified</span></h4><p>⭐ 4.6 (86+ reviews)</p><p>⌖ Matigara, Siliguri</p><p>♧ 24 Active Jobs</p><a class="btn btn-primary full" href="#jobs">View Consultancy Jobs →</a></div>
 
-      <div class="best-consultancy">
+      <button type="button" class="more-consultancy-btn" id="moreConsultancyBtn">More Consultancies →</button>
 
-        <span class="best-badge">BEST</span>
-
-        <h4>
-          ABC Consultancy
-          <span class="verified">✓ Verified</span>
-        </h4>
-
-        <p>⭐ 4.7 (120+ reviews)</p>
-        <p>⌖ Sevoke Road, Siliguri</p>
-        <p>♧ 32 Active Jobs</p>
-
-        <a
-          class="btn btn-primary full"
-          href="#jobs"
-        >
-          View Consultancy Jobs →
-        </a>
-
-      </div>
-
-
-      <div class="best-consultancy">
-
-        <span class="best-badge">BEST</span>
-
-        <h4>
-          Unique Consultancy
-          <span class="verified">✓ Verified</span>
-        </h4>
-
-        <p>⭐ 4.8 (98+ reviews)</p>
-        <p>⌖ Pradhan Nagar, Siliguri</p>
-        <p>♧ 28 Active Jobs</p>
-
-        <a
-          class="btn btn-primary full"
-          href="#jobs"
-        >
-          View Consultancy Jobs →
-        </a>
-
-      </div>
-
-
-      <div class="best-consultancy">
-
-        <span class="best-badge">BEST</span>
-
-        <h4>
-          Fast Track Consultancy
-          <span class="verified">✓ Verified</span>
-        </h4>
-
-        <p>⭐ 4.6 (86+ reviews)</p>
-        <p>⌖ Matigara, Siliguri</p>
-        <p>♧ 24 Active Jobs</p>
-
-        <a
-          class="btn btn-primary full"
-          href="#jobs"
-        >
-          View Consultancy Jobs →
-        </a>
-
-      </div>
-
-
-      <button
-        type="button"
-        class="more-consultancy-btn"
-        id="moreConsultancyBtn"
-      >
-        More Consultancies →
-      </button>
-
-
-      <div
-        class="more-consultancy-area"
-        id="moreConsultancyArea"
-      >
-
-        <div class="consultancy-search">
-
-          <span>🔍</span>
-
-          <input
-            type="search"
-            id="consultancySearch"
-            placeholder="Search consultancy name..."
-            autocomplete="off"
-          >
-
+      <div class="more-consultancy-area" id="moreConsultancyArea">
+        <div class="consultancy-search"><span>🔍</span><input type="search" id="consultancySearch" placeholder="Search consultancy name..." autocomplete="off"></div>
+        <div class="consultancy-list" id="consultancyList">
+          <div class="consultancy-item"><h4>North Bengal Consultancy</h4><span>✓ Verified</span><p>📍 Sevoke Road, Siliguri</p></div>
+          <div class="consultancy-item"><h4>TechPoint Consultancy</h4><span>✓ Verified</span><p>📍 Hill Cart Road, Siliguri</p></div>
+          <div class="consultancy-item"><h4>Siliguri Career Consultancy</h4><span>✓ Verified</span><p>📍 Pradhan Nagar, Siliguri</p></div>
+          <div class="consultancy-item"><h4>Career Point Consultancy</h4><span>✓ Verified</span><p>📍 Matigara, Siliguri</p></div>
+          <div class="consultancy-item"><h4>Bright Future Consultancy</h4><span>✓ Verified</span><p>📍 Bagdogra</p></div>
+          <div class="consultancy-item"><h4>North East Career Consultancy</h4><span>✓ Verified</span><p>📍 Siliguri</p></div>
+          <div class="consultancy-item"><h4>Job Point Consultancy</h4><span>✓ Verified</span><p>📍 Matigara</p></div>
+          <div class="consultancy-item"><h4>Career Link Consultancy</h4><span>✓ Verified</span><p>📍 Sevoke Road, Siliguri</p></div>
         </div>
-
-
-        <div
-          class="consultancy-list"
-          id="consultancyList"
-        >
-
-          <div class="consultancy-item">
-            <h4>North Bengal Consultancy</h4>
-            <span>✓ Verified</span>
-            <p>📍 Sevoke Road, Siliguri</p>
-          </div>
-
-          <div class="consultancy-item">
-            <h4>TechPoint Consultancy</h4>
-            <span>✓ Verified</span>
-            <p>📍 Hill Cart Road, Siliguri</p>
-          </div>
-
-          <div class="consultancy-item">
-            <h4>Siliguri Career Consultancy</h4>
-            <span>✓ Verified</span>
-            <p>📍 Pradhan Nagar, Siliguri</p>
-          </div>
-
-          <div class="consultancy-item">
-            <h4>Career Point Consultancy</h4>
-            <span>✓ Verified</span>
-            <p>📍 Matigara, Siliguri</p>
-          </div>
-
-          <div class="consultancy-item">
-            <h4>Bright Future Consultancy</h4>
-            <span>✓ Verified</span>
-            <p>📍 Bagdogra</p>
-          </div>
-
-          <div class="consultancy-item">
-            <h4>North East Career Consultancy</h4>
-            <span>✓ Verified</span>
-            <p>📍 Siliguri</p>
-          </div>
-
-          <div class="consultancy-item">
-            <h4>Job Point Consultancy</h4>
-            <span>✓ Verified</span>
-            <p>📍 Matigara</p>
-          </div>
-
-          <div class="consultancy-item">
-            <h4>Career Link Consultancy</h4>
-            <span>✓ Verified</span>
-            <p>📍 Sevoke Road, Siliguri</p>
-          </div>
-
-        </div>
-
-
-        <p
-          id="noConsultancyResult"
-          class="no-consultancy-result"
-        >
-          No consultancy found.
-        </p>
-
+        <p id="noConsultancyResult" class="no-consultancy-result">No consultancy found.</p>
       </div>
-
     </aside>
-
   </div>
-
 </section>
 
-
-<section
-  class="section container"
-  id="locations"
->
-
-  <div class="section-head">
-
-    <div>
-      <h2>📍 Jobs by Location</h2>
-    </div>
-
-    <a href="#locations">
-      View all locations →
-    </a>
-
-  </div>
-
-
+<section class="section container" id="locations">
+  <div class="section-head"><div><h2>📍 Jobs by Location</h2></div><a href="#locations">View all locations →</a></div>
   <div class="location-grid">
-
-    <article>
-      <div class="location-img img-siliguri"></div>
-      <b>📍 Siliguri</b>
-      <small>1,240 Jobs</small>
-    </article>
-
-    <article>
-      <div class="location-img img-matigara"></div>
-      <b>📍 Matigara</b>
-      <small>185 Jobs</small>
-    </article>
-
-    <article>
-      <div class="location-img img-sevoke"></div>
-      <b>📍 Sevoke Road</b>
-      <small>92 Jobs</small>
-    </article>
-
-    <article>
-      <div class="location-img img-bagdogra"></div>
-      <b>📍 Bagdogra</b>
-      <small>63 Jobs</small>
-    </article>
-
+    <article><div class="location-img img-siliguri"></div><b>📍 Siliguri</b><small>1,240 Jobs</small></article>
+    <article><div class="location-img img-matigara"></div><b>📍 Matigara</b><small>185 Jobs</small></article>
+    <article><div class="location-img img-sevoke"></div><b>📍 Sevoke Road</b><small>92 Jobs</small></article>
+    <article><div class="location-img img-bagdogra"></div><b>📍 Bagdogra</b><small>63 Jobs</small></article>
   </div>
-
 </section>
 
-
-<section
-  class="section container"
-  id="categories"
->
-
-  <div class="section-head">
-    <h2>♟ Popular Categories</h2>
-  </div>
-
+<section class="section container" id="categories">
+  <div class="section-head"><h2>♟ Popular Categories</h2></div>
   <div class="category-grid">
-
-    <a href="#jobs" data-category="Security">
-      🛡
-      <span>Security</span>
-    </a>
-
-    <a href="#jobs" data-category="Delivery">
-      🚚
-      <span>Delivery</span>
-    </a>
-
-    <a href="#jobs" data-category="Retail">
-      ▦
-      <span>Retail</span>
-    </a>
-
-    <a href="#jobs" data-category="Computer">
-      ▣
-      <span>Computer</span>
-    </a>
-
-    <a href="#jobs" data-category="Technician">
-      🔧
-      <span>Technician</span>
-    </a>
-
-    <a href="#jobs" data-category="Hotel">
-      🏨
-      <span>Hotel</span>
-    </a>
-
-    <a href="#jobs" data-category="Factory">
-      🏭
-      <span>Factory</span>
-    </a>
-
-    <a href="#jobs" data-category="Driver">
-      🚗
-      <span>Driver</span>
-    </a>
-
+    <a href="#jobs" data-category="Security">🛡<span>Security</span></a>
+    <a href="#jobs" data-category="Delivery">🚚<span>Delivery</span></a>
+    <a href="#jobs" data-category="Retail">▦<span>Retail</span></a>
+    <a href="#jobs" data-category="Computer">▣<span>Computer</span></a>
+    <a href="#jobs" data-category="Technician">🔧<span>Technician</span></a>
+    <a href="#jobs" data-category="Hotel">🏨<span>Hotel</span></a>
+    <a href="#jobs" data-category="Factory">🏭<span>Factory</span></a>
+    <a href="#jobs" data-category="Driver">🚗<span>Driver</span></a>
   </div>
-
 </section>
-
 
 <section class="section container success-section">
-
   <div class="success-card">
-
-    <div class="section-head">
-
-      <div>
-        <h2>💚 Our Success Stories</h2>
-        <p>Real people, real opportunities</p>
-      </div>
-
-    </div>
-
-
+    <div class="section-head"><div><h2>💚 Our Success Stories</h2><p>Real people, real opportunities</p></div></div>
     <div class="review-grid">
-
-      <article>
-
-        <div class="avatar">RD</div>
-
-        <div>
-          <b>Rahul Das</b>
-          <small>Siliguri</small>
-
-          <p>
-            “I found a Security Guard job through LocalJobHub.”
-          </p>
-
-          <strong>
-            Security Guard → ₹16,000/month
-          </strong>
-        </div>
-
-      </article>
-
-
-      <article>
-
-        <div class="avatar">PS</div>
-
-        <div>
-          <b>Priya Sharma</b>
-          <small>Matigara</small>
-
-          <p>
-            “The application process was simple and helpful.”
-          </p>
-
-          <strong>
-            Receptionist → ₹14,000/month
-          </strong>
-        </div>
-
-      </article>
-
+      <article><div class="avatar">RD</div><div><b>Rahul Das</b><small>Siliguri</small><p>“I found a Security Guard job through LocalJobHub.”</p><strong>Security Guard → ₹16,000/month</strong></div></article>
+      <article><div class="avatar">PS</div><div><b>Priya Sharma</b><small>Matigara</small><p>“The application process was simple and helpful.”</p><strong>Receptionist → ₹14,000/month</strong></div></article>
     </div>
-
   </div>
-
-
   <div class="cta-banner">
-
-    <div>
-
-      <h2>
-        Your next opportunity
-        <br>
-        may be very close.
-      </h2>
-
-      <p>
-        Find local jobs today.
-      </p>
-
-      <a
-        class="btn btn-primary"
-        href="#jobs"
-      >
-        Find Jobs →
-      </a>
-
-    </div>
-
+    <div><h2>Your next opportunity<br>may be very close.</h2><p>Find local jobs today.</p><a class="btn btn-primary" href="#jobs">Find Jobs →</a></div>
   </div>
-
 </section>
 
-
-<section
-  class="section container about"
-  id="about"
->
-
-  <h2>
-    Local jobs. Real opportunities.
-  </h2>
-
-  <p>
-    LocalJobHub is designed to connect local job seekers,
-    employers and trusted consultancies in one simple platform.
-  </p>
-
+<section class="section container about" id="about">
+  <h2>Local jobs. Real opportunities.</h2>
+  <p>LocalJobHub is designed to connect local job seekers, employers and trusted consultancies in one simple platform.</p>
 </section>
 
 </main>
 
-
 <footer id="contact">
-
   <div class="container footer-grid">
-
-    <div class="brand footer-brand">
-
-      <span class="brand-mark">◉</span>
-
-      <span>
-        <b>Local<span>JobHub</span></b>
-        <small>Local Jobs · Trusted Consultancy</small>
-      </span>
-
-    </div>
-
-
-    <div>
-
-      <a href="#jobs">
-        Find Jobs
-      </a>
-
-      <a href="register.html?type=employer">
-        Post a Job
-      </a>
-
-      <a href="#consultancies">
-        Consultancies
-      </a>
-
-    </div>
-
-
-    <div>
-
-      <a href="#about">
-        About Us
-      </a>
-
-      <a href="#contact">
-        Contact
-      </a>
-
-      <a href="login.html">
-        Login
-      </a>
-
-    </div>
-
-
-    <div>
-
-      <a href="register.html">
-        Register
-      </a>
-
-      <a href="#">
-        Privacy
-      </a>
-
-      <a href="#">
-        Terms
-      </a>
-
-    </div>
-
+    <div class="brand footer-brand"><span class="brand-mark">◉</span><span><b>Local<span>JobHub</span></b><small>Local Jobs · Trusted Consultancy</small></span></div>
+    <div><a href="#jobs">Find Jobs</a><a href="register.html?type=employer">Post a Job</a><a href="#consultancies">Consultancies</a></div>
+    <div><a href="#about">About Us</a><a href="#contact">Contact</a><a href="login.html">Login</a></div>
+    <div><a href="register.html">Register</a><a href="#">Privacy</a><a href="#">Terms</a></div>
   </div>
-
-
-  <div class="copyright">
-    © 2026 LocalJobHub. All rights reserved.
-  </div>
-
+  <div class="copyright">© 2026 LocalJobHub. All rights reserved.</div>
 </footer>
-
 
 <script src="translations.js?v=20260913"></script>
 <script src="app.js?v=20260913"></script>
+<script>
+/* Mobile language uses the same translation system if the existing app.js exposes
+   a language selector listener. Keep desktop selector untouched. */
+document.addEventListener("DOMContentLoaded", function(){
+  const mobileLang = document.getElementById("mobileLanguageSelect");
+  const desktopLang = document.getElementById("languageSelect");
+  if(mobileLang && desktopLang){
+    mobileLang.value = desktopLang.value;
+    mobileLang.addEventListener("change", function(){
+      desktopLang.value = this.value;
+      desktopLang.dispatchEvent(new Event("change", {bubbles:true}));
+    });
+  }
+});
+</script>
 
 </body>
 </html>
