@@ -1078,60 +1078,76 @@ td{
 
 @media(max-width:900px){
 
-  .site-header nav{
-    display:none;
-    position:absolute;
-    top:64px;
-    left:0;
-    right:0;
-    background:#fff;
-    padding:15px;
-    flex-direction:column;
-    border-bottom:1px solid #ddd;
-    box-shadow:0 10px 20px #17324d12;
-    z-index:30
-  }
-
-  .site-header nav.open{
-    display:flex
-  }
+  /* Mobile keeps the same desktop navigation.
+     Only sizing/spacing is reduced so the desktop layout remains unchanged. */
 
   .menu-btn{
-    display:block;
-    margin-left:auto;
-    width:42px;
-    height:40px;
-    border:1px solid #dbe2ee;
-    border-radius:8px;
-    background:#fff;
-    color:#172033;
-    font-size:21px;
-    cursor:pointer
+    display:none !important
   }
 
   .nav-wrap{
+    gap:8px;
+    min-height:58px
+  }
+
+  .brand{
+    min-width:150px;
+    gap:6px
+  }
+
+  .brand-mark{
+    width:30px;
+    height:30px;
+    border-width:2px
+  }
+
+  .brand b{
+    font-size:16px
+  }
+
+  .brand small{
+    font-size:7px
+  }
+
+  .site-header nav{
+    display:flex !important;
+    position:static;
+    padding:0;
+    background:transparent;
+    flex-direction:row;
+    border:0;
+    box-shadow:none;
+    z-index:auto;
     gap:10px;
-    position:relative
+    flex:1;
+    justify-content:center
+  }
+
+  .site-header nav a{
+    font-size:9px;
+    white-space:nowrap
   }
 
   .nav-actions{
     display:flex !important;
     align-items:center;
-    gap:6px;
+    gap:4px;
     margin-left:0
   }
 
   .nav-actions .btn{
-    display:none
+    display:inline-flex !important;
+    padding:7px 8px;
+    font-size:9px;
+    white-space:nowrap
   }
 
   .nav-actions select{
     display:block !important;
-    border:1px solid #dce7ec;
-    border-radius:7px;
-    padding:7px 4px;
-    font-size:10px;
-    max-width:82px;
+    border:0;
+    padding:3px 1px;
+    font-size:8px;
+    max-width:55px;
     background:#fff
   }
 
