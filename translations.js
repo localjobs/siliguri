@@ -1,5 +1,5 @@
 /* =========================================================
-   LOCALJOBHUB - TRANSLATIONS
+   LOCALJOBHUB - FINAL TRANSLATIONS
    English / Bengali / Hindi
    ========================================================= */
 
@@ -26,8 +26,7 @@ window.translations = {
     hero: {
       area: "Siliguri & North Bengal",
       title: "Find Local Jobs That Match Your Skills",
-      subtitle:
-        "Discover trusted local jobs, consultancies and career opportunities near you.",
+      subtitle: "Discover trusted local jobs, consultancies and career opportunities near you.",
       search: "Search Jobs",
       trusted: "Trusted Local Opportunities",
       local: "Local Jobs",
@@ -54,8 +53,7 @@ window.translations = {
       jobType: "Job Type",
       category: "Category",
       noJobs: "No jobs found",
-      noJobsText:
-        "Try another keyword, category or location."
+      noJobsText: "Try another keyword, category or location."
     },
 
     consultancy: {
@@ -87,30 +85,22 @@ window.translations = {
 
     success: {
       title: "Success Stories",
-      subtitle:
-        "Real opportunities helping local people build better careers."
+      subtitle: "Real opportunities helping local people build better careers."
     },
 
     about: {
       title: "About LocalJobHub",
-      text:
-        "LocalJobHub connects job seekers, employers and trusted consultancies with local employment opportunities across Siliguri and North Bengal."
+      text: "LocalJobHub connects job seekers, employers and trusted consultancies with local employment opportunities across Siliguri and North Bengal."
     },
 
     cta: {
       title: "Ready to Find Your Next Opportunity?",
-      text:
-        "Search local jobs, connect with employers and take the next step in your career.",
+      text: "Search local jobs, connect with employers and take the next step in your career.",
       button: "Get Started"
     },
 
     footer: {
-      quickLinks: "Quick Links",
-      jobSeekers: "For Job Seekers",
-      employers: "For Employers",
-      contact: "Contact Us",
-      copyright:
-        "© 2026 LocalJobHub. All rights reserved."
+      copyright: "© 2026 LocalJobHub. All rights reserved."
     }
 
   },
@@ -137,16 +127,13 @@ window.translations = {
     hero: {
       area: "শিলিগুড়ি ও উত্তরবঙ্গ",
       title: "আপনার দক্ষতার সঙ্গে মিলবে এমন স্থানীয় চাকরি খুঁজুন",
-      subtitle:
-        "আপনার কাছাকাছি বিশ্বস্ত স্থানীয় চাকরি, কনসালটেন্সি এবং ক্যারিয়ারের সুযোগ খুঁজে নিন।",
+      subtitle: "আপনার কাছাকাছি বিশ্বস্ত স্থানীয় চাকরি, কনসালটেন্সি এবং ক্যারিয়ারের সুযোগ খুঁজে নিন।",
       search: "চাকরি খুঁজুন",
       trusted: "বিশ্বস্ত স্থানীয় সুযোগ",
       local: "স্থানীয় চাকরি",
       easy: "সহজে আবেদন করুন",
-      keywordPlaceholder:
-        "চাকরির নাম, দক্ষতা বা কীওয়ার্ড",
-      locationPlaceholder:
-        "লোকেশন"
+      keywordPlaceholder: "চাকরির নাম, দক্ষতা বা কীওয়ার্ড",
+      locationPlaceholder: "লোকেশন"
     },
 
     quick: {
@@ -167,8 +154,7 @@ window.translations = {
       jobType: "চাকরির ধরন",
       category: "ক্যাটাগরি",
       noJobs: "কোনও চাকরি পাওয়া যায়নি",
-      noJobsText:
-        "অন্য কীওয়ার্ড, ক্যাটাগরি অথবা লোকেশন দিয়ে চেষ্টা করুন।"
+      noJobsText: "অন্য কীওয়ার্ড, ক্যাটাগরি অথবা লোকেশন দিয়ে চেষ্টা করুন।"
     },
 
     consultancy: {
@@ -200,30 +186,22 @@ window.translations = {
 
     success: {
       title: "সাফল্যের গল্প",
-      subtitle:
-        "স্থানীয় মানুষকে আরও ভালো ক্যারিয়ার গড়তে সাহায্য করছে বাস্তব চাকরির সুযোগ।"
+      subtitle: "স্থানীয় মানুষকে আরও ভালো ক্যারিয়ার গড়তে সাহায্য করছে বাস্তব চাকরির সুযোগ।"
     },
 
     about: {
       title: "LocalJobHub সম্পর্কে",
-      text:
-        "LocalJobHub শিলিগুড়ি ও উত্তরবঙ্গের স্থানীয় চাকরির সুযোগের সঙ্গে চাকরিপ্রার্থী, নিয়োগকর্তা এবং বিশ্বস্ত কনসালটেন্সিকে যুক্ত করে।"
+      text: "LocalJobHub শিলিগুড়ি ও উত্তরবঙ্গের স্থানীয় চাকরির সুযোগের সঙ্গে চাকরিপ্রার্থী, নিয়োগকর্তা এবং বিশ্বস্ত কনসালটেন্সিকে যুক্ত করে।"
     },
 
     cta: {
       title: "আপনার পরবর্তী সুযোগের জন্য প্রস্তুত?",
-      text:
-        "স্থানীয় চাকরি খুঁজুন, নিয়োগকর্তার সঙ্গে যোগাযোগ করুন এবং আপনার ক্যারিয়ারের পরবর্তী ধাপ শুরু করুন।",
+      text: "স্থানীয় চাকরি খুঁজুন, নিয়োগকর্তার সঙ্গে যোগাযোগ করুন এবং আপনার ক্যারিয়ারের পরবর্তী ধাপ শুরু করুন।",
       button: "শুরু করুন"
     },
 
     footer: {
-      quickLinks: "দ্রুত লিংক",
-      jobSeekers: "চাকরিপ্রার্থীদের জন্য",
-      employers: "নিয়োগকর্তাদের জন্য",
-      contact: "যোগাযোগ করুন",
-      copyright:
-        "© ২০২৬ LocalJobHub। সর্বস্বত্ব সংরক্ষিত।"
+      copyright: "© ২০২৬ LocalJobHub। সর্বস্বত্ব সংরক্ষিত।"
     }
 
   },
@@ -250,16 +228,13 @@ window.translations = {
     hero: {
       area: "सिलीगुड़ी और उत्तर बंगाल",
       title: "अपने कौशल के अनुसार स्थानीय नौकरी खोजें",
-      subtitle:
-        "अपने आसपास भरोसेमंद स्थानीय नौकरियां, कंसल्टेंसी और करियर के अवसर खोजें।",
+      subtitle: "अपने आसपास भरोसेमंद स्थानीय नौकरियां, कंसल्टेंसी और करियर के अवसर खोजें।",
       search: "नौकरी खोजें",
       trusted: "भरोसेमंद स्थानीय अवसर",
       local: "स्थानीय नौकरियां",
       easy: "आसानी से आवेदन करें",
-      keywordPlaceholder:
-        "नौकरी का नाम, कौशल या कीवर्ड",
-      locationPlaceholder:
-        "स्थान"
+      keywordPlaceholder: "नौकरी का नाम, कौशल या कीवर्ड",
+      locationPlaceholder: "स्थान"
     },
 
     quick: {
@@ -280,8 +255,7 @@ window.translations = {
       jobType: "नौकरी का प्रकार",
       category: "श्रेणी",
       noJobs: "कोई नौकरी नहीं मिली",
-      noJobsText:
-        "कोई दूसरा कीवर्ड, श्रेणी या स्थान आज़माएं।"
+      noJobsText: "कोई दूसरा कीवर्ड, श्रेणी या स्थान आज़माएं।"
     },
 
     consultancy: {
@@ -313,30 +287,22 @@ window.translations = {
 
     success: {
       title: "सफलता की कहानियां",
-      subtitle:
-        "स्थानीय लोगों को बेहतर करियर बनाने में मदद करने वाले वास्तविक अवसर।"
+      subtitle: "स्थानीय लोगों को बेहतर करियर बनाने में मदद करने वाले वास्तविक अवसर।"
     },
 
     about: {
       title: "LocalJobHub के बारे में",
-      text:
-        "LocalJobHub सिलीगुड़ी और उत्तर बंगाल में स्थानीय रोजगार के अवसरों के लिए नौकरी चाहने वालों, नियोक्ताओं और भरोसेमंद कंसल्टेंसी को जोड़ता है।"
+      text: "LocalJobHub सिलीगुड़ी और उत्तर बंगाल में स्थानीय रोजगार के अवसरों के लिए नौकरी चाहने वालों, नियोक्ताओं और भरोसेमंद कंसल्टेंसी को जोड़ता है।"
     },
 
     cta: {
       title: "अपने अगले अवसर के लिए तैयार हैं?",
-      text:
-        "स्थानीय नौकरियां खोजें, नियोक्ताओं से जुड़ें और अपने करियर का अगला कदम उठाएं।",
+      text: "स्थानीय नौकरियां खोजें, नियोक्ताओं से जुड़ें और अपने करियर का अगला कदम उठाएं।",
       button: "शुरू करें"
     },
 
     footer: {
-      quickLinks: "त्वरित लिंक",
-      jobSeekers: "नौकरी चाहने वालों के लिए",
-      employers: "नियोक्ताओं के लिए",
-      contact: "संपर्क करें",
-      copyright:
-        "© 2026 LocalJobHub। सर्वाधिकार सुरक्षित।"
+      copyright: "© 2026 LocalJobHub। सर्वाधिकार सुरक्षित।"
     }
 
   }
@@ -345,50 +311,38 @@ window.translations = {
 
 
 /* =========================================================
-   BACKWARD COMPATIBILITY
-   =========================================================
-
-   কিছু পুরোনো HTML যদি flat key ব্যবহার করে,
-   সেগুলোর জন্যও values রাখা হলো।
-   ========================================================= */
-
-window.translations.en.home = "Home";
-window.translations.en.heroTitle =
-  window.translations.en.hero.title;
-window.translations.en.heroSubtitle =
-  window.translations.en.hero.subtitle;
-
-window.translations.bn.home = "হোম";
-window.translations.bn.heroTitle =
-  window.translations.bn.hero.title;
-window.translations.bn.heroSubtitle =
-  window.translations.bn.hero.subtitle;
-
-window.translations.hi.home = "होम";
-window.translations.hi.heroTitle =
-  window.translations.hi.hero.title;
-window.translations.hi.heroSubtitle =
-  window.translations.hi.hero.subtitle;
-/* =========================================================
-   LANGUAGE SWITCHER - LOCALJOBHUB
-   Works with the current index.html
+   LANGUAGE SWITCHER
+   Works with the CURRENT index.html
    ========================================================= */
 
 (function () {
 
+  function setText(selector, text) {
+    const element = document.querySelector(selector);
+
+    if (element && text !== undefined) {
+      element.textContent = text;
+    }
+  }
+
+
   function applyLanguage(lang) {
 
-    if (!window.translations || !window.translations[lang]) {
+    if (!window.translations[lang]) {
       lang = "en";
     }
 
     const t = window.translations[lang];
 
-    /* ---------------- NAVIGATION ---------------- */
+
+    /* =====================================================
+       NAVIGATION
+       ===================================================== */
 
     const navLinks = document.querySelectorAll("#mainNav a");
 
     if (navLinks.length >= 7) {
+
       navLinks[0].textContent = t.nav.home;
       navLinks[1].textContent = t.nav.jobs;
       navLinks[2].textContent = t.nav.categories;
@@ -396,158 +350,202 @@ window.translations.hi.heroSubtitle =
       navLinks[4].textContent = t.nav.consultancies;
       navLinks[5].textContent = t.nav.about;
       navLinks[6].textContent = t.nav.contact;
+
     }
 
-    /* Login / Register buttons */
 
-    document.querySelectorAll('a[href="login.html"]').forEach(function (el) {
-      el.textContent = t.nav.login;
+    /* Login */
+
+    document.querySelectorAll('a[href="login.html"]').forEach(function (link) {
+      link.textContent = t.nav.login;
     });
 
-    document.querySelectorAll('a[href="register.html"]').forEach(function (el) {
-      if (!el.href.includes("?type=employer")) {
-        el.textContent = t.nav.register;
+
+    /* Register */
+
+    document.querySelectorAll('a[href="register.html"]').forEach(function (link) {
+
+      if (!link.href.includes("?type=employer")) {
+        link.textContent = t.nav.register;
       }
+
     });
 
 
-    /* ---------------- HERO ---------------- */
+    /* =====================================================
+       HERO
+       ===================================================== */
 
-    const heroEyebrow = document.querySelector(".hero .eyebrow");
-    if (heroEyebrow) {
-      heroEyebrow.textContent = "● " + t.hero.area;
-    }
+    setText(
+      ".hero .eyebrow",
+      "● " + t.hero.area
+    );
+
 
     const heroTitle = document.querySelector(".hero-copy h1");
+
     if (heroTitle) {
+
       if (lang === "bn") {
+
         heroTitle.innerHTML =
           "আপনার দক্ষতার সঙ্গে মিলবে<br><span>এমন স্থানীয় চাকরি খুঁজুন</span>";
+
       } else if (lang === "hi") {
+
         heroTitle.innerHTML =
           "अपने कौशल के अनुसार<br><span>स्थानीय नौकरी खोजें</span>";
+
       } else {
+
         heroTitle.innerHTML =
           "Find Local Jobs That Match<br><span>Your Skills</span>";
+
       }
+
     }
 
-    const heroText = document.querySelector(".hero-copy > p");
-    if (heroText) {
-      heroText.textContent = t.hero.subtitle;
+
+    setText(
+      ".hero-copy > p",
+      t.hero.subtitle
+    );
+
+
+    const keyword = document.getElementById("keyword");
+
+    if (keyword) {
+      keyword.placeholder = t.hero.keywordPlaceholder;
     }
 
-    const keywordInput = document.querySelector("#keyword");
-    if (keywordInput) {
-      keywordInput.placeholder = t.hero.keywordPlaceholder;
+
+    const location = document.getElementById("location");
+
+    if (location) {
+      location.placeholder = t.hero.locationPlaceholder;
     }
 
-    const locationInput = document.querySelector("#location");
-    if (locationInput) {
-      locationInput.placeholder = t.hero.locationPlaceholder;
-    }
 
-    const searchButton = document.querySelector("#jobSearch button");
+    const searchButton =
+      document.querySelector("#jobSearch button");
+
     if (searchButton) {
       searchButton.textContent = t.hero.search + " →";
     }
 
-    /* Hero trust row */
 
-    const trustItems = document.querySelectorAll(".trust-row span");
+    /* Trust row */
+
+    const trustItems =
+      document.querySelectorAll(".trust-row span");
 
     if (trustItems.length >= 3) {
-      trustItems[0].textContent = "✓ " + t.hero.trusted;
-      trustItems[1].textContent = "✓ " + t.hero.local;
-      trustItems[2].textContent = "✓ " + t.hero.easy;
+
+      trustItems[0].textContent =
+        "✓ " + t.hero.trusted;
+
+      trustItems[1].textContent =
+        "✓ " + t.hero.local;
+
+      trustItems[2].textContent =
+        "✓ " + t.hero.easy;
+
     }
 
 
-    /* ---------------- QUICK ACTIONS ---------------- */
+    /* =====================================================
+       QUICK ACTIONS
+       ===================================================== */
 
-    const quickActions = document.querySelectorAll(".quick-actions a");
-
-    if (quickActions.length >= 4) {
-
-      const quickTitles = [
-        t.quick.jobs,
-        t.quick.consultancies,
-        t.quick.post,
-        t.quick.application
-      ];
-
-      quickActions.forEach(function (item, index) {
-
-        const title = item.querySelector("b");
-
-        if (title && quickTitles[index]) {
-          title.textContent = quickTitles[index];
-        }
-
-      });
-    }
+    const quickActions =
+      document.querySelectorAll(".quick-actions a");
 
 
-    /* ---------------- JOB SECTION ---------------- */
-
-    const jobHeading = document.querySelector("#jobs .section-head h2");
-
-    if (jobHeading) {
-      jobHeading.textContent = "🛡 " + t.jobs.title;
-    }
-
-    const showAllJobs = document.querySelector("#showAllJobs");
-
-    if (showAllJobs) {
-      showAllJobs.textContent = t.jobs.viewAll + " →";
-    }
+    const quickTitles = [
+      t.quick.jobs,
+      t.quick.consultancies,
+      t.quick.post,
+      t.quick.application
+    ];
 
 
-    /* ---------------- CONSULTANCY ---------------- */
+    quickActions.forEach(function (item, index) {
 
-    const consultancyHeading =
-      document.querySelector("#consultancies h3");
+      const title = item.querySelector("b");
 
-    if (consultancyHeading) {
-      consultancyHeading.textContent = "🏢 " + t.consultancy.title;
-    }
+      if (title && quickTitles[index]) {
+        title.textContent = quickTitles[index];
+      }
 
-    const consultancyVerified =
+    });
+
+
+    /* =====================================================
+       JOBS
+       ===================================================== */
+
+    setText(
+      "#jobs .section-head h2",
+      "🛡 " + t.jobs.title
+    );
+
+
+    setText(
+      "#showAllJobs",
+      t.jobs.viewAll + " →"
+    );
+
+
+    /* =====================================================
+       CONSULTANCY
+       ===================================================== */
+
+    setText(
+      "#consultancies h3",
+      "🏢 " + t.consultancy.title
+    );
+
+
+    const verified =
       document.querySelector("#consultancies .verified");
 
-    if (consultancyVerified) {
-      consultancyVerified.textContent =
+    if (verified) {
+      verified.textContent =
         "✓ " + t.consultancy.verified;
     }
 
 
-    /* ---------------- LOCATIONS ---------------- */
+    /* =====================================================
+       LOCATIONS
+       ===================================================== */
 
-    const locationHeading =
-      document.querySelector("#locations .section-head h2");
+    setText(
+      "#locations .section-head h2",
+      "📍 " + t.locations.title
+    );
 
-    if (locationHeading) {
-      locationHeading.textContent = "📍 " + t.locations.title;
-    }
 
-    const locationViewAll =
+    const locationView =
       document.querySelector("#locations .section-head > a");
 
-    if (locationViewAll) {
-      locationViewAll.textContent = t.locations.viewAll + " →";
+    if (locationView) {
+      locationView.textContent =
+        t.locations.viewAll + " →";
     }
 
 
-    /* ---------------- CATEGORIES ---------------- */
+    /* =====================================================
+       CATEGORIES
+       ===================================================== */
 
-    const categoryHeading =
-      document.querySelector("#categories .section-head h2");
+    setText(
+      "#categories .section-head h2",
+      "♟ " + t.categories.title
+    );
 
-    if (categoryHeading) {
-      categoryHeading.textContent = "♟ " + t.categories.title;
-    }
 
     const categoryMap = {
+
       Security: t.categories.security,
       Delivery: t.categories.delivery,
       Retail: t.categories.retail,
@@ -556,156 +554,189 @@ window.translations.hi.heroSubtitle =
       Hotel: t.categories.hotel,
       Factory: t.categories.construction,
       Driver: t.categories.driver
+
     };
+
 
     document.querySelectorAll("[data-category]").forEach(function (item) {
 
-      const category = item.getAttribute("data-category");
-      const span = item.querySelector("span");
+      const category =
+        item.getAttribute("data-category");
+
+      const span =
+        item.querySelector("span");
 
       if (span && categoryMap[category]) {
-        span.textContent = categoryMap[category];
+        span.textContent =
+          categoryMap[category];
       }
 
     });
 
 
-    /* ---------------- SUCCESS STORIES ---------------- */
+    /* =====================================================
+       SUCCESS STORIES
+       ===================================================== */
 
-    const successHeading =
-      document.querySelector(".success-section .section-head h2");
-
-    if (successHeading) {
-      successHeading.textContent = "💚 " + t.success.title;
-    }
-
-    const successSubtitle =
-      document.querySelector(".success-section .section-head p");
-
-    if (successSubtitle) {
-      successSubtitle.textContent = t.success.subtitle;
-    }
+    setText(
+      ".success-section .section-head h2",
+      "💚 " + t.success.title
+    );
 
 
-    /* ---------------- ABOUT ---------------- */
-
-    const aboutHeading =
-      document.querySelector(".about h2");
-
-    if (aboutHeading) {
-      aboutHeading.textContent = t.about.title;
-    }
-
-    const aboutText =
-      document.querySelector(".about p");
-
-    if (aboutText) {
-      aboutText.textContent = t.about.text;
-    }
+    setText(
+      ".success-section .section-head p",
+      t.success.subtitle
+    );
 
 
-    /* ---------------- CTA ---------------- */
+    /* =====================================================
+       ABOUT
+       ===================================================== */
+
+    setText(
+      ".about h2",
+      t.about.title
+    );
+
+
+    setText(
+      ".about p",
+      t.about.text
+    );
+
+
+    /* =====================================================
+       CTA
+       ===================================================== */
 
     const ctaHeading =
       document.querySelector(".cta-banner h2");
 
-    const ctaText =
-      document.querySelector(".cta-banner p");
-
-    const ctaButton =
-      document.querySelector(".cta-banner .btn");
 
     if (ctaHeading) {
+
       if (lang === "bn") {
+
         ctaHeading.innerHTML =
           "আপনার পরবর্তী সুযোগ<br>হয়তো খুব কাছেই।";
+
       } else if (lang === "hi") {
+
         ctaHeading.innerHTML =
           "आपका अगला अवसर<br>शायद बहुत करीब है।";
+
       } else {
+
         ctaHeading.innerHTML =
           "Your next opportunity<br>may be very close.";
+
       }
-    }
 
-    if (ctaText) {
-      ctaText.textContent =
-        lang === "bn"
-          ? "আজই স্থানীয় চাকরি খুঁজুন।"
-          : lang === "hi"
-          ? "आज ही स्थानीय नौकरी खोजें।"
-          : "Find local jobs today.";
-    }
-
-    if (ctaButton) {
-      ctaButton.textContent = t.cta.button + " →";
     }
 
 
-    /* ---------------- FOOTER ---------------- */
+    setText(
+      ".cta-banner p",
+      lang === "bn"
+        ? "আজই স্থানীয় চাকরি খুঁজুন।"
+        : lang === "hi"
+        ? "आज ही स्थानीय नौकरी खोजें।"
+        : "Find local jobs today."
+    );
 
-    const copyright =
-      document.querySelector(".copyright");
 
-    if (copyright) {
-      copyright.textContent = t.footer.copyright;
-    }
+    setText(
+      ".cta-banner .btn",
+      t.cta.button + " →"
+    );
 
 
-    /* Save selected language */
+    /* =====================================================
+       FOOTER
+       ===================================================== */
 
-    localStorage.setItem("localjobhub_language", lang);
+    setText(
+      ".copyright",
+      t.footer.copyright
+    );
+
+
+    /* =====================================================
+       SAVE LANGUAGE
+       ===================================================== */
+
+    localStorage.setItem(
+      "localjobhub_language",
+      lang
+    );
+
 
     document.documentElement.lang = lang;
 
   }
 
 
-  /* ---------------- LANGUAGE SELECT ---------------- */
+  /* =======================================================
+     INITIALIZE
+     ======================================================= */
 
-  function initializeLanguageSwitcher() {
+  function initializeLanguage() {
 
-    const select =
+    const languageSelect =
       document.getElementById("languageSelect");
 
-    if (!select) return;
+    if (!languageSelect) {
+      return;
+    }
+
 
     let savedLanguage =
       localStorage.getItem("localjobhub_language") || "en";
+
 
     if (!window.translations[savedLanguage]) {
       savedLanguage = "en";
     }
 
-    select.value = savedLanguage;
 
-    /* Apply language when page opens */
+    languageSelect.value =
+      savedLanguage;
+
+
+    /* Apply saved language */
 
     applyLanguage(savedLanguage);
 
-    /* Apply language when user changes dropdown */
 
-    select.addEventListener("change", function () {
+    /* Change language */
 
-      applyLanguage(this.value);
+    languageSelect.addEventListener(
+      "change",
+      function () {
 
-    });
+        applyLanguage(this.value);
+
+      }
+    );
 
   }
 
 
-  /* ---------------- START ---------------- */
+  /* =======================================================
+     START
+     ======================================================= */
 
   if (document.readyState === "loading") {
 
     document.addEventListener(
       "DOMContentLoaded",
-      initializeLanguageSwitcher
+      initializeLanguage
     );
 
   } else {
 
-    initializeLanguageSwitcher();
+    initializeLanguage();
 
   }
 
