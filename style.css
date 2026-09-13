@@ -1644,3 +1644,150 @@ td{
 
   .hero h1{font-size:29px}
 }
+
+
+/* FINAL MOBILE POLISH — mobile only; desktop remains unchanged */
+@media (max-width:900px){
+  .nav-wrap{
+    width:calc(100% - 16px);
+    gap:10px;
+    padding:10px 0 12px;
+  }
+
+  /* Larger, cleaner mobile logo */
+  .brand{gap:9px}
+  .brand-mark{width:38px;height:38px;border-width:2.5px}
+  .brand b{font-size:22px;line-height:1.05}
+  .brand small{font-size:8px;margin-top:3px}
+
+  /* Professional full-width mobile menu */
+  .site-header nav{
+    display:grid !important;
+    grid-template-columns:repeat(5,minmax(0,1fr));
+    gap:4px;
+    padding:5px;
+    background:#fff;
+    border:1px solid #dce7eb;
+    border-radius:13px;
+    box-shadow:0 3px 12px rgba(23,50,77,.07);
+  }
+
+  .site-header nav > a,
+  .mobile-more > summary{
+    width:100%;
+    min-width:0;
+    min-height:38px;
+    padding:8px 2px;
+    border-radius:9px;
+    font-size:10px;
+    font-weight:800;
+    line-height:1.1;
+    text-align:center;
+  }
+
+  .site-header nav > a:nth-child(2)::after{font-size:10px}
+  .mobile-more > summary::after{font-size:9px}
+
+  .site-header nav > a:hover,
+  .mobile-more > summary:hover{background:#edf7f3}
+
+  .mobile-more{display:block;min-width:0}
+  .mobile-more-menu{
+    top:43px;
+    right:0;
+    width:190px;
+    min-width:190px;
+    padding:7px;
+    border-radius:13px;
+    box-shadow:0 16px 34px rgba(23,50,77,.18);
+  }
+
+  .mobile-more-menu a,
+  .mobile-more-menu .mobile-language{
+    min-height:38px;
+    padding:10px 12px;
+    font-size:11px !important;
+  }
+
+  /* Separate Login / Register row */
+  .nav-actions{gap:9px}
+  .nav-actions .btn{
+    min-width:88px;
+    min-height:36px;
+    padding:8px 15px;
+    font-size:9.5px;
+    border-radius:9px;
+  }
+
+  /* Larger hero heading with stable space for typing animation */
+  .hero h1{
+    font-size:35px;
+    line-height:1.08;
+    letter-spacing:-.65px;
+    min-height:76px;
+  }
+
+  /* Cleaner footer */
+  footer{padding-top:32px}
+  .footer-grid{
+    grid-template-columns:1fr 1fr;
+    gap:0;
+    padding:0 4px 24px;
+  }
+  .footer-brand{
+    margin-bottom:24px;
+    padding-bottom:18px;
+    border-bottom:1px solid rgba(255,255,255,.12);
+  }
+  .footer-brand .brand-mark{width:40px;height:40px}
+  .footer-brand b{font-size:22px}
+  .footer-brand small{font-size:7.5px}
+  .footer-grid>div:not(.brand){
+    align-items:center;
+    gap:11px;
+    padding:2px 8px;
+  }
+  .footer-grid>div:not(.brand):nth-child(2){border-right:1px solid rgba(255,255,255,.14)}
+  .footer-grid a{
+    font-size:10px;
+    line-height:1.35;
+    padding:3px 0;
+    text-align:center;
+  }
+  .footer-grid a:hover{color:#fff}
+  .copyright{
+    padding:14px 10px;
+    font-size:8.5px;
+    line-height:1.4;
+  }
+}
+
+@media (max-width:430px){
+  .nav-wrap{width:calc(100% - 12px)}
+  .brand-mark{width:36px;height:36px}
+  .brand b{font-size:20px}
+  .brand small{font-size:7px}
+  .site-header nav > a,
+  .mobile-more > summary{
+    min-height:36px;
+    font-size:9px;
+    padding:8px 1px;
+  }
+  .site-header nav > a:nth-child(2)::after{font-size:9px}
+  .mobile-more > summary::after{font-size:8px}
+  .nav-actions .btn{min-width:82px;min-height:34px;font-size:9px}
+  .hero h1{font-size:32px;min-height:70px}
+}
+
+@media (max-width:360px){
+  .nav-wrap{width:calc(100% - 10px)}
+  .brand-mark{width:34px;height:34px}
+  .brand b{font-size:19px}
+  .site-header nav{gap:2px;padding:4px}
+  .site-header nav > a,
+  .mobile-more > summary{min-height:34px;font-size:8px}
+  .site-header nav > a:nth-child(2)::after{font-size:8px}
+  .mobile-more > summary::after{font-size:7px}
+  .nav-actions .btn{min-width:74px;min-height:32px;font-size:8px;padding:7px 10px}
+  .hero h1{font-size:29px;min-height:64px}
+}
