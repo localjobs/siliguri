@@ -2,21 +2,40 @@ document.addEventListener("DOMContentLoaded",()=>{
 
 /* =========================================================
    HERO TYPING EFFECT - DESKTOP + MOBILE
+   Types:
+   Jobs in Siliguri,
+   for the people of Siliguri.
+
+   Hold 3 seconds -> delete -> repeat forever
    ========================================================= */
 
 (function(){
 
-  const el = document.getElementById("heroTypingText");
+  const line1 =
+    document.getElementById("heroTypingLine1");
 
-  if(!el || el.dataset.typingStarted === "1"){
+  const line2 =
+    document.getElementById("heroTypingLine2");
+
+  if(
+    !line1 ||
+    !line2 ||
+    line1.dataset.typingStarted === "1"
+  ){
     return;
   }
 
-  el.dataset.typingStarted = "1";
+  line1.dataset.typingStarted = "1";
 
-  const firstLine = "Jobs in Siliguri,";
-  const secondLine = "for the people of Siliguri.";
-  const fullText = firstLine + " " + secondLine;
+  const firstLine =
+    "Jobs in Siliguri,";
+
+  const secondLine =
+    "for the people of Siliguri.";
+
+  const totalLength =
+    firstLine.length +
+    secondLine.length;
 
   let index = 0;
   let deleting = false;
@@ -24,31 +43,44 @@ document.addEventListener("DOMContentLoaded",()=>{
 
   function draw(){
 
-    if(index <= firstLine.length){
+    const firstCount =
+      Math.min(
+        index,
+        firstLine.length
+      );
 
-      el.textContent =
-        fullText.slice(0,index);
+    const secondCount =
+      Math.max(
+        0,
+        index - firstLine.length
+      );
 
-    }else{
 
-      el.innerHTML =
-        firstLine +
-        "<br>" +
-        secondLine.slice(
-          0,
-          index - firstLine.length - 1
-        );
+    line1.textContent =
+      firstLine.slice(
+        0,
+        firstCount
+      );
 
-    }
+
+    line2.textContent =
+      secondLine.slice(
+        0,
+        secondCount
+      );
 
   }
 
 
   function tick(){
 
+    /* =========================
+       TYPING
+       ========================= */
+
     if(!deleting){
 
-      if(index < fullText.length){
+      if(index < totalLength){
 
         index++;
 
@@ -61,22 +93,28 @@ document.addEventListener("DOMContentLoaded",()=>{
 
       }else{
 
-        /*
-          Text finished.
-          Hold for 3 seconds.
-        */
+        /* Hold complete text for 3 seconds */
 
         setTimeout(
-          ()=>{
+          function(){
+
             deleting = true;
+
             tick();
+
           },
           3000
         );
 
       }
 
-    }else{
+    }
+
+    /* =========================
+       DELETING
+       ========================= */
+
+    else{
 
       if(index > 0){
 
@@ -91,12 +129,9 @@ document.addEventListener("DOMContentLoaded",()=>{
 
       }else{
 
-        /*
-          Text completely deleted.
-          Small pause before typing again.
-        */
-
         deleting = false;
+
+        /* Small pause before typing again */
 
         setTimeout(
           tick,
@@ -110,87 +145,106 @@ document.addEventListener("DOMContentLoaded",()=>{
   }
 
 
+  /* Start */
+
   draw();
+
   tick();
 
 })();
+
 
 
 /* =========================================================
    JOB DATA
    ========================================================= */
 
-const KEY="localjobhub_jobs";
+const KEY =
+  "localjobhub_jobs";
 
 
-const demoJobs=[
-{
-id:"demo1",
-title:"Security Guard",
-company:"ABC Consultancy",
-location:"Siliguri",
-category:"Security",
-salary:"₹14,000 - ₹18,000",
-type:"Full Time",
-experience:"0-2 years",
-image:"https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=700&q=80"
-},
-{
-id:"demo2",
-title:"Computer Operator",
-company:"Unique Consultancy",
-location:"Pradhan Nagar, Siliguri",
-category:"Computer",
-salary:"₹10,000 - ₹15,000",
-type:"Full Time",
-experience:"0-2 years",
-image:"https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=700&q=80"
-},
-{
-id:"demo3",
-title:"Delivery Boy",
-company:"Fast Track Consultancy",
-location:"Matigara",
-category:"Delivery",
-salary:"₹12,000 - ₹16,000",
-type:"Full Time",
-experience:"Fresher",
-image:"https://images.unsplash.com/photo-1616401784845-180882ba9ba8?auto=format&fit=crop&w=700&q=80"
-},
-{
-id:"demo4",
-title:"Receptionist",
-company:"North Bengal Consultancy",
-location:"Sevoke Road",
-category:"Retail",
-salary:"₹12,000 - ₹16,000",
-type:"Full Time",
-experience:"1 year",
-image:"https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=700&q=80"
-},
-{
-id:"demo5",
-title:"Electrician",
-company:"TechPoint Services",
-location:"Bagdogra",
-category:"Technician",
-salary:"₹15,000 - ₹22,000",
-type:"Full Time",
-experience:"2+ years",
-image:"https://images.unsplash.com/photo-1621905252507-b35492cc74b4?auto=format&fit=crop&w=700&q=80"
-},
-{
-id:"demo6",
-title:"Hotel Staff",
-company:"Hillside Hotel",
-location:"Siliguri",
-category:"Hotel",
-salary:"₹11,000 - ₹15,000",
-type:"Full Time",
-experience:"Fresher",
-image:"https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=700&q=80"
-}
+const demoJobs = [
+
+  {
+    id:"demo1",
+    title:"Security Guard",
+    company:"ABC Consultancy",
+    location:"Siliguri",
+    category:"Security",
+    salary:"₹14,000 - ₹18,000",
+    type:"Full Time",
+    experience:"0-2 years",
+    image:
+      "https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=700&q=80"
+  },
+
+  {
+    id:"demo2",
+    title:"Computer Operator",
+    company:"Unique Consultancy",
+    location:"Pradhan Nagar, Siliguri",
+    category:"Computer",
+    salary:"₹10,000 - ₹15,000",
+    type:"Full Time",
+    experience:"0-2 years",
+    image:
+      "https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=700&q=80"
+  },
+
+  {
+    id:"demo3",
+    title:"Delivery Boy",
+    company:"Fast Track Consultancy",
+    location:"Matigara",
+    category:"Delivery",
+    salary:"₹12,000 - ₹16,000",
+    type:"Full Time",
+    experience:"Fresher",
+    image:
+      "https://images.unsplash.com/photo-1616401784845-180882ba9ba8?auto=format&fit=crop&w=700&q=80"
+  },
+
+  {
+    id:"demo4",
+    title:"Receptionist",
+    company:"North Bengal Consultancy",
+    location:"Sevoke Road",
+    category:"Retail",
+    salary:"₹12,000 - ₹16,000",
+    type:"Full Time",
+    experience:"1 year",
+    image:
+      "https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=700&q=80"
+  },
+
+  {
+    id:"demo5",
+    title:"Electrician",
+    company:"TechPoint Services",
+    location:"Bagdogra",
+    category:"Technician",
+    salary:"₹15,000 - ₹22,000",
+    type:"Full Time",
+    experience:"2+ years",
+    image:
+      "https://images.unsplash.com/photo-1621905252507-b35492cc74b4?auto=format&fit=crop&w=700&q=80"
+  },
+
+  {
+    id:"demo6",
+    title:"Hotel Staff",
+    company:"Hillside Hotel",
+    location:"Siliguri",
+    category:"Hotel",
+    salary:"₹11,000 - ₹15,000",
+    type:"Full Time",
+    experience:"Fresher",
+    image:
+      "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=700&q=80"
+  }
+
 ];
+
 
 
 /* =========================================================
@@ -201,7 +255,8 @@ function jobs(){
 
   let saved =
     JSON.parse(
-      localStorage.getItem(KEY) || "null"
+      localStorage.getItem(KEY) ||
+      "null"
     );
 
 
@@ -222,34 +277,44 @@ function jobs(){
 }
 
 
+
 /* =========================================================
    ESCAPE HTML
    ========================================================= */
 
 function esc(s){
 
-  return String(s ?? "").replace(
+  return String(
+    s ?? ""
+  ).replace(
     /[&<>"']/g,
     m=>({
+
       "&":"&amp;",
       "<":"&lt;",
       ">":"&gt;",
       '"':"&quot;",
       "'":"&#039;"
+
     }[m])
   );
 
 }
 
 
+
 /* =========================================================
    RENDER JOBS
    ========================================================= */
 
-function renderJobs(list=jobs()){
+function renderJobs(
+  list = jobs()
+){
 
   const grid =
-    document.querySelector("#jobGrid");
+    document.querySelector(
+      "#jobGrid"
+    );
 
 
   if(!grid){
@@ -280,7 +345,10 @@ function renderJobs(list=jobs()){
 
           <div
             class="job-photo"
-            style="background-image:url('${esc(j.image || demoJobs[0].image)}')"
+            style="background-image:url('${esc(
+              j.image ||
+              demoJobs[0].image
+            )}')"
           >
 
             <span class="verified-badge">
@@ -293,7 +361,10 @@ function renderJobs(list=jobs()){
           <div class="job-body">
 
             <h3 class="job-title-visible">
-              ${esc(j.title || "Job Opportunity")}
+              ${esc(
+                j.title ||
+                "Job Opportunity"
+              )}
             </h3>
 
 
@@ -308,18 +379,27 @@ function renderJobs(list=jobs()){
 
 
             <p>
-              💼 ${esc(j.experience || "Fresher")}
+              💼 ${esc(
+                j.experience ||
+                "Fresher"
+              )}
             </p>
 
 
             <div class="job-meta">
 
               <b>
-                ${esc(j.salary || "Salary negotiable")}
+                ${esc(
+                  j.salary ||
+                  "Salary negotiable"
+                )}
               </b>
 
               <span>
-                ${esc(j.type || "Full Time")}
+                ${esc(
+                  j.type ||
+                  "Full Time"
+                )}
               </span>
 
             </div>
@@ -354,17 +434,23 @@ function renderJobs(list=jobs()){
 
 
   const count =
-    document.querySelector("#jobCount");
+    document.querySelector(
+      "#jobCount"
+    );
 
 
   if(count){
 
     count.textContent =
-      `${Math.max(1250,list.length)}+`;
+      `${Math.max(
+        1250,
+        list.length
+      )}+`;
 
   }
 
 }
+
 
 
 /* =========================================================
@@ -375,38 +461,53 @@ function search(){
 
   const k =
     (
-      document.querySelector("#keyword")?.value ||
+      document.querySelector(
+        "#keyword"
+      )?.value ||
       ""
     )
-    .trim()
-    .toLowerCase();
+      .trim()
+      .toLowerCase();
 
 
   const l =
     (
-      document.querySelector("#location")?.value ||
+      document.querySelector(
+        "#location"
+      )?.value ||
       ""
     )
-    .trim()
-    .toLowerCase();
+      .trim()
+      .toLowerCase();
 
 
   const result =
     jobs().filter(
       j=>
+
         (
           !k ||
+
           `${j.title} ${j.company} ${j.category} ${j.experience}`
             .toLowerCase()
             .includes(k)
+
         )
+
         &&
+
         (
           !l ||
-          String(j.location || "")
+
+          String(
+            j.location ||
+            ""
+          )
             .toLowerCase()
             .includes(l)
+
         )
+
     );
 
 
@@ -420,6 +521,7 @@ function search(){
     });
 
 }
+
 
 
 /* =========================================================
@@ -440,14 +542,18 @@ document
   );
 
 
+
 /* =========================================================
    CATEGORY SEARCH
    ========================================================= */
 
 document
-  .querySelectorAll("[data-category]")
+  .querySelectorAll(
+    "[data-category]"
+  )
   .forEach(
     a=>
+
       a.addEventListener(
         "click",
         ()=>{
@@ -457,7 +563,9 @@ document
 
 
           const k =
-            document.querySelector("#keyword");
+            document.querySelector(
+              "#keyword"
+            );
 
 
           if(k){
@@ -474,23 +582,29 @@ document
   );
 
 
+
 /* =========================================================
    SHOW ALL JOBS
    ========================================================= */
 
 document
-  .querySelector("#showAllJobs")
+  .querySelector(
+    "#showAllJobs"
+  )
   ?.addEventListener(
     "click",
     e=>{
 
       e.preventDefault();
 
+
       renderJobs();
 
 
       document
-        .querySelector("#jobs")
+        .querySelector(
+          "#jobs"
+        )
         ?.scrollIntoView({
           behavior:"smooth"
         });
@@ -499,19 +613,27 @@ document
   );
 
 
+
 /* =========================================================
    MOBILE MENU
    ========================================================= */
 
 const menuBtn =
-  document.querySelector("#menuBtn");
+  document.querySelector(
+    "#menuBtn"
+  );
 
 
 const mainNav =
-  document.querySelector("#mainNav");
+  document.querySelector(
+    "#mainNav"
+  );
 
 
-if(menuBtn && mainNav){
+if(
+  menuBtn &&
+  mainNav
+){
 
   menuBtn.addEventListener(
     "click",
@@ -521,12 +643,16 @@ if(menuBtn && mainNav){
 
 
       const isOpen =
-        mainNav.classList.toggle("open");
+        mainNav.classList.toggle(
+          "open"
+        );
 
 
       menuBtn.setAttribute(
         "aria-expanded",
-        isOpen ? "true" : "false"
+        isOpen
+          ? "true"
+          : "false"
       );
 
     }
@@ -537,11 +663,14 @@ if(menuBtn && mainNav){
     .querySelectorAll("a")
     .forEach(
       a=>
+
         a.addEventListener(
           "click",
           ()=>{
 
-            mainNav.classList.remove("open");
+            mainNav.classList.remove(
+              "open"
+            );
 
 
             menuBtn.setAttribute(
@@ -559,11 +688,18 @@ if(menuBtn && mainNav){
     e=>{
 
       if(
-        !mainNav.contains(e.target) &&
-        !menuBtn.contains(e.target)
+        !mainNav.contains(
+          e.target
+        ) &&
+
+        !menuBtn.contains(
+          e.target
+        )
       ){
 
-        mainNav.classList.remove("open");
+        mainNav.classList.remove(
+          "open"
+        );
 
 
         menuBtn.setAttribute(
@@ -579,26 +715,38 @@ if(menuBtn && mainNav){
 }
 
 
+
 /* =========================================================
    LANGUAGE SELECTOR
    ========================================================= */
 
 const languageSelect =
-  document.querySelector("#languageSelect");
+  document.querySelector(
+    "#languageSelect"
+  );
 
 
 if(languageSelect){
 
   const savedLang =
-    localStorage.getItem("localjobs_language") ||
-    localStorage.getItem("localjobhub_language") ||
+    localStorage.getItem(
+      "localjobs_language"
+    ) ||
+
+    localStorage.getItem(
+      "localjobhub_language"
+    ) ||
+
     "en";
 
 
   if(
-    [...languageSelect.options]
+    [
+      ...languageSelect.options
+    ]
       .some(
-        o=>o.value === savedLang
+        o =>
+          o.value === savedLang
       )
   ){
 
@@ -631,6 +779,7 @@ if(languageSelect){
   );
 
 }
+
 
 
 /* =========================================================
@@ -677,7 +826,9 @@ if(
     ()=>{
 
       const show =
-        moreArea.classList.toggle("show");
+        moreArea.classList.toggle(
+          "show"
+        );
 
 
       moreBtn.textContent =
@@ -698,9 +849,6 @@ if(
 }
 
 
-/* =========================================================
-   CONSULTANCY SEARCH
-   ========================================================= */
 
 if(
   consultancySearch &&
@@ -712,7 +860,8 @@ if(
     ()=>{
 
       const q =
-        consultancySearch.value
+        consultancySearch
+          .value
           .trim()
           .toLowerCase();
 
@@ -721,15 +870,20 @@ if(
 
 
       consultancyList
-        .querySelectorAll(".consultancy-item")
+        .querySelectorAll(
+          ".consultancy-item"
+        )
         .forEach(
           item=>{
 
             const name =
               item
-                .querySelector("h4")
+                .querySelector(
+                  "h4"
+                )
                 ?.textContent
-                .toLowerCase() || "";
+                .toLowerCase() ||
+              "";
 
 
             const ok =
@@ -738,7 +892,9 @@ if(
 
 
             item.style.display =
-              ok ? "" : "none";
+              ok
+                ? ""
+                : "none";
 
 
             if(ok){
@@ -766,6 +922,7 @@ if(
 }
 
 
+
 /* =========================================================
    APPLY / DETAILS
    ========================================================= */
@@ -774,8 +931,14 @@ document.addEventListener(
   "click",
   e=>{
 
+    /* =========================
+       APPLY
+       ========================= */
+
     const apply =
-      e.target.closest(".apply-btn");
+      e.target.closest(
+        ".apply-btn"
+      );
 
 
     if(apply){
@@ -794,14 +957,16 @@ document.addEventListener(
           JSON.parse(
             localStorage.getItem(
               "localjobhub_applications"
-            ) || "[]"
+            ) ||
+            "[]"
           );
 
 
         if(
           !a.some(
             x =>
-              x.jobId === j.id
+              x.jobId ===
+              j.id
           )
         ){
 
@@ -833,8 +998,15 @@ document.addEventListener(
     }
 
 
+
+    /* =========================
+       DETAILS
+       ========================= */
+
     const details =
-      e.target.closest(".details-btn");
+      e.target.closest(
+        ".details-btn"
+      );
 
 
     if(details){
@@ -861,8 +1033,9 @@ document.addEventListener(
 );
 
 
+
 /* =========================================================
-   INITIAL JOB LOAD
+   INITIAL JOB RENDER
    ========================================================= */
 
 renderJobs();
