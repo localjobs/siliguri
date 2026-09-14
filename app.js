@@ -1,6 +1,127 @@
 document.addEventListener("DOMContentLoaded",()=>{
 
+/* =========================================================
+   HERO TYPING EFFECT - DESKTOP + MOBILE
+   ========================================================= */
+
+(function(){
+
+  const el = document.getElementById("heroTypingText");
+
+  if(!el || el.dataset.typingStarted === "1"){
+    return;
+  }
+
+  el.dataset.typingStarted = "1";
+
+  const firstLine = "Jobs in Siliguri,";
+  const secondLine = "for the people of Siliguri.";
+  const fullText = firstLine + " " + secondLine;
+
+  let index = 0;
+  let deleting = false;
+
+
+  function draw(){
+
+    if(index <= firstLine.length){
+
+      el.textContent =
+        fullText.slice(0,index);
+
+    }else{
+
+      el.innerHTML =
+        firstLine +
+        "<br>" +
+        secondLine.slice(
+          0,
+          index - firstLine.length - 1
+        );
+
+    }
+
+  }
+
+
+  function tick(){
+
+    if(!deleting){
+
+      if(index < fullText.length){
+
+        index++;
+
+        draw();
+
+        setTimeout(
+          tick,
+          65
+        );
+
+      }else{
+
+        /*
+          Text finished.
+          Hold for 3 seconds.
+        */
+
+        setTimeout(
+          ()=>{
+            deleting = true;
+            tick();
+          },
+          3000
+        );
+
+      }
+
+    }else{
+
+      if(index > 0){
+
+        index--;
+
+        draw();
+
+        setTimeout(
+          tick,
+          40
+        );
+
+      }else{
+
+        /*
+          Text completely deleted.
+          Small pause before typing again.
+        */
+
+        deleting = false;
+
+        setTimeout(
+          tick,
+          350
+        );
+
+      }
+
+    }
+
+  }
+
+
+  draw();
+  tick();
+
+})();
+
+
+/* =========================================================
+   JOB DATA
+   ========================================================= */
+
 const KEY="localjobhub_jobs";
+
 
 const demoJobs=[
 {
@@ -72,12 +193,17 @@ image:"https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&
 ];
 
 
+/* =========================================================
+   GET JOBS
+   ========================================================= */
+
 function jobs(){
 
-  let saved=
+  let saved =
     JSON.parse(
-      localStorage.getItem(KEY)||"null"
+      localStorage.getItem(KEY) || "null"
     );
+
 
   if(!Array.isArray(saved)){
 
@@ -87,15 +213,22 @@ function jobs(){
     );
 
     return demoJobs;
+
   }
 
+
   return saved;
+
 }
 
 
+/* =========================================================
+   ESCAPE HTML
+   ========================================================= */
+
 function esc(s){
 
-  return String(s??"").replace(
+  return String(s ?? "").replace(
     /[&<>"']/g,
     m=>({
       "&":"&amp;",
@@ -109,39 +242,53 @@ function esc(s){
 }
 
 
+/* =========================================================
+   RENDER JOBS
+   ========================================================= */
+
 function renderJobs(list=jobs()){
 
-  const grid=
+  const grid =
     document.querySelector("#jobGrid");
 
-  if(!grid)return;
 
-
-  if(
-    !Array.isArray(list)||
-    !list.length
-  ){
-
-    grid.innerHTML=
-      '<div class="panel"><b>No jobs found.</b><p>Try another job title or location.</p></div>';
-
+  if(!grid){
     return;
   }
 
 
-  grid.innerHTML=
-    list.slice(0,8).map(
-      j=>`
+  if(
+    !Array.isArray(list) ||
+    !list.length
+  ){
+
+    grid.innerHTML =
+      '<div class="panel"><b>No jobs found.</b><p>Try another job title or location.</p></div>';
+
+    return;
+
+  }
+
+
+  grid.innerHTML =
+    list
+      .slice(0,8)
+      .map(
+        j=>`
+
         <article class="job-card">
 
           <div
             class="job-photo"
-            style="background-image:url('${esc(j.image||demoJobs[0].image)}')"
+            style="background-image:url('${esc(j.image || demoJobs[0].image)}')"
           >
+
             <span class="verified-badge">
               ✓ Verified
             </span>
+
           </div>
+
 
           <div class="job-body">
 
@@ -149,29 +296,34 @@ function renderJobs(list=jobs()){
               ${esc(j.title || "Job Opportunity")}
             </h3>
 
+
             <p class="company">
               ${esc(j.company)}
             </p>
+
 
             <p>
               ⌖ ${esc(j.location)}
             </p>
 
+
             <p>
-              💼 ${esc(j.experience||"Fresher")}
+              💼 ${esc(j.experience || "Fresher")}
             </p>
+
 
             <div class="job-meta">
 
               <b>
-                ${esc(j.salary||"Salary negotiable")}
+                ${esc(j.salary || "Salary negotiable")}
               </b>
 
               <span>
-                ${esc(j.type||"Full Time")}
+                ${esc(j.type || "Full Time")}
               </span>
 
             </div>
+
 
             <div class="job-buttons">
 
@@ -181,6 +333,7 @@ function renderJobs(list=jobs()){
               >
                 Apply
               </button>
+
 
               <button
                 class="btn btn-outline details-btn"
@@ -194,60 +347,71 @@ function renderJobs(list=jobs()){
           </div>
 
         </article>
+
       `
-    ).join("");
+      )
+      .join("");
 
 
-  const count=
+  const count =
     document.querySelector("#jobCount");
 
+
   if(count){
-    count.textContent=
+
+    count.textContent =
       `${Math.max(1250,list.length)}+`;
+
   }
 
 }
 
 
+/* =========================================================
+   JOB SEARCH
+   ========================================================= */
+
 function search(){
 
-  const k=
+  const k =
     (
-      document.querySelector("#keyword")?.value||
-      ""
-    )
-    .trim()
-    .toLowerCase();
-
-  const l=
-    (
-      document.querySelector("#location")?.value||
+      document.querySelector("#keyword")?.value ||
       ""
     )
     .trim()
     .toLowerCase();
 
 
-  const result=
+  const l =
+    (
+      document.querySelector("#location")?.value ||
+      ""
+    )
+    .trim()
+    .toLowerCase();
+
+
+  const result =
     jobs().filter(
       j=>
         (
-          !k||
+          !k ||
           `${j.title} ${j.company} ${j.category} ${j.experience}`
-          .toLowerCase()
-          .includes(k)
+            .toLowerCase()
+            .includes(k)
         )
         &&
         (
-          !l||
-          String(j.location||"")
-          .toLowerCase()
-          .includes(l)
+          !l ||
+          String(j.location || "")
+            .toLowerCase()
+            .includes(l)
         )
     );
 
 
   renderJobs(result);
+
 
   document
     .querySelector("#jobs")
@@ -258,16 +422,27 @@ function search(){
 }
 
 
+/* =========================================================
+   SEARCH FORM
+   ========================================================= */
+
 document
   .querySelector("#jobSearch")
   ?.addEventListener(
     "submit",
     e=>{
+
       e.preventDefault();
+
       search();
+
     }
   );
 
+
+/* =========================================================
+   CATEGORY SEARCH
+   ========================================================= */
 
 document
   .querySelectorAll("[data-category]")
@@ -276,52 +451,67 @@ document
       a.addEventListener(
         "click",
         ()=>{
-          const v=
+
+          const v =
             a.dataset.category;
 
-          const k=
-            document.querySelector(
-              "#keyword"
-            );
+
+          const k =
+            document.querySelector("#keyword");
+
 
           if(k){
-            k.value=v;
+
+            k.value = v;
+
           }
 
+
           search();
+
         }
       )
   );
 
+
+/* =========================================================
+   SHOW ALL JOBS
+   ========================================================= */
 
 document
   .querySelector("#showAllJobs")
   ?.addEventListener(
     "click",
     e=>{
+
       e.preventDefault();
 
       renderJobs();
+
 
       document
         .querySelector("#jobs")
         ?.scrollIntoView({
           behavior:"smooth"
         });
+
     }
   );
 
 
-/* MOBILE MENU */
+/* =========================================================
+   MOBILE MENU
+   ========================================================= */
 
-const menuBtn=
+const menuBtn =
   document.querySelector("#menuBtn");
 
-const mainNav=
+
+const mainNav =
   document.querySelector("#mainNav");
 
 
-if(menuBtn&&mainNav){
+if(menuBtn && mainNav){
 
   menuBtn.addEventListener(
     "click",
@@ -329,16 +519,14 @@ if(menuBtn&&mainNav){
 
       e.stopPropagation();
 
-      const isOpen=
-        mainNav.classList.toggle(
-          "open"
-        );
+
+      const isOpen =
+        mainNav.classList.toggle("open");
+
 
       menuBtn.setAttribute(
         "aria-expanded",
-        isOpen
-          ?"true"
-          :"false"
+        isOpen ? "true" : "false"
       );
 
     }
@@ -352,14 +540,15 @@ if(menuBtn&&mainNav){
         a.addEventListener(
           "click",
           ()=>{
-            mainNav.classList.remove(
-              "open"
-            );
+
+            mainNav.classList.remove("open");
+
 
             menuBtn.setAttribute(
               "aria-expanded",
               "false"
             );
+
           }
         )
     );
@@ -370,13 +559,12 @@ if(menuBtn&&mainNav){
     e=>{
 
       if(
-        !mainNav.contains(e.target)&&
+        !mainNav.contains(e.target) &&
         !menuBtn.contains(e.target)
       ){
 
-        mainNav.classList.remove(
-          "open"
-        );
+        mainNav.classList.remove("open");
+
 
         menuBtn.setAttribute(
           "aria-expanded",
@@ -391,34 +579,30 @@ if(menuBtn&&mainNav){
 }
 
 
-/* LANGUAGE SELECTOR */
+/* =========================================================
+   LANGUAGE SELECTOR
+   ========================================================= */
 
-const languageSelect=
-  document.querySelector(
-    "#languageSelect"
-  );
+const languageSelect =
+  document.querySelector("#languageSelect");
 
 
 if(languageSelect){
 
-  const savedLang=
-    localStorage.getItem(
-      "localjobs_language"
-    )||
-    localStorage.getItem(
-      "localjobhub_language"
-    )||
+  const savedLang =
+    localStorage.getItem("localjobs_language") ||
+    localStorage.getItem("localjobhub_language") ||
     "en";
 
 
   if(
     [...languageSelect.options]
       .some(
-        o=>o.value===savedLang
+        o=>o.value === savedLang
       )
   ){
 
-    languageSelect.value=
+    languageSelect.value =
       savedLang;
 
   }
@@ -433,12 +617,14 @@ if(languageSelect){
         e.target.value
       );
 
+
       localStorage.setItem(
         "localjobhub_language",
         e.target.value
       );
 
-      document.documentElement.lang=
+
+      document.documentElement.lang =
         e.target.value;
 
     }
@@ -447,36 +633,42 @@ if(languageSelect){
 }
 
 
-/* MORE CONSULTANCIES */
+/* =========================================================
+   MORE CONSULTANCIES
+   ========================================================= */
 
-const moreBtn=
+const moreBtn =
   document.querySelector(
     "#moreConsultancyBtn"
   );
 
-const moreArea=
+
+const moreArea =
   document.querySelector(
     "#moreConsultancyArea"
   );
 
-const consultancySearch=
+
+const consultancySearch =
   document.querySelector(
     "#consultancySearch"
   );
 
-const consultancyList=
+
+const consultancyList =
   document.querySelector(
     "#consultancyList"
   );
 
-const noResult=
+
+const noResult =
   document.querySelector(
     "#noConsultancyResult"
   );
 
 
 if(
-  moreBtn&&
+  moreBtn &&
   moreArea
 ){
 
@@ -484,19 +676,20 @@ if(
     "click",
     ()=>{
 
-      const show=
-        moreArea.classList.toggle(
-          "show"
-        );
+      const show =
+        moreArea.classList.toggle("show");
 
-      moreBtn.textContent=
+
+      moreBtn.textContent =
         show
-          ?"Hide Consultancies ↑"
-          :"More Consultancies →";
+          ? "Hide Consultancies ↑"
+          : "More Consultancies →";
 
 
       if(show){
+
         consultancySearch?.focus();
+
       }
 
     }
@@ -505,8 +698,12 @@ if(
 }
 
 
+/* =========================================================
+   CONSULTANCY SEARCH
+   ========================================================= */
+
 if(
-  consultancySearch&&
+  consultancySearch &&
   consultancyList
 ){
 
@@ -514,40 +711,40 @@ if(
     "input",
     ()=>{
 
-      const q=
+      const q =
         consultancySearch.value
-        .trim()
-        .toLowerCase();
+          .trim()
+          .toLowerCase();
 
-      let found=0;
+
+      let found = 0;
 
 
       consultancyList
-        .querySelectorAll(
-          ".consultancy-item"
-        )
+        .querySelectorAll(".consultancy-item")
         .forEach(
           item=>{
 
-            const name=
+            const name =
               item
                 .querySelector("h4")
                 ?.textContent
-                .toLowerCase()||"";
+                .toLowerCase() || "";
 
-            const ok=
-              !q||
+
+            const ok =
+              !q ||
               name.includes(q);
 
 
-            item.style.display=
-              ok
-                ?""
-                :"none";
+            item.style.display =
+              ok ? "" : "none";
 
 
             if(ok){
+
               found++;
+
             }
 
           }
@@ -556,10 +753,10 @@ if(
 
       if(noResult){
 
-        noResult.style.display=
+        noResult.style.display =
           found
-            ?"none"
-            :"block";
+            ? "none"
+            : "block";
 
       }
 
@@ -569,50 +766,53 @@ if(
 }
 
 
-/* APPLY / DETAILS */
+/* =========================================================
+   APPLY / DETAILS
+   ========================================================= */
 
 document.addEventListener(
   "click",
   e=>{
 
-    const apply=
-      e.target.closest(
-        ".apply-btn"
-      );
+    const apply =
+      e.target.closest(".apply-btn");
 
 
     if(apply){
 
-      const j=
+      const j =
         jobs().find(
-          x=>
-            x.id===
+          x =>
+            x.id ===
             apply.dataset.id
         );
 
 
       if(j){
 
-        let a=
+        let a =
           JSON.parse(
             localStorage.getItem(
               "localjobhub_applications"
-            )||"[]"
+            ) || "[]"
           );
 
 
         if(
           !a.some(
-            x=>
-              x.jobId===
-              j.id
+            x =>
+              x.jobId === j.id
           )
         ){
 
           a.push({
+
             jobId:j.id,
+
             title:j.title,
+
             status:"Applied"
+
           });
 
 
@@ -633,18 +833,16 @@ document.addEventListener(
     }
 
 
-    const details=
-      e.target.closest(
-        ".details-btn"
-      );
+    const details =
+      e.target.closest(".details-btn");
 
 
     if(details){
 
-      const j=
+      const j =
         jobs().find(
-          x=>
-            x.id===
+          x =>
+            x.id ===
             details.dataset.id
         );
 
@@ -662,6 +860,10 @@ document.addEventListener(
   }
 );
 
+
+/* =========================================================
+   INITIAL JOB LOAD
+   ========================================================= */
 
 renderJobs();
 
