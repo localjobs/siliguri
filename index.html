@@ -5,8 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>LocalJobHub | Local Jobs · Trusted Consultancies</title>
 <meta name="description" content="LocalJobHub connects job seekers with local jobs, trusted consultancies and employers.">
-<link rel="icon" type="image/jpeg" href="localjobhub-logo.jpeg">
-<link rel="stylesheet" href="style.css?v=20260913">
+<link rel="icon" type="image/jpeg" href="localjobhub-logo.jpeg?v=1">
+<link rel="stylesheet" href="style.css?v=20260914">
 </head>
 <body>
 
@@ -67,7 +67,7 @@
       <h1>
         Jobs in Siliguri,
         <br>
-        <span id="heroTypingText">for the people of Siliguri.</span>
+        <span id="heroTypingText"></span>
       </h1>
 
       <p>
@@ -706,161 +706,67 @@
 </footer>
 
 
-<script>
-/* MOBILE HEADER: hide while scrolling down, show while scrolling up or when scrolling stops. */
-(function(){
-  const header=document.querySelector('.site-header');
-  if(!header) return;
-  let lastY=window.scrollY || 0;
-  let timer;
-  function onScroll(){
-    if(window.innerWidth>900){
-      header.classList.remove('mobile-scroll-hide');
-      lastY=window.scrollY || 0;
-      return;
-    }
-    const y=window.scrollY || 0;
-    if(y <= 10 || y < lastY){
-      header.classList.remove('mobile-scroll-hide');
-    }else if(y > lastY){
-      header.classList.add('mobile-scroll-hide');
-    }
-    lastY=y;
-    clearTimeout(timer);
-    timer=setTimeout(()=>header.classList.remove('mobile-scroll-hide'),350);
-  }
-  window.addEventListener('scroll',onScroll,{passive:true});
-  window.addEventListener('resize',()=>{
-    if(window.innerWidth>900) header.classList.remove('mobile-scroll-hide');
-  });
-})();
 
-/* MOBILE LANGUAGE: keep the mobile selector synced with the existing language system. */
-(function(){
-  const mobileLang=document.getElementById('mobileLanguageSelect');
-  const desktopLang=document.getElementById('languageSelect');
-  if(!mobileLang || !desktopLang) return;
-  mobileLang.value=desktopLang.value;
-  mobileLang.addEventListener('change',function(){
-    desktopLang.value=mobileLang.value;
-    desktopLang.dispatchEvent(new Event('change',{bubbles:true}));
-  });
-  desktopLang.addEventListener('change',function(){
-    mobileLang.value=desktopLang.value;
-  });
-})();
-
-/* MOBILE ACCOUNT: show job-seeker/employer actions only after login. */
-(function(){
-  const guest=document.getElementById('accountGuest');
-  const logged=document.getElementById('accountLoggedIn');
-  if(!guest || !logged) return;
-  function getRole(){
-    const keys=['userRole','role','accountType','user_type','userType'];
-    for(const store of [localStorage,sessionStorage]){
-      for(const key of keys){
-        const value=store.getItem(key);
-        if(value) return value.toLowerCase();
-      }
-    }
-    return '';
-  }
-  function update(){
-    const role=getRole();
-    const loggedIn=!!role || !!localStorage.getItem('loggedIn') || !!sessionStorage.getItem('loggedIn');
-    guest.hidden=loggedIn;
-    logged.hidden=!loggedIn;
-    const seeker=logged.querySelector('.account-seeker-only');
-    const employer=logged.querySelector('.account-employer-only');
-    if(seeker) seeker.hidden=!!role && !role.includes('seeker') && !role.includes('jobseeker');
-    if(employer) employer.hidden=!!role && !role.includes('employer') && !role.includes('recruiter') && !role.includes('jobgiver');
-    if(loggedIn && role && seeker.hidden && employer.hidden){
-      seeker.hidden=false;
-      employer.hidden=false;
-    }
-  }
-  update();
-  window.addEventListener('storage',update);
-  setInterval(update,1000);
-})();
-
-/* HERO TYPEWRITER: starts automatically and repeats with a 3-second hold. */
-(function(){
-  const el=document.getElementById('heroTypingText');
-  if(!el) return;
-  const phrases=['for the people of Siliguri.','for your next opportunity.','for local talent.'];
-  let phraseIndex=0, charIndex=0, deleting=false;
-  const typeSpeed=65, deleteSpeed=38, hold=3000;
-  function tick(){
-    const phrase=phrases[phraseIndex];
-    if(!deleting){
-      charIndex++;
-      el.textContent=phrase.slice(0,charIndex);
-      if(charIndex===phrase.length){
-        deleting=true;
-        setTimeout(tick,hold);
-        return;
-      }
-      setTimeout(tick,typeSpeed);
-    }else{
-      charIndex--;
-      el.textContent=phrase.slice(0,charIndex);
-      if(charIndex===0){
-        deleting=false;
-        phraseIndex=(phraseIndex+1)%phrases.length;
-        setTimeout(tick,250);
-        return;
-      }
-      setTimeout(tick,deleteSpeed);
-    }
-  }
-  el.textContent='';
-  setTimeout(tick,250);
-})();
-
-
-</script>
 <script src="translations.js?v=20260913"></script>
 <script src="app.js?v=20260913"></script>
+
+
 <script>
-/* FINAL HERO TYPEWRITER - runs after all other page scripts */
+/* FINAL HERO TYPEWRITER: the requested phrase repeats automatically every 3 seconds. */
 (function(){
-  function startTyping(){
+  function initHeroTyping(){
     const el=document.getElementById('heroTypingText');
     if(!el) return;
-    const phrases=['for the people of Siliguri.','for your next opportunity.','for local talent.'];
-    let i=0, n=0, deleting=false, timer=null;
-    function run(){
-      const text=phrases[i];
+    const text='for the people of Siliguri.';
+    let i=0;
+    let deleting=false;
+    function step(){
       if(!deleting){
-        n++;
-        el.textContent=text.slice(0,n);
-        if(n>=text.length){
+        i++;
+        el.textContent=text.slice(0,i);
+        if(i>=text.length){
           deleting=true;
-          timer=setTimeout(run,3000);
+          setTimeout(step,3000);
         }else{
-          timer=setTimeout(run,65);
+          setTimeout(step,65);
         }
       }else{
-        n--;
-        el.textContent=text.slice(0,n);
-        if(n<=0){
+        i--;
+        el.textContent=text.slice(0,i);
+        if(i<=0){
           deleting=false;
-          i=(i+1)%phrases.length;
-          timer=setTimeout(run,250);
+          setTimeout(step,300);
         }else{
-          timer=setTimeout(run,38);
+          setTimeout(step,40);
         }
       }
     }
     el.textContent='';
-    run();
+    step();
   }
-  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',startTyping);
-  else startTyping();
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',initHeroTyping);
+  else initHeroTyping();
+})();
+
+/* LANGUAGE: remember the visitor's choice so the language selector does not reset on refresh. */
+(function(){
+  const key='localJobHubLanguageShown';
+  const desktop=document.getElementById('languageSelect');
+  const mobile=document.getElementById('mobileLanguageSelect');
+  const saved=localStorage.getItem('localJobHubLanguage');
+  if(saved){
+    if(desktop) desktop.value=saved;
+    if(mobile) mobile.value=saved;
+  }
+  function saveLanguage(value){
+    if(!value) return;
+    localStorage.setItem('localJobHubLanguage',value);
+    localStorage.setItem(key,'1');
+  }
+  if(desktop) desktop.addEventListener('change',()=>saveLanguage(desktop.value));
+  if(mobile) mobile.addEventListener('change',()=>saveLanguage(mobile.value));
 })();
 </script>
-
 
 </body>
 </html>
