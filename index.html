@@ -822,6 +822,45 @@
 </script>
 <script src="translations.js?v=20260913"></script>
 <script src="app.js?v=20260913"></script>
+<script>
+/* FINAL HERO TYPEWRITER - runs after all other page scripts */
+(function(){
+  function startTyping(){
+    const el=document.getElementById('heroTypingText');
+    if(!el) return;
+    const phrases=['for the people of Siliguri.','for your next opportunity.','for local talent.'];
+    let i=0, n=0, deleting=false, timer=null;
+    function run(){
+      const text=phrases[i];
+      if(!deleting){
+        n++;
+        el.textContent=text.slice(0,n);
+        if(n>=text.length){
+          deleting=true;
+          timer=setTimeout(run,3000);
+        }else{
+          timer=setTimeout(run,65);
+        }
+      }else{
+        n--;
+        el.textContent=text.slice(0,n);
+        if(n<=0){
+          deleting=false;
+          i=(i+1)%phrases.length;
+          timer=setTimeout(run,250);
+        }else{
+          timer=setTimeout(run,38);
+        }
+      }
+    }
+    el.textContent='';
+    run();
+  }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',startTyping);
+  else startTyping();
+})();
+</script>
+
 
 </body>
 </html>
