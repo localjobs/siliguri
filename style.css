@@ -1565,3 +1565,59 @@ td{
     min-height:1.08em;
   }
 }
+
+
+/* FINAL REQUEST LOCKS - only the requested mobile/hero behavior. */
+.hero h1 .hero-typing-line{
+  display:block;
+  min-height:1.08em;
+}
+
+@media(max-width:900px){
+  /* Exactly two job cards per row on mobile, including very small screens. */
+  .job-grid{
+    grid-template-columns:repeat(2,minmax(0,1fr)) !important;
+  }
+
+  /* Keep the requested four footer links on one compact line. */
+  footer .footer-grid > div:nth-child(3) a:nth-child(3),
+  footer .footer-grid > div:nth-child(4) a:first-child{
+    display:none !important;
+  }
+
+  footer .footer-grid > div:nth-child(3) a:nth-child(1),
+  footer .footer-grid > div:nth-child(3) a:nth-child(2),
+  footer .footer-grid > div:nth-child(4) a:nth-child(2),
+  footer .footer-grid > div:nth-child(4) a:nth-child(3){
+    display:inline-block !important;
+  }
+
+  /* Bottom navigation: slightly larger, light and mobile-fit. */
+  .mobile-bottom-nav{
+    grid-template-columns:repeat(5,minmax(0,1fr)) !important;
+    height:62px !important;
+  }
+  .mobile-nav-item,.mobile-account>summary{
+    min-width:0 !important;
+    color:#718692 !important;
+    font-size:10px !important;
+  }
+  .mobile-nav-item span,.mobile-account>summary span{
+    font-size:21px !important;
+  }
+  .mobile-nav-item b,.mobile-account>summary b{
+    font-size:9.5px !important;
+    white-space:nowrap;
+  }
+}
+
+@media(max-width:430px){
+  .mobile-bottom-nav{height:61px !important;}
+  .mobile-nav-item span,.mobile-account>summary span{font-size:20px !important;}
+  .mobile-nav-item b,.mobile-account>summary b{font-size:9px !important;}
+}
+
+/* No sticky job search. The only mobile fixed element is the bottom navigation. */
+.hero .search-box{
+  position:relative;
+}
