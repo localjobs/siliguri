@@ -712,18 +712,27 @@
 
 
 <script>
-/* FINAL HERO TYPEWRITER: the requested phrase repeats automatically every 3 seconds. */
+/* FINAL HERO TYPEWRITER: desktop + mobile, repeats with a 3-second hold. */
 (function(){
   function initHeroTyping(){
     const el=document.getElementById('heroTypingText');
-    if(!el) return;
-    const text='for the people of Siliguri.';
+    if(!el || el.dataset.typingStarted==='1') return;
+    el.dataset.typingStarted='1';
+
+    const text='Jobs in Siliguri, for the people of Siliguri.';
     let i=0;
     let deleting=false;
+
+    function render(value){
+      const before=value.slice(0,18);
+      const after=value.slice(18);
+      el.innerHTML=before + (value.length>18 ? '<br>' + after : '');
+    }
+
     function step(){
       if(!deleting){
         i++;
-        el.textContent=text.slice(0,i);
+        render(text.slice(0,i));
         if(i>=text.length){
           deleting=true;
           setTimeout(step,3000);
@@ -732,25 +741,70 @@
         }
       }else{
         i--;
-        el.textContent=text.slice(0,i);
+        render(text.slice(0,i));
         if(i<=0){
           deleting=false;
-          setTimeout(step,300);
+          setTimeout(step,350);
         }else{
           setTimeout(step,40);
         }
       }
     }
-    el.textContent='';
+
+    render('');
     step();
   }
-  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',initHeroTyping);
-  else initHeroTyping();
+
+  if(document.readyState==='loading'){
+    document.addEventListener('DOMContentLoaded',initHeroTyping,{once:true});
+  }else{
+    initHeroTyping();
+  }
 })();
 
-/* LANGUAGE: remember the visitor's choice so the language selector does not reset on refresh. */
+/* MOBILE HEADER: hide while scrolling down, show while scrolling up or stopped. */
 (function(){
-  const key='localJobHubLanguageShown';
+  function initMobileHeaderScroll(){
+    const header=document.querySelector('.site-header');
+    if(!header) return;
+    let lastY=window.scrollY || 0;
+    let stopTimer=null;
+
+    function update(){
+      if(window.innerWidth>900){
+        header.classList.remove('mobile-scroll-hide');
+        lastY=window.scrollY || 0;
+        return;
+      }
+
+      const y=window.scrollY || 0;
+      if(y<=5 || y < lastY){
+        header.classList.remove('mobile-scroll-hide');
+      }else if(y > lastY){
+        header.classList.add('mobile-scroll-hide');
+      }
+      lastY=y;
+
+      clearTimeout(stopTimer);
+      stopTimer=setTimeout(function(){
+        header.classList.remove('mobile-scroll-hide');
+      },180);
+    }
+
+    window.addEventListener('scroll',update,{passive:true});
+    window.addEventListener('resize',update);
+    update();
+  }
+
+  if(document.readyState==='loading'){
+    document.addEventListener('DOMContentLoaded',initMobileHeaderScroll,{once:true});
+  }else{
+    initMobileHeaderScroll();
+  }
+})();
+
+/* LANGUAGE: remember the visitor's selected language across refreshes. */
+(function(){
   const desktop=document.getElementById('languageSelect');
   const mobile=document.getElementById('mobileLanguageSelect');
   const saved=localStorage.getItem('localJobHubLanguage');
@@ -761,7 +815,6 @@
   function saveLanguage(value){
     if(!value) return;
     localStorage.setItem('localJobHubLanguage',value);
-    localStorage.setItem(key,'1');
   }
   if(desktop) desktop.addEventListener('change',()=>saveLanguage(desktop.value));
   if(mobile) mobile.addEventListener('change',()=>saveLanguage(mobile.value));
