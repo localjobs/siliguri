@@ -1422,3 +1422,77 @@ td{
   .mobile-nav-item span,.mobile-account>summary span{font-size:20px}
   .mobile-nav-item b,.mobile-account>summary b{font-size:9px}
 }
+
+
+/* FINAL MOBILE FIXES - desktop remains untouched */
+@media(max-width:900px){
+  /* Keep two job cards side-by-side on mobile */
+  .job-grid{
+    grid-template-columns:repeat(2,minmax(0,1fr)) !important;
+    gap:9px !important;
+  }
+
+  /* Compact single-line footer links */
+  footer .footer-grid{
+    display:flex !important;
+    flex-direction:row !important;
+    flex-wrap:nowrap !important;
+    align-items:center !important;
+    justify-content:center !important;
+    gap:0 !important;
+    padding:0 4px !important;
+    margin:0 !important;
+    min-height:34px !important;
+  }
+  footer .footer-grid > .footer-brand{display:none !important;}
+  footer .footer-grid > div{
+    display:flex !important;
+    flex-direction:row !important;
+    align-items:center !important;
+    justify-content:center !important;
+    gap:0 !important;
+    width:auto !important;
+    margin:0 !important;
+  }
+  footer .footer-grid > div a{
+    display:inline-block !important;
+    margin:0 !important;
+    padding:3px 7px !important;
+    font-size:9px !important;
+    line-height:1.2 !important;
+    color:#b8cbd6 !important;
+    white-space:nowrap !important;
+  }
+  /* Hide Login/Register/Post a Job from the mobile footer, keep only requested 4 links */
+  footer .footer-grid > div:nth-child(2) a{display:none !important;}
+  footer .footer-grid > div:nth-child(3) a:nth-child(3){display:none !important;}
+  footer .footer-grid > div:nth-child(4) a:first-child{display:none !important;}
+  footer .copyright{
+    padding:5px 6px 8px !important;
+    margin:0 !important;
+    font-size:8px !important;
+    line-height:1.2 !important;
+  }
+
+  /* Slightly larger, still compact bottom navigation */
+  .mobile-bottom-nav{height:62px !important;}
+  .mobile-nav-item span,.mobile-account>summary span{font-size:21px !important;}
+  .mobile-nav-item b,.mobile-account>summary b{font-size:9.5px !important;}
+  .mobile-nav-item,.mobile-account>summary{gap:4px !important;color:#718692 !important;}
+  .mobile-nav-item.active,.mobile-account[open]>summary{color:#4f8eea !important;}
+}
+
+@media(max-width:430px){
+  .job-grid{
+    grid-template-columns:repeat(2,minmax(0,1fr)) !important;
+    gap:8px !important;
+  }
+  .job-photo{height:90px !important;}
+  .job-body{padding:8px !important;}
+  .job-grid .job-card .job-body h3.job-title-visible{font-size:12px !important;}
+  footer .footer-grid > div a{font-size:8.5px !important;padding-left:5px !important;padding-right:5px !important;}
+  footer .copyright{font-size:7.5px !important;padding-top:4px !important;padding-bottom:7px !important;}
+  .mobile-bottom-nav{height:61px !important;}
+  .mobile-nav-item span,.mobile-account>summary span{font-size:20px !important;}
+  .mobile-nav-item b,.mobile-account>summary b{font-size:9px !important;}
+}
