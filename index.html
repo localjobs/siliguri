@@ -64,8 +64,9 @@
         ● Siliguri & Nearby Areas
       </div>
 
-      <h1>
-        <span id="heroTypingText"></span>
+      <h1 aria-label="Jobs in Siliguri, for the people of Siliguri.">
+        <span id="heroTypingLine1" class="hero-typing-line hero-typing-line1"></span>
+        <span id="heroTypingLine2" class="hero-typing-line hero-typing-line2"></span>
       </h1>
 
       <p>
@@ -710,44 +711,58 @@
 
 
 <script>
-/* HERO TYPEWRITER - starts immediately because the hero element already exists here. */
+/* HERO TYPEWRITER: Desktop + Mobile, 3-second hold, then delete and repeat. */
 (function(){
-  const el = document.getElementById('heroTypingText');
-  if (!el || el.dataset.typingStarted === '1') return;
-  el.dataset.typingStarted = '1';
+  function startHeroTyping(){
+    const line1 = document.getElementById('heroTypingLine1');
+    const line2 = document.getElementById('heroTypingLine2');
+    if(!line1 || !line2 || line1.dataset.typingStarted === '1') return;
 
-  const text = 'Jobs in Siliguri, for the people of Siliguri.';
-  let index = 0;
-  let deleting = false;
+    line1.dataset.typingStarted = '1';
 
-  function draw(){
-    el.textContent = text.slice(0, index);
-  }
+    const first = 'Jobs in Siliguri,';
+    const second = 'for the people of Siliguri.';
+    let index = 0;
+    let deleting = false;
 
-  function tick(){
-    if (!deleting) {
-      if (index < text.length) {
-        index++;
-        draw();
-        setTimeout(tick, 65);
-      } else {
-        deleting = true;
-        setTimeout(tick, 3000);
-      }
-    } else {
-      if (index > 0) {
-        index--;
-        draw();
-        setTimeout(tick, 40);
-      } else {
-        deleting = false;
-        setTimeout(tick, 350);
+    function draw(){
+      const firstCount = Math.min(index, first.length);
+      const secondCount = Math.max(0, index - first.length);
+      line1.textContent = first.slice(0, firstCount);
+      line2.textContent = second.slice(0, secondCount);
+    }
+
+    function tick(){
+      if(!deleting){
+        if(index < first.length + second.length){
+          index++;
+          draw();
+          setTimeout(tick, 65);
+        }else{
+          deleting = true;
+          setTimeout(tick, 3000);
+        }
+      }else{
+        if(index > 0){
+          index--;
+          draw();
+          setTimeout(tick, 40);
+        }else{
+          deleting = false;
+          setTimeout(tick, 350);
+        }
       }
     }
+
+    draw();
+    tick();
   }
 
-  draw();
-  tick();
+  if(document.readyState === 'loading'){
+    document.addEventListener('DOMContentLoaded', startHeroTyping, {once:true});
+  }else{
+    startHeroTyping();
+  }
 })();
 </script>
 
