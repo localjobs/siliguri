@@ -614,7 +614,7 @@
       </div>
       <div class="account-logged-in" id="accountLoggedIn" hidden>
         <a class="account-seeker-only" href="seeker-dashboard.html">My Applications</a>
-        <a class="account-employer-only" href="register.html?type=employer">Post a Job</a>
+        <a class="account-employer-only" href="employer-dashboard.html">Employer Dashboard</a>
       </div>
       <div class="account-language">
         <label for="mobileLanguageSelect">Language</label>
@@ -629,15 +629,6 @@
     </div>
   </details>
 </nav>
-
-<!-- Appears at the top after the visitor starts scrolling -->
-<div class="mobile-sticky-search" id="mobileStickySearch">
-  <form id="mobileStickySearchForm">
-    <span>⌕</span>
-    <input id="mobileStickyKeyword" type="search" placeholder="Search jobs, skills or company..." autocomplete="off">
-    <button type="submit">Search</button>
-  </form>
-</div>
 
 <footer id="contact">
 
@@ -716,23 +707,46 @@
 
 
 <script>
-/* MOBILE HEADER: hide while scrolling, return when scrolling stops. */
+/* MOBILE HEADER: hide while scrolling down, show while scrolling up or when scrolling stops. */
 (function(){
   const header=document.querySelector('.site-header');
   if(!header) return;
+  let lastY=window.scrollY || 0;
   let timer;
   function onScroll(){
     if(window.innerWidth>900){
       header.classList.remove('mobile-scroll-hide');
+      lastY=window.scrollY || 0;
       return;
     }
-    header.classList.add('mobile-scroll-hide');
+    const y=window.scrollY || 0;
+    if(y <= 10 || y < lastY){
+      header.classList.remove('mobile-scroll-hide');
+    }else if(y > lastY){
+      header.classList.add('mobile-scroll-hide');
+    }
+    lastY=y;
     clearTimeout(timer);
-    timer=setTimeout(()=>header.classList.remove('mobile-scroll-hide'),220);
+    timer=setTimeout(()=>header.classList.remove('mobile-scroll-hide'),350);
   }
   window.addEventListener('scroll',onScroll,{passive:true});
   window.addEventListener('resize',()=>{
     if(window.innerWidth>900) header.classList.remove('mobile-scroll-hide');
+  });
+})();
+
+/* MOBILE LANGUAGE: keep the mobile selector synced with the existing language system. */
+(function(){
+  const mobileLang=document.getElementById('mobileLanguageSelect');
+  const desktopLang=document.getElementById('languageSelect');
+  if(!mobileLang || !desktopLang) return;
+  mobileLang.value=desktopLang.value;
+  mobileLang.addEventListener('change',function(){
+    desktopLang.value=mobileLang.value;
+    desktopLang.dispatchEvent(new Event('change',{bubbles:true}));
+  });
+  desktopLang.addEventListener('change',function(){
+    mobileLang.value=desktopLang.value;
   });
 })();
 
@@ -770,13 +784,13 @@
   setInterval(update,1000);
 })();
 
-/* HERO TYPEWRITER: starts automatically and repeats every 2 seconds after typing. */
+/* HERO TYPEWRITER: starts automatically and repeats with a 3-second hold. */
 (function(){
   const el=document.getElementById('heroTypingText');
   if(!el) return;
   const phrases=['for the people of Siliguri.','for your next opportunity.','for local talent.'];
   let phraseIndex=0, charIndex=0, deleting=false;
-  const typeSpeed=65, deleteSpeed=38, hold=2000;
+  const typeSpeed=65, deleteSpeed=38, hold=3000;
   function tick(){
     const phrase=phrases[phraseIndex];
     if(!deleting){
@@ -804,36 +818,7 @@
   setTimeout(tick,250);
 })();
 
-(function(){
-  const bar=document.getElementById('mobileStickySearch');
-  const form=document.getElementById('mobileStickySearchForm');
-  const input=document.getElementById('mobileStickyKeyword');
-  const mainInput=document.getElementById('keyword');
-  const mainForm=document.getElementById('jobSearch');
-  if(!bar) return;
-  function toggle(){
-    if(window.innerWidth<=900) bar.classList.toggle('show',window.scrollY>360);
-    else bar.classList.remove('show');
-  }
-  window.addEventListener('scroll',toggle,{passive:true});
-  window.addEventListener('resize',toggle);
-  form.addEventListener('submit',function(e){
-    e.preventDefault();
-    if(mainInput) mainInput.value=input.value;
-    if(mainForm) mainForm.requestSubmit();
-    const jobs=document.getElementById('jobs');
-    if(jobs) jobs.scrollIntoView({behavior:'smooth',block:'start'});
-  });
-  const mobileLang=document.getElementById('mobileLanguageSelect');
-  const desktopLang=document.getElementById('languageSelect');
-  if(mobileLang && desktopLang){
-    mobileLang.value=desktopLang.value;
-    mobileLang.addEventListener('change',()=>{
-      desktopLang.value=mobileLang.value;
-      desktopLang.dispatchEvent(new Event('change',{bubbles:true}));
-    });
-  }
-})();
+
 </script>
 <script src="translations.js?v=20260913"></script>
 <script src="app.js?v=20260913"></script>
