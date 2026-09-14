@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>LocalJobHub | Local Jobs · Trusted Consultancies</title>
 <meta name="description" content="LocalJobHub connects job seekers with local jobs, trusted consultancies and employers.">
+<link rel="icon" type="image/jpeg" href="localjobhub-logo.jpeg">
 <link rel="stylesheet" href="style.css?v=20260913">
 </head>
 <body>
@@ -66,7 +67,7 @@
       <h1>
         Jobs in Siliguri,
         <br>
-        <span>for the people of Siliguri.</span>
+        <span id="heroTypingText">for the people of Siliguri.</span>
       </h1>
 
       <p>
@@ -607,9 +608,14 @@
   <details class="mobile-account">
     <summary><span>♙</span><b>Account</b></summary>
     <div class="mobile-account-menu">
-      <a href="seeker-dashboard.html">My Applications</a>
-      <a href="register.html?type=employer">Post a Job</a>
-      <a href="register.html">Register</a>
+      <div class="account-guest" id="accountGuest">
+        <a href="login.html">Login</a>
+        <a href="register.html">Register</a>
+      </div>
+      <div class="account-logged-in" id="accountLoggedIn" hidden>
+        <a class="account-seeker-only" href="seeker-dashboard.html">My Applications</a>
+        <a class="account-employer-only" href="register.html?type=employer">Post a Job</a>
+      </div>
       <div class="account-language">
         <label for="mobileLanguageSelect">Language</label>
         <select id="mobileLanguageSelect">
@@ -710,6 +716,94 @@
 
 
 <script>
+/* MOBILE HEADER: hide while scrolling, return when scrolling stops. */
+(function(){
+  const header=document.querySelector('.site-header');
+  if(!header) return;
+  let timer;
+  function onScroll(){
+    if(window.innerWidth>900){
+      header.classList.remove('mobile-scroll-hide');
+      return;
+    }
+    header.classList.add('mobile-scroll-hide');
+    clearTimeout(timer);
+    timer=setTimeout(()=>header.classList.remove('mobile-scroll-hide'),220);
+  }
+  window.addEventListener('scroll',onScroll,{passive:true});
+  window.addEventListener('resize',()=>{
+    if(window.innerWidth>900) header.classList.remove('mobile-scroll-hide');
+  });
+})();
+
+/* MOBILE ACCOUNT: show job-seeker/employer actions only after login. */
+(function(){
+  const guest=document.getElementById('accountGuest');
+  const logged=document.getElementById('accountLoggedIn');
+  if(!guest || !logged) return;
+  function getRole(){
+    const keys=['userRole','role','accountType','user_type','userType'];
+    for(const store of [localStorage,sessionStorage]){
+      for(const key of keys){
+        const value=store.getItem(key);
+        if(value) return value.toLowerCase();
+      }
+    }
+    return '';
+  }
+  function update(){
+    const role=getRole();
+    const loggedIn=!!role || !!localStorage.getItem('loggedIn') || !!sessionStorage.getItem('loggedIn');
+    guest.hidden=loggedIn;
+    logged.hidden=!loggedIn;
+    const seeker=logged.querySelector('.account-seeker-only');
+    const employer=logged.querySelector('.account-employer-only');
+    if(seeker) seeker.hidden=!!role && !role.includes('seeker') && !role.includes('jobseeker');
+    if(employer) employer.hidden=!!role && !role.includes('employer') && !role.includes('recruiter') && !role.includes('jobgiver');
+    if(loggedIn && role && seeker.hidden && employer.hidden){
+      seeker.hidden=false;
+      employer.hidden=false;
+    }
+  }
+  update();
+  window.addEventListener('storage',update);
+  setInterval(update,1000);
+})();
+
+/* HERO TYPEWRITER: starts automatically and repeats every 2 seconds after typing. */
+(function(){
+  const el=document.getElementById('heroTypingText');
+  if(!el) return;
+  const phrases=['for the people of Siliguri.','for your next opportunity.','for local talent.'];
+  let phraseIndex=0, charIndex=0, deleting=false;
+  const typeSpeed=65, deleteSpeed=38, hold=2000;
+  function tick(){
+    const phrase=phrases[phraseIndex];
+    if(!deleting){
+      charIndex++;
+      el.textContent=phrase.slice(0,charIndex);
+      if(charIndex===phrase.length){
+        deleting=true;
+        setTimeout(tick,hold);
+        return;
+      }
+      setTimeout(tick,typeSpeed);
+    }else{
+      charIndex--;
+      el.textContent=phrase.slice(0,charIndex);
+      if(charIndex===0){
+        deleting=false;
+        phraseIndex=(phraseIndex+1)%phrases.length;
+        setTimeout(tick,250);
+        return;
+      }
+      setTimeout(tick,deleteSpeed);
+    }
+  }
+  el.textContent='';
+  setTimeout(tick,250);
+})();
+
 (function(){
   const bar=document.getElementById('mobileStickySearch');
   const form=document.getElementById('mobileStickySearchForm');
