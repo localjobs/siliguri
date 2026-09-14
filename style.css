@@ -1547,3 +1547,21 @@ td{
     min-width:0;
   }
 }
+
+/* HERO TYPEWRITER - keeps the requested two-line layout on desktop and mobile. */
+.hero h1 .hero-typing-line{
+  display:block;
+  min-height:1.08em;
+}
+.hero h1 .hero-typing-line1{
+  color:inherit;
+}
+.hero h1 .hero-typing-line2{
+  color:#a9f338;
+}
+
+@media(max-width:900px){
+  .hero h1 .hero-typing-line{
+    min-height:1.08em;
+  }
+}
