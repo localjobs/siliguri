@@ -1371,11 +1371,12 @@ td{
   body{padding-bottom:68px;background:#f1f3f6}
 
   /* Clean mobile header: brand left, login/register right. No menu bar. */
-  .site-header{position:sticky;top:0;z-index:1000;background:#fff;border-bottom:1px solid #e2e7eb;box-shadow:0 1px 6px rgba(0,0,0,.06)}
+  .site-header{position:sticky;top:0;z-index:1000;background:#fff;border-bottom:1px solid #e2e7eb;box-shadow:0 1px 6px rgba(0,0,0,.06);transition:transform .18s ease}
+  .site-header.mobile-scroll-hide{transform:translateY(-100%)}
   .nav-wrap{width:100%!important;max-width:none!important;min-height:56px!important;display:flex!important;align-items:center;justify-content:space-between;gap:8px;padding:8px 10px!important;box-sizing:border-box}
   .site-header .brand{min-width:0!important;flex:1;justify-content:flex-start;gap:7px;text-align:left}
   .site-header .brand>span:last-child{display:flex;flex-direction:column;align-items:flex-start}
-  .site-header .brand-mark{width:32px;height:32px;flex:0 0 32px}
+  .site-header .brand-mark{width:34px;height:34px;flex:0 0 34px;border:0;background:url("localjobhub-logo.jpeg") center/cover no-repeat;font-size:0;box-shadow:0 1px 5px rgba(0,0,0,.12)}
   .site-header .brand b{font-size:19px;line-height:1}
   .site-header .brand small{font-size:6.5px;margin-top:3px}
   .site-header .menu-btn,.site-header nav{display:none!important}
@@ -1384,7 +1385,7 @@ td{
   .nav-actions .btn{display:inline-flex!important;min-height:34px;padding:7px 10px;font-size:9px;border-radius:7px;white-space:nowrap}
 
   /* Scroll-away header search: compact, always easy to reach. */
-  .mobile-sticky-search{position:fixed;top:57px;left:0;right:0;z-index:990;padding:7px 9px;background:#fff;border-bottom:1px solid #dfe5e9;box-shadow:0 4px 13px rgba(0,0,0,.10);transform:translateY(-120%);transition:transform .22s ease;display:block}
+  .mobile-sticky-search{position:fixed;top:0;left:0;right:0;z-index:990;padding:7px 9px;background:#fff;border-bottom:1px solid #dfe5e9;box-shadow:0 4px 13px rgba(0,0,0,.10);transform:translateY(-120%);transition:transform .22s ease;display:block}
   .mobile-sticky-search.show{transform:translateY(0)}
   .mobile-sticky-search form{display:flex;align-items:center;gap:5px;margin:0;padding:5px 6px;border:1px solid #d7e1e6;border-radius:8px;background:#f7f9fa}
   .mobile-sticky-search span{font-size:16px}
@@ -1392,28 +1393,29 @@ td{
   .mobile-sticky-search button{border:0;border-radius:6px;padding:8px 11px;background:#2874f0;color:#fff;font-size:9px;font-weight:800}
 
   /* Fixed, clean marketplace-style navigation. */
-  .mobile-bottom-nav{position:fixed;left:0;right:0;bottom:0;z-index:1200;height:59px;padding-bottom:env(safe-area-inset-bottom);display:grid;grid-template-columns:repeat(4,1fr) 1.15fr;background:#fff;border-top:1px solid #dce4e8;box-shadow:0 -4px 16px rgba(0,0,0,.10)}
-  .mobile-nav-item,.mobile-account>summary{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;color:#526774;text-decoration:none;font-size:8px;font-weight:700;line-height:1;cursor:pointer;list-style:none}
-  .mobile-nav-item span,.mobile-account>summary span{font-size:19px;line-height:1}
-  .mobile-nav-item b,.mobile-account>summary b{font-size:8px}
+  .mobile-bottom-nav{position:fixed;left:0;right:0;bottom:0;z-index:1200;height:62px;padding-bottom:env(safe-area-inset-bottom);display:grid;grid-template-columns:repeat(4,1fr) 1.15fr;background:#fff;border-top:1px solid #dce4e8;box-shadow:0 -4px 16px rgba(0,0,0,.10)}
+  .mobile-nav-item,.mobile-account>summary{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;color:#526774;text-decoration:none;font-size:9px;font-weight:700;line-height:1;cursor:pointer;list-style:none}
+  .mobile-nav-item span,.mobile-account>summary span{font-size:20px;line-height:1}
+  .mobile-nav-item b,.mobile-account>summary b{font-size:9px}
   .mobile-nav-item.active{color:#2874f0}
   .mobile-account{position:relative;display:block}
-  .mobile-account>summary{height:59px}
+  .mobile-account>summary{height:62px}
   .mobile-account>summary::-webkit-details-marker{display:none}
   .mobile-account[open]>summary{color:#2874f0;background:#f1f6ff}
-  .mobile-account-menu{position:absolute;right:7px;bottom:65px;width:205px;padding:6px;background:#fff;border:1px solid #dfe6ea;border-radius:10px;box-shadow:0 10px 28px rgba(0,0,0,.17)}
+  .mobile-account-menu{position:absolute;right:7px;bottom:68px;width:205px;padding:6px;background:#fff;border:1px solid #dfe6ea;border-radius:10px;box-shadow:0 10px 28px rgba(0,0,0,.17)}
   .mobile-account-menu a,.account-language{display:flex;align-items:center;justify-content:space-between;gap:8px;min-height:39px;padding:9px 11px;box-sizing:border-box;border-radius:7px;color:#263b48;text-decoration:none;font-size:10px;font-weight:700}
+  .mobile-account-menu a[hidden]{display:none!important}
   .mobile-account-menu a:hover,.account-language:hover{background:#f2f6f9}
   .account-language label{font-size:10px}
   .account-language select{border:1px solid #dce5e9;border-radius:5px;background:#fff;font-size:9px;padding:4px}
 
   /* Footer: only requested links; no logo and no clutter. */
   /* Mobile-only footer: keep desktop footer HTML/layout unchanged */
-  footer .footer-grid{display:flex!important;align-items:center;justify-content:center;gap:18px;width:100%;padding:0 10px;box-sizing:border-box}
+  footer .footer-grid{display:flex!important;align-items:center;justify-content:center;gap:0;width:100%;padding:0 6px;box-sizing:border-box;flex-wrap:nowrap}
   footer .footer-grid > .footer-brand,
   footer .footer-grid > div:nth-child(2){display:none!important}
   footer .footer-grid > div:nth-child(3),
-  footer .footer-grid > div:nth-child(4){display:flex!important;align-items:center;gap:18px}
+  footer .footer-grid > div:nth-child(4){display:flex!important;align-items:center;gap:12px}
   footer .footer-grid > div:nth-child(3) a:nth-child(3),
   footer .footer-grid > div:nth-child(4) a:first-child{display:none!important}
   footer .footer-grid a{font-size:9px!important;color:#d7e3ea;text-decoration:none;white-space:nowrap}
@@ -1422,10 +1424,10 @@ td{
 
 @media(max-width:430px){
   .site-header .brand b{font-size:18px}
-  .site-header .brand-mark{width:30px;height:30px;flex-basis:30px}
+  .site-header .brand-mark{width:31px;height:31px;flex-basis:31px}
   .nav-actions .btn{min-height:33px;padding:7px 9px;font-size:8.5px}
-  .mobile-bottom-nav{height:57px}
-  .mobile-account>summary{height:57px}
-  .mobile-nav-item span,.mobile-account>summary span{font-size:18px}
-  .mobile-nav-item b,.mobile-account>summary b{font-size:7.5px}
+  .mobile-bottom-nav{height:60px}
+  .mobile-account>summary{height:60px}
+  .mobile-nav-item span,.mobile-account>summary span{font-size:19px}
+  .mobile-nav-item b,.mobile-account>summary b{font-size:8.5px}
 }
