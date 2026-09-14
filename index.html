@@ -711,6 +711,52 @@
 
 
 <script>
+/* MOBILE HEADER: hide while scrolling down, show while scrolling up,
+   and show shortly after scrolling stops. */
+(function(){
+  function initMobileHeaderScroll(){
+    const header = document.querySelector('.site-header');
+    if(!header || header.dataset.scrollHandlerStarted === '1') return;
+    header.dataset.scrollHandlerStarted = '1';
+
+    let lastY = window.scrollY || 0;
+    let stopTimer = null;
+
+    function update(){
+      if(window.innerWidth > 900){
+        header.classList.remove('mobile-scroll-hide');
+        lastY = window.scrollY || 0;
+        return;
+      }
+
+      const y = window.scrollY || 0;
+
+      if(y <= 5 || y < lastY){
+        header.classList.remove('mobile-scroll-hide');
+      }else if(y > lastY){
+        header.classList.add('mobile-scroll-hide');
+      }
+
+      lastY = y;
+
+      clearTimeout(stopTimer);
+      stopTimer = setTimeout(function(){
+        header.classList.remove('mobile-scroll-hide');
+      }, 180);
+    }
+
+    window.addEventListener('scroll', update, {passive:true});
+    window.addEventListener('resize', update);
+    update();
+  }
+
+  if(document.readyState === 'loading'){
+    document.addEventListener('DOMContentLoaded', initMobileHeaderScroll, {once:true});
+  }else{
+    initMobileHeaderScroll();
+  }
+})();
+
 /* HERO TYPEWRITER: Desktop + Mobile, 3-second hold, then delete and repeat. */
 (function(){
   function startHeroTyping(){
