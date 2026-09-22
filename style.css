@@ -1760,3 +1760,6 @@ body.auth-page .auth-form-panel, body.dashboard-page .dashboard-card, body.dashb
 .auth-form input:focus,.auth-form textarea:focus,.auth-form select:focus,.admin-filters input:focus,.admin-filters select:focus{border-color:#08a967;box-shadow:0 0 0 3px #08a96718}
 .btn:disabled{opacity:.5;cursor:not-allowed;box-shadow:none}
 @media(max-width:700px){.auth-layout{grid-template-columns:1fr!important}.auth-promo{display:none}.stats-row{grid-template-columns:1fr 1fr}.dashboard-layout{grid-template-columns:1fr!important}.dashboard-sidebar{display:grid;grid-template-columns:1fr 1fr;gap:5px}.admin-filters{grid-template-columns:1fr!important}.hero-typing-line2{margin-left:0}}
+
+/* Desktop typing heading top clearance only */
+@media(min-width:901px){.hero-copy h1.hero-typing-fixed{padding-top:3px;box-sizing:border-box;}}
