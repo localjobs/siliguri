@@ -1531,6 +1531,20 @@ td{
   }
 }
 
+/* FINAL MOBILE MENU ACTIVE STATE */
+@media(max-width:900px){
+  .mobile-bottom-nav .mobile-nav-item.active,
+  .mobile-bottom-nav .mobile-account>summary.active,
+  .mobile-bottom-nav .mobile-account[open]>summary{
+    color:#2874f0 !important;
+    background:#eef5ff !important;
+  }
+  .mobile-bottom-nav .mobile-nav-item:active,
+  .mobile-bottom-nav .mobile-account>summary:active{
+    color:#0b5dcc !important;
+    background:#e1edff !important;
+  }
+}
 
 /* DESKTOP ONLY: restore/lock the original hero search size. */
 @media(min-width:901px){

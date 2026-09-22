@@ -1,58 +1,102 @@
-document.addEventListener("DOMContentLoaded", async () => {
-  // MOBILE SCROLL UI only. Desktop is deliberately untouched.
-  // UP  -> hide header; restore 2s after scrolling stops.
-  // DOWN -> hide bottom nav; restore 1s after scrolling stops.
+/* INDEPENDENT HERO + MOBILE NAV CONTROLS */
+document.addEventListener("DOMContentLoaded", () => {
+  const line1 = document.getElementById("heroTypingLine1");
+  const line2 = document.getElementById("heroTypingLine2");
+
+  if (line1 && line2) {
+    const first = "Find local jobs that match";
+    const second = "your skills in Siliguri.";
+    let i = 0, j = 0, phase = 0;
+
+    const tick = () => {
+      if (phase === 0) {
+        if (i <= first.length) {
+          line1.textContent = first.slice(0, i++);
+          setTimeout(tick, 70);
+          return;
+        }
+        phase = 1; setTimeout(tick, 350); return;
+      }
+      if (phase === 1) {
+        if (j <= second.length) {
+          line2.textContent = second.slice(0, j++);
+          setTimeout(tick, 60);
+          return;
+        }
+        phase = 2; setTimeout(tick, 3000); return;
+      }
+      if (phase === 2) {
+        if (j >= 0) {
+          line2.textContent = second.slice(0, j--);
+          setTimeout(tick, 35);
+          return;
+        }
+        phase = 3; setTimeout(tick, 150); return;
+      }
+      if (phase === 3) {
+        if (i >= 0) {
+          line1.textContent = first.slice(0, i--);
+          setTimeout(tick, 35);
+          return;
+        }
+        phase = 0; i = 0; j = 0; tick();
+      }
+    };
+    tick();
+  }
+
   if (window.matchMedia("(max-width: 900px)").matches) {
     const header = document.querySelector(".site-header");
-    const bottomNav = document.querySelector("#mobileBottomNav");
-    let lastY = Math.max(0, window.scrollY || 0);
-    let direction = 0;
-    let headerTimer = null;
-    let bottomTimer = null;
+    const bottomNav = document.getElementById("mobileBottomNav");
+    let lastY = window.scrollY || 0;
+    let direction = 0, headerTimer = null, bottomTimer = null;
 
-    const restoreHeader = () => {
-      if (header) header.classList.remove("mobile-scroll-hide");
-    };
-    const restoreBottom = () => {
-      if (bottomNav) bottomNav.classList.remove("mobile-bottom-hide");
-    };
-
-    const onScroll = () => {
-      const y = Math.max(0, window.scrollY || 0);
+    window.addEventListener("scroll", () => {
+      const y = window.scrollY || 0;
       const delta = y - lastY;
       if (Math.abs(delta) < 2) return;
       lastY = y;
-
       clearTimeout(headerTimer);
       clearTimeout(bottomTimer);
 
       if (y <= 8) {
         direction = 0;
-        restoreHeader();
-        restoreBottom();
-        return;
-      }
-
-      if (delta < 0) {
+        header?.classList.remove("mobile-scroll-hide");
+        bottomNav?.classList.remove("mobile-bottom-hide");
+      } else if (delta < 0) {
         direction = -1;
-        if (header) header.classList.add("mobile-scroll-hide");
-        restoreBottom();
+        header?.classList.add("mobile-scroll-hide");
+        bottomNav?.classList.remove("mobile-bottom-hide");
         headerTimer = setTimeout(() => {
-          if (direction === -1) restoreHeader();
+          if (direction === -1) header?.classList.remove("mobile-scroll-hide");
         }, 2000);
       } else {
         direction = 1;
-        restoreHeader();
-        if (bottomNav) bottomNav.classList.add("mobile-bottom-hide");
+        header?.classList.remove("mobile-scroll-hide");
+        bottomNav?.classList.add("mobile-bottom-hide");
         bottomTimer = setTimeout(() => {
-          if (direction === 1) restoreBottom();
+          if (direction === 1) bottomNav?.classList.remove("mobile-bottom-hide");
         }, 1000);
       }
-    };
-
-    window.addEventListener("scroll", onScroll, {passive:true});
+    }, {passive:true});
   }
 
+  // Clicked mobile menu item changes colour so the selected item is obvious.
+  document.querySelectorAll("#mobileBottomNav .mobile-nav-item").forEach(item => {
+    item.addEventListener("click", () => {
+      document.querySelectorAll("#mobileBottomNav .mobile-nav-item").forEach(x => x.classList.remove("active"));
+      item.classList.add("active");
+    });
+  });
+
+  const account = document.querySelector("#mobileBottomNav .mobile-account");
+  account?.addEventListener("toggle", () => {
+    const summary = account.querySelector("summary");
+    summary?.classList.toggle("active", account.open);
+  });
+});
+
+document.addEventListener("DOMContentLoaded", async () => {
   const sb = window.LocalJobHubSupabase || window.supabase.createClient(window.LOCALJOBHUB_SUPABASE_URL, window.LOCALJOBHUB_SUPABASE_KEY);
   const esc = s => String(s ?? "").replace(/[&<>"']/g, m => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]));
   const defaultImage = "https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=700&q=80";
@@ -68,24 +112,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     const {data,error}=await sb.from("external_jobs").select("*").order("source_checked_at",{ascending:false}).limit(30);
     return !error && data?.length ? data : [];
   }
-
-  function startTyping() {
-    const line1=document.querySelector("#heroTypingLine1"), line2=document.querySelector("#heroTypingLine2");
-    if(!line1 || !line2) return;
-    const first="Find local jobs that match", second="your skills in Siliguri.";
-    let i=0,j=0,phase=0;
-    function tick() {
-      if(phase===0){ if(i<=first.length){line1.textContent=first.slice(0,i++);return setTimeout(tick,70)} phase=1;return setTimeout(tick,350); }
-      if(phase===1){ if(j<=second.length){line2.textContent=second.slice(0,j++);return setTimeout(tick,60)} phase=2;return setTimeout(tick,3000); }
-      if(phase===2){ if(j>=0){line2.textContent=second.slice(0,j--);return setTimeout(tick,35)} phase=3;return setTimeout(tick,250); }
-      if(i>=0){line1.textContent=first.slice(0,i--);return setTimeout(tick,35)}
-      line1.textContent="";line2.textContent="";i=0;j=0;phase=0;setTimeout(tick,500);
-    }
-    tick();
-  }
-
-  // Start only after the function above has been initialized.
-  startTyping();
 
   const jobImageByType = [
     {keys:["delivery boy","delivery partner","delivery executive","delivery"], url:"https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=900&q=82"},
