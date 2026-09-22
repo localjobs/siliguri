@@ -178,7 +178,28 @@ button,input,select,textarea{
 }
 
 .hero h1 span{
-  color:#a9f338
+  color:inherit
+}
+
+/* Hero typing colors: two lines stay visually distinct and match the site palette. */
+.hero h1 .hero-typing-line1{
+  color:#a9f338;
+}
+.hero h1 .hero-typing-line2{
+  color:#49d7ff;
+}
+.hero-copy h1.hero-typing-fixed{
+  height:2.35em;
+  min-height:2.35em;
+  overflow:hidden;
+  display:block;
+}
+.hero-copy h1.hero-typing-fixed .hero-typing-line{
+  display:block;
+  height:1.12em;
+  min-height:1.12em;
+  white-space:nowrap;
+  overflow:hidden;
 }
 
 .hero p{

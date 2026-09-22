@@ -254,8 +254,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const heroSequences = {
     en: [
-      {text:"Find Your Job in Siliguri For the People of Siliguri.", repeat:3},
-      {text:"Best Job Provider Consultancy, Local Job Provider Company.", repeat:1}
+      {lines:["Find Your Job in Siliguri","For the People of Siliguri."], repeat:3},
+      {lines:["Best Job Provider Consultancy,","Local Job Provider Company."], repeat:1}
+    ],
+    bn: [
+      {lines:["শিলিগুড়িতে নিজের চাকরি খুঁজুন","শিলিগুড়ির মানুষের জন্য।"], repeat:3},
+      {lines:["সেরা চাকরি প্রদানকারী কনসালটেন্সি,","স্থানীয় চাকরি প্রদানকারী কোম্পানি।"], repeat:1}
+    ],
+    hi: [
+      {lines:["सिलीगुड़ी में अपनी नौकरी खोजें","सिलीगुड़ी के लोगों के लिए।"], repeat:3},
+      {lines:["सर्वश्रेष्ठ जॉब प्रोवाइडर कंसल्टेंसी,","स्थानीय जॉब प्रोवाइडर कंपनी।"], repeat:1}
     ]
   };
 
@@ -276,36 +284,63 @@ document.addEventListener("DOMContentLoaded", () => {
 
     h1.classList.add("hero-typing-fixed");
     const run = ++heroRun;
-    const sequence = heroSequences.en;
+    const sequence = heroSequences[lang] || heroSequences.en;
     let sequenceIndex = 0;
     let repeatCount = 0;
+    let lineIndex = 0;
     let charIndex = 0;
     let deleting = false;
 
     const tick = () => {
       if (run !== heroRun) return;
 
-      const current = sequence[sequenceIndex].text;
-      h1.setAttribute("aria-label", current);
-      secondEl.textContent = "";
+      const current = sequence[sequenceIndex];
+      const line1 = current.lines[0];
+      const line2 = current.lines[1];
+      h1.setAttribute("aria-label", line1 + " " + line2);
 
       if (!deleting) {
-        firstEl.textContent = current.slice(0, charIndex);
-        if (charIndex < current.length) {
+        firstEl.textContent = line1.slice(0, lineIndex === 0 ? charIndex : line1.length);
+        secondEl.textContent = line2.slice(0, lineIndex === 1 ? charIndex : 0);
+
+        const activeLine = lineIndex === 0 ? line1 : line2;
+        if (charIndex < activeLine.length) {
           charIndex++;
           setTimeout(tick, 105);
+          return;
+        }
+
+        if (lineIndex === 0) {
+          lineIndex = 1;
+          charIndex = 0;
+          setTimeout(tick, 250);
           return;
         }
 
         setTimeout(() => {
           if (run !== heroRun) return;
           deleting = true;
+          lineIndex = 1;
+          charIndex = line2.length;
           tick();
         }, 3000);
         return;
       }
 
-      firstEl.textContent = current.slice(0, charIndex);
+      if (lineIndex === 1) {
+        secondEl.textContent = line2.slice(0, charIndex);
+        if (charIndex > 0) {
+          charIndex--;
+          setTimeout(tick, 30);
+          return;
+        }
+        lineIndex = 0;
+        charIndex = line1.length;
+        setTimeout(tick, 80);
+        return;
+      }
+
+      firstEl.textContent = line1.slice(0, charIndex);
       if (charIndex > 0) {
         charIndex--;
         setTimeout(tick, 30);
@@ -314,10 +349,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
       deleting = false;
       repeatCount++;
-      if (repeatCount >= sequence[sequenceIndex].repeat) {
+      if (repeatCount >= current.repeat) {
         repeatCount = 0;
         sequenceIndex = (sequenceIndex + 1) % sequence.length;
       }
+      lineIndex = 0;
+      charIndex = 0;
       setTimeout(tick, 250);
     };
 
