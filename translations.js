@@ -382,27 +382,12 @@ window.translations = {
     );
 
 
-    const heroTitle = document.querySelector(".hero-copy h1");
-
-    if (heroTitle) {
-
-      if (lang === "bn") {
-
-        heroTitle.innerHTML =
-          "আপনার দক্ষতার সঙ্গে মিলবে<br><span>এমন স্থানীয় চাকরি খুঁজুন</span>";
-
-      } else if (lang === "hi") {
-
-        heroTitle.innerHTML =
-          "अपने कौशल के अनुसार<br><span>स्थानीय नौकरी खोजें</span>";
-
-      } else {
-
-        heroTitle.innerHTML =
-          "Find Local Jobs That Match<br><span>Your Skills</span>";
-
-      }
-
+    /* Hero heading is managed by app.js.
+       Never replace h1.innerHTML here: doing so removes the
+       fixed typing spans and causes the page to jump during
+       language changes. */
+    if (typeof window.LocalJobHubStartHeroTyping === "function") {
+      window.LocalJobHubStartHeroTyping(lang);
     }
 
 
