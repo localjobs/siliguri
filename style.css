@@ -1770,14 +1770,14 @@ body.auth-page .auth-form-panel, body.dashboard-page .dashboard-card, body.dashb
      those desktop hero lines a taller line box so the top never gets clipped. */
   html[lang="bn"] .hero-copy h1.hero-typing-fixed,
   html[lang="hi"] .hero-copy h1.hero-typing-fixed{
-    height:2.55em;
-    min-height:2.55em;
-    padding-top:5px;
+    height:2.8em;
+    min-height:2.8em;
+    padding-top:8px;
   }
   html[lang="bn"] .hero-copy h1.hero-typing-fixed .hero-typing-line,
   html[lang="hi"] .hero-copy h1.hero-typing-fixed .hero-typing-line{
-    height:1.2em;
-    min-height:1.2em;
-    line-height:1.2;
+    height:1.3em;
+    min-height:1.3em;
+    line-height:1.3;
   }
 }
