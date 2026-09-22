@@ -374,7 +374,7 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   const applyFinalLanguage = lang => {
-    if (!phrases[lang]) lang = "en";
+    if (!heroSequences[lang]) lang = "en";
     localStorage.setItem("localjobhub_language", lang);
     syncLanguage(lang);
     if (typeof window.applyLanguage === "function") window.applyLanguage(lang);
