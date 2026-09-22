@@ -1646,7 +1646,9 @@ body.auth-page .auth-shell, body.dashboard-page .dashboard-shell { animation: pa
 body.auth-page .auth-form-panel, body.dashboard-page .dashboard-card, body.dashboard-page .admin-hero { animation: cardIn .5s ease both; }
 @keyframes pageIn { from { opacity:0; } to { opacity:1; } }
 @keyframes cardIn { from { opacity:0; transform:translateY(14px); } to { opacity:1; transform:translateY(0); } }
-.hero-typing-line{display:inline-block;min-height:1.08em;white-space:pre-wrap}.hero-typing-line2{margin-left:.12em}.hero-typing-line2::after{content:"";display:inline-block;width:2px;height:.9em;background:#a9f338;margin-left:5px;vertical-align:-.08em;animation:heroCaret .8s step-end infinite}@keyframes heroCaret{50%{opacity:0}}
+.hero-typing-line{display:inline-block;min-height:1.08em;white-space:pre-wrap}
+.location-card{cursor:pointer}
+.location-card:focus-visible{outline:2px solid #08a967;outline-offset:3px}.hero-typing-line2{margin-left:.12em}.hero-typing-line2::after{content:"";display:inline-block;width:2px;height:.9em;background:#a9f338;margin-left:5px;vertical-align:-.08em;animation:heroCaret .8s step-end infinite}@keyframes heroCaret{50%{opacity:0}}
 .external-source{display:block;margin-top:7px;font-size:8px;color:#71838e}.source-btn{cursor:pointer}
 .auth-form input:focus,.auth-form textarea:focus,.auth-form select:focus,.admin-filters input:focus,.admin-filters select:focus{border-color:#08a967;box-shadow:0 0 0 3px #08a96718}
 .btn:disabled{opacity:.5;cursor:not-allowed;box-shadow:none}

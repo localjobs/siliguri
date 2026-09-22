@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   function startTyping() {
     const line1=document.querySelector("#heroTypingLine1"), line2=document.querySelector("#heroTypingLine2");
     if(!line1 || !line2) return;
-    const first="Jobs in Siliguri,", second="for the people of Siliguri.";
+    const first="Find local jobs that match", second="your skills in Siliguri.";
     let i=0,j=0,phase=0;
     function tick() {
       if(phase===0){ if(i<=first.length){line1.textContent=first.slice(0,i++);return setTimeout(tick,70)} phase=1;return setTimeout(tick,350); }
@@ -30,6 +30,19 @@ document.addEventListener("DOMContentLoaded", async () => {
     tick();
   }
 
+  const jobImageByType = [
+    {keys:["delivery boy","delivery partner","delivery executive","delivery"], url:"https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=900&q=82"},
+    {keys:["sales executive","field sales","sales"], url:"https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=900&q=82"},
+    {keys:["cashier","retail"], url:"https://images.unsplash.com/photo-1556740749-887f6717d7e4?auto=format&fit=crop&w=900&q=82"},
+    {keys:["electrical","electronics","technician","electrician"], url:"https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&w=900&q=82"},
+    {keys:["receptionist","front desk","hotel"], url:"https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=900&q=82"},
+    {keys:["back office","computer","office"], url:"https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=900&q=82"}
+  ];
+  function jobImage(job){
+    const hay=(job.title+" "+(job.category||"")+" "+(job.company||"")).toLowerCase();
+    return (jobImageByType.find(x=>x.keys.some(k=>hay.includes(k)))||jobImageByType[5]).url;
+  }
+
   function renderJobs(list) {
     const grid=document.querySelector("#jobGrid"); if(!grid) return;
     if(!list.length){grid.innerHTML='<div class="panel"><b>No jobs found.</b><p>Try another search.</p></div>';return;}
@@ -39,7 +52,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       const actionText=external ? "View Source" : "Apply";
       const badge=external ? "Source listing" : "LocalJobHub approved";
       const source=external ? '<small class="external-source">Source: '+esc(j.source_name)+'</small>' : "";
-      return '<article class="job-card"><div class="job-photo" style="background-image:url('+defaultImage+')"><span class="verified-badge">'+badge+'</span></div><div class="job-body"><h3 class="job-title-visible">'+esc(j.title)+'</h3><p class="company">'+esc(j.company)+'</p><p>⌖ '+esc(j.location)+'</p><p>💼 '+esc(j.experience || "Not specified")+'</p><div class="job-meta"><b>'+esc(j.salary || "Salary not disclosed")+'</b><span>'+esc(j.job_type || j.type || "Full Time")+'</span></div><div class="job-buttons"><button class="btn btn-primary '+actionClass+'" data-id="'+esc(j.id)+'">'+actionText+'</button><button class="btn btn-outline details-btn" data-id="'+esc(j.id)+'">Details</button></div>'+source+'</div></article>';
+      return '<article class="job-card"><div class="job-photo" style="background-image:url('+jobImage(j)+')"><span class="verified-badge">'+badge+'</span></div><div class="job-body"><h3 class="job-title-visible">'+esc(j.title)+'</h3><p class="company">'+esc(j.company)+'</p><p>⌖ '+esc(j.location)+'</p><p>💼 '+esc(j.experience || "Not specified")+'</p><div class="job-meta"><b>'+esc(j.salary || "Salary not disclosed")+'</b><span>'+esc(j.job_type || j.type || "Full Time")+'</span></div><div class="job-buttons"><button class="btn btn-primary '+actionClass+'" data-id="'+esc(j.id)+'">'+actionText+'</button><button class="btn btn-outline details-btn" data-id="'+esc(j.id)+'">Details</button></div>'+source+'</div></article>';
     }).join("");
   }
 
@@ -63,6 +76,24 @@ document.addEventListener("DOMContentLoaded", async () => {
     const keyword=document.querySelector("#keyword"); if(keyword) keyword.value=a.dataset.category;
     document.querySelector("#jobSearch")?.dispatchEvent(new Event("submit",{cancelable:true}));
   }));
+
+  document.querySelectorAll("[data-location-filter]").forEach(card => {
+    const run=() => {
+      const selected=card.dataset.locationFilter.toLowerCase();
+      const aliases = {
+        "siliguri":["siliguri"],
+        "matigara":["matigara"],
+        "sevoke road":["sevoke","sevoke road"],
+        "bagdogra":["bagdogra"]
+      };
+      const terms=aliases[selected]||[selected];
+      const filtered=allJobs.filter(j => terms.some(t=>String(j.location||"").toLowerCase().includes(t)));
+      renderJobs(filtered);
+      document.querySelector("#jobs")?.scrollIntoView({behavior:"smooth"});
+    };
+    card.addEventListener("click",run);
+    card.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();run();}});
+  });
   document.querySelector("#showAllJobs")?.addEventListener("click", e => {e.preventDefault();renderJobs(allJobs);document.querySelector("#jobs")?.scrollIntoView({behavior:"smooth"})});
 
   const language=document.querySelector("#languageSelect");
@@ -90,15 +121,22 @@ document.addEventListener("DOMContentLoaded", async () => {
     e.preventDefault();
     const role=document.querySelector("#registerRole").value,name=document.querySelector("#regName").value.trim(),email=document.querySelector("#regEmail").value.trim(),password=document.querySelector("#regPassword").value;
     if(password!==document.querySelector("#regConfirm").value){alert("Passwords do not match.");return;}
-    const r=await sb.auth.signUp({email,password,options:{data:{full_name:name,role}}});
+    const phone=document.querySelector("#regMobile")?.value.trim()||"";
+    const jobLocation=document.querySelector("#regLocation")?.value.trim()||"";
+    const skills=document.querySelector("#regSkills")?.value.trim()||"";
+    const qualification=document.querySelector("#regQualification")?.value.trim()||"";
+    const experience=document.querySelector("#regExperience")?.value.trim()||"";
+    const companyDetails=document.querySelector("#regCompanyDetails")?.value.trim()||"";
+    const r=await sb.auth.signUp({
+      email,
+      password,
+      options:{data:{full_name:name,role,phone,mobile:phone,location:jobLocation,skills,qualification,experience,company_details:companyDetails}}
+    });
     if(r.error){alert(r.error.message);return;}
-    if(r.data.user){
-      const values={full_name:name,phone:document.querySelector("#regMobile")?.value||"",mobile:document.querySelector("#regMobile")?.value||"",location:document.querySelector("#regLocation")?.value||"",skills:document.querySelector("#regSkills")?.value||"",qualification:document.querySelector("#regQualification")?.value||"",experience:document.querySelector("#regExperience")?.value||"",company_details:document.querySelector("#regCompanyDetails")?.value||""};
-      const p=await sb.from("profiles").update(values).eq("id",r.data.user.id);
-      if(p.error){alert("Account created, but profile update failed: "+p.error.message);return;}
-      if(role==="employer"){const em=await sb.from("employers").upsert({user_id:r.data.user.id,company_name:name,company_description:values.company_details,phone:values.phone,email,address:values.location},{onConflict:"user_id"});if(em.error){alert("Account created, but company profile failed: "+em.error.message);return;}}
-    }
-    alert("Account created. Check your email if confirmation is required, then login.");location.href="login.html";
+    alert(r.data.session
+      ? "Account created successfully. You can login now."
+      : "Account created successfully. Check your email for confirmation, then login.");
+    location.href="login.html";
   });
 
   document.querySelector("#loginForm")?.addEventListener("submit", async e => {
