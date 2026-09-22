@@ -1602,10 +1602,10 @@ td{
   min-height:1.08em;
 }
 .hero h1 .hero-typing-line1{
-  color:inherit;
+  color:#a9f338 !important;
 }
 .hero h1 .hero-typing-line2{
-  color:#a9f338;
+  color:#49d7ff !important;
 }
 
 @media(max-width:900px){
@@ -1698,6 +1698,24 @@ body.auth-page .auth-form-panel, body.dashboard-page .dashboard-card, body.dashb
 .location-card{cursor:pointer}
 .location-card:focus-visible{outline:2px solid #08a967;outline-offset:3px}.hero-typing-line2{margin-left:.12em}
 .external-source{display:block;margin-top:7px;font-size:8px;color:#71838e}.source-btn{cursor:pointer}
+
+/* FINAL MOBILE NAV ACTIVE STATE — placed after all generic mobile color rules. */
+@media(max-width:900px){
+  .mobile-bottom-nav .mobile-nav-item.active{
+    color:#2874f0 !important;
+    background:#eef5ff !important;
+  }
+  .mobile-bottom-nav .mobile-account>summary.active,
+  .mobile-bottom-nav .mobile-account[open]>summary{
+    color:#2874f0 !important;
+    background:#eef5ff !important;
+  }
+  .mobile-bottom-nav .mobile-nav-item:active,
+  .mobile-bottom-nav .mobile-account>summary:active{
+    color:#0b5dcc !important;
+    background:#e1edff !important;
+  }
+}
 .auth-form input:focus,.auth-form textarea:focus,.auth-form select:focus,.admin-filters input:focus,.admin-filters select:focus{border-color:#08a967;box-shadow:0 0 0 3px #08a96718}
 .btn:disabled{opacity:.5;cursor:not-allowed;box-shadow:none}
 @media(max-width:700px){.auth-layout{grid-template-columns:1fr!important}.auth-promo{display:none}.stats-row{grid-template-columns:1fr 1fr}.dashboard-layout{grid-template-columns:1fr!important}.dashboard-sidebar{display:grid;grid-template-columns:1fr 1fr;gap:5px}.admin-filters{grid-template-columns:1fr!important}.hero-typing-line2{margin-left:0}}
