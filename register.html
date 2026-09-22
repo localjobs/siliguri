@@ -1,9 +1,33 @@
-<!DOCTYPE html>
-<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Register | LocalJobHub</title><link rel="stylesheet" href="css/style.css"></head>
-<body class="auth-page"><header class="site-header"><div class="container nav-wrap"><a class="brand" href="index.html"><span class="brand-mark">◉</span><span><b>Local<span>JobHub</span></b><small>Local Jobs · Trusted Consultancy</small></span></a><a href="index.html">← Home</a></div></header>
-<main class="auth-wrap"><section class="auth-card wide"><h1>Create your LocalJobHub account</h1><p>Choose what you want to do on LocalJobHub.</p>
-<div class="role-choice"><button class="choice active" data-register-role="seeker"><b>👨‍💼 I Want a Job</b><small>Search and apply for local jobs</small></button><button class="choice" data-register-role="employer"><b>🏢 I Want to Hire</b><small>Post jobs and manage applications</small></button></div>
-<form id="registerForm"><input type="hidden" id="registerRole" value="seeker"><div class="two-col"><label>Full Name / Company Name<input required id="regName"></label><label>Email<input required type="email" id="regEmail"></label><label>Mobile Number<input required type="tel" id="regMobile"></label><label>Location<input required id="regLocation" placeholder="Siliguri"></label><label>Password<input required type="password" id="regPassword" minlength="6"></label><label>Confirm Password<input required type="password" id="regConfirm"></label></div>
-<div id="seekerFields"><label>Skills<input placeholder="Computer, Sales, Driving..."></label><label>Qualification<input placeholder="10th / 12th / Graduate..."></label><label>Experience<input placeholder="Fresher / 2 years..."></label></div>
-<div id="employerFields" class="hidden"><label>Company Details<textarea placeholder="Tell job seekers about your company"></textarea></label></div>
-<button class="btn btn-primary full">Create Account</button></form><p class="auth-bottom">Already registered? <a href="login.html">Login</a></p></section></main><script src="js/app.js"></script></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Register | LocalJobHub</title>
+<link rel="stylesheet" href="style.css?v=20260922">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="supabase-config.js"></script>
+</head>
+<body class="auth-page">
+<header class="site-header"><div class="container nav-wrap">
+<a class="brand" href="index.html"><span class="brand-mark">◉</span><span><b>Local<span>JobHub</span></b><small>Local Jobs · Trusted Consultancy</small></span></a>
+<a class="btn btn-outline" href="index.html">← Home</a>
+</div></header>
+<main class="auth-shell"><section class="auth-layout">
+<div class="auth-promo"><div class="eyebrow">JOIN LOCALJOBHUB</div><h1>Build your local opportunity.</h1><p>Create the right account for what you need to do on the platform.</p>
+<div class="auth-benefits"><div class="auth-benefit"><b>01</b><div><b>Job Seeker</b><span>Create a profile, find approved jobs and apply.</span></div></div><div class="auth-benefit"><b>02</b><div><b>Employer</b><span>Create your company profile and submit jobs for review.</span></div></div><div class="auth-benefit"><b>03</b><div><b>Approval workflow</b><span>Submitted jobs remain private until admin approval.</span></div></div></div></div>
+<div class="auth-form-panel"><h2>Create your account</h2><p>Choose an account type, then complete your details.</p>
+<div class="auth-role-grid"><button type="button" class="auth-role active" data-register-role="seeker"><strong>👨‍💼 I Want a Job</strong><small>Search and apply for jobs</small></button><button type="button" class="auth-role" data-register-role="employer"><strong>🏢 I Want to Hire</strong><small>Post jobs and manage candidates</small></button></div>
+<form id="registerForm" class="auth-form"><input type="hidden" id="registerRole" value="seeker"><div class="form-grid">
+<label>Full Name / Company Name<input required id="regName" autocomplete="name" placeholder="Your name or company"></label>
+<label>Email<input required type="email" id="regEmail" autocomplete="email" placeholder="you@example.com"></label>
+<label>Mobile Number<input required type="tel" id="regMobile" autocomplete="tel" placeholder="+91"></label>
+<label>Location<input required id="regLocation" value="Siliguri" placeholder="Siliguri"></label>
+<label>Password<input required type="password" id="regPassword" minlength="6" autocomplete="new-password" placeholder="At least 6 characters"></label>
+<label>Confirm Password<input required type="password" id="regConfirm" minlength="6" autocomplete="new-password" placeholder="Repeat password"></label>
+</div>
+<div id="seekerFields"><div class="form-grid"><label>Skills<input id="regSkills" placeholder="Computer, Sales, Driving..."></label><label>Qualification<input id="regQualification" placeholder="10th / 12th / Graduate..."></label><label>Experience<input id="regExperience" placeholder="Fresher / 2 years..."></label></div></div>
+<div id="employerFields" class="hidden"><label>Company Details<textarea id="regCompanyDetails" rows="4" placeholder="Company description, services, address details..."></textarea></label></div>
+<div class="auth-divider"></div><button class="btn btn-primary full" type="submit">Create LocalJobHub Account →</button></form>
+<p class="auth-foot">Already registered? <a href="login.html">Login</a></p></div></section></main>
+<script src="app.js?v=20260922"></script>
+</body></html>

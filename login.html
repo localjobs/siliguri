@@ -1,7 +1,24 @@
-<!DOCTYPE html>
-<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Login | LocalJobHub</title><link rel="stylesheet" href="css/style.css"></head>
-<body class="auth-page"><header class="site-header"><div class="container nav-wrap"><a class="brand" href="index.html"><span class="brand-mark">◉</span><span><b>Local<span>JobHub</span></b><small>Local Jobs · Trusted Consultancy</small></span></a><a href="index.html">← Home</a></div></header>
-<main class="auth-wrap"><section class="auth-card"><h1>Welcome back</h1><p>Login as a Job Seeker or Employer.</p>
-<div class="role-tabs"><button class="active" data-role="seeker">Job Seeker</button><button data-role="employer">Employer</button></div>
-<form id="loginForm"><label>Email / Mobile<input required type="text" id="loginId"></label><label>Password<input required type="password" id="loginPassword"></label><div class="form-row"><label><input type="checkbox"> Remember me</label><a href="#">Forgot password?</a></div><button class="btn btn-primary full">Login</button></form>
-<p class="auth-bottom">Don't have an account? <a href="register.html">Register now</a></p></section></main><script src="js/app.js"></script></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Login | LocalJobHub</title>
+<link rel="stylesheet" href="style.css?v=20260922">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="supabase-config.js"></script>
+</head>
+<body class="auth-page">
+<header class="site-header"><div class="container nav-wrap">
+<a class="brand" href="index.html"><span class="brand-mark">◉</span><span><b>Local<span>JobHub</span></b><small>Local Jobs · Trusted Consultancy</small></span></a>
+<a class="btn btn-outline" href="index.html">← Home</a>
+</div></header>
+<main class="auth-shell"><section class="auth-layout">
+<div class="auth-promo"><div class="eyebrow">LOCALJOBHUB</div><h1>Welcome back.</h1><p>Login to manage your local job journey — whether you are looking for work or hiring people in Siliguri.</p>
+<div class="auth-benefits"><div class="auth-benefit"><b>✓</b><div><b>Job Seekers</b><span>Apply to approved local jobs and track applications.</span></div></div><div class="auth-benefit"><b>✓</b><div><b>Employers</b><span>Post jobs and manage candidates after approval.</span></div></div><div class="auth-benefit"><b>✓</b><div><b>Admin controlled</b><span>Every public job goes through approval.</span></div></div></div></div>
+<div class="auth-form-panel"><h2>Sign in to your account</h2><p>Use the email and password you registered with.</p>
+<form id="loginForm" class="auth-form"><label>Email<input required type="email" id="loginId" autocomplete="email" placeholder="you@example.com"></label><label>Password<input required type="password" id="loginPassword" autocomplete="current-password" placeholder="Your password"></label>
+<button class="btn btn-primary full" type="submit">Login to LocalJobHub →</button></form>
+<p class="auth-foot">Don't have an account? <a href="register.html">Create one</a></p></div>
+</section></main>
+<script src="app.js?v=20260922"></script>
+</body></html>
