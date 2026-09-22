@@ -192,7 +192,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   document.querySelector("#showAllJobs")?.addEventListener("click", e => {e.preventDefault();renderJobs(allJobs);document.querySelector("#jobs")?.scrollIntoView({behavior:"smooth"})});
 
   const language=document.querySelector("#languageSelect");
-  if(language){const saved=localStorage.getItem("localjobs_language")||"en";if([...language.options].some(o=>o.value===saved))language.value=saved;language.addEventListener("change",e=>localStorage.setItem("localjobs_language",e.target.value));}
+  if(language){const saved=localStorage.getItem("localjobhub_language")||"en";if([...language.options].some(o=>o.value===saved))language.value=saved;}
   const more=document.querySelector("#moreConsultancyBtn"), area=document.querySelector("#moreConsultancyArea");
   if(more&&area)more.addEventListener("click",()=>{const show=area.classList.toggle("show");more.textContent=show?"Hide Consultancies ↑":"More Consultancies →";});
   const menu=document.querySelector("#menuBtn"), nav=document.querySelector("#mainNav");

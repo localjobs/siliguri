@@ -1609,9 +1609,35 @@ td{
 }
 
 @media(max-width:900px){
-  /* Lock the mobile hero heading footprint. Bengali/Hindi glyphs may
-     have different metrics, but the two-line typing area must never
-     change the hero height or push the sections below it. */
+  /* Mobile language changes must never change the hero footprint.
+     Keep the existing visual design, but reserve the same vertical space
+     for the hero copy regardless of English/Bengali/Hindi text length. */
+  .hero{
+    height:520px !important;
+    min-height:520px !important;
+    max-height:520px !important;
+    overflow:hidden !important;
+  }
+  .hero-grid{
+    height:520px !important;
+    min-height:520px !important;
+    max-height:520px !important;
+    align-items:center !important;
+    overflow:hidden !important;
+  }
+  .hero-copy{
+    min-height:390px !important;
+    max-height:390px !important;
+    overflow:hidden !important;
+  }
+  .hero-copy > p{
+    height:42px !important;
+    min-height:42px !important;
+    max-height:42px !important;
+    overflow:hidden !important;
+    margin-top:8px !important;
+    margin-bottom:10px !important;
+  }
   .hero h1{
     height:2.35em !important;
     min-height:2.35em !important;

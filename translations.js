@@ -690,16 +690,8 @@ window.translations = {
     applyLanguage(savedLanguage);
 
 
-    /* Change language */
-
-    languageSelect.addEventListener(
-      "change",
-      function () {
-
-        applyLanguage(this.value);
-
-      }
-    );
+    /* Language changes are handled by the final controller in app.js.
+       Keeping one controller prevents duplicate DOM/layout recalculation. */
 
   }
 
