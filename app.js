@@ -274,6 +274,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const secondEl = document.getElementById("heroTypingLine2");
     if (!h1 || !firstEl || !secondEl) return;
     const [first, second] = phrases[lang] || phrases.en;
+    h1.classList.add("hero-typing-fixed");
     const run = ++heroRun;
     h1.setAttribute("aria-label", first + " " + second);
     firstEl.textContent = "";
@@ -282,12 +283,12 @@ document.addEventListener("DOMContentLoaded", () => {
     const tick = () => {
       if (run !== heroRun) return;
       if (phase === 0) {
-        if (i <= first.length) { firstEl.textContent = first.slice(0, i++); setTimeout(tick, 65); return; }
-        phase = 1; setTimeout(tick, 250); return;
+        if (i <= first.length) { firstEl.textContent = first.slice(0, i++); setTimeout(tick, 105); return; }
+        phase = 1; setTimeout(tick, 400); return;
       }
       if (phase === 1) {
-        if (j <= second.length) { secondEl.textContent = second.slice(0, j++); setTimeout(tick, 55); return; }
-        phase = 2; setTimeout(tick, 2000); return;
+        if (j <= second.length) { secondEl.textContent = second.slice(0, j++); setTimeout(tick, 95); return; }
+        phase = 2; setTimeout(tick, 3000); return;
       }
       if (phase === 2) {
         if (j >= 0) { secondEl.textContent = second.slice(0, j--); setTimeout(tick, 30); return; }
