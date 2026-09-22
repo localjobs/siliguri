@@ -392,8 +392,7 @@ document.addEventListener("DOMContentLoaded", () => {
   if (mobile) mobile.addEventListener("change", () => {
     const lang = mobile.value;
     syncLanguage(lang);
-    if (main) main.dispatchEvent(new Event("change", {bubbles:true}));
-    else applyFinalLanguage(lang);
+    applyFinalLanguage(lang);
     const details = mobile.closest("details");
     if (details) setTimeout(() => { details.open = false; }, 0);
   });

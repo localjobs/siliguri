@@ -1609,8 +1609,23 @@ td{
 }
 
 @media(max-width:900px){
+  /* Lock the mobile hero heading footprint. Bengali/Hindi glyphs may
+     have different metrics, but the two-line typing area must never
+     change the hero height or push the sections below it. */
+  .hero h1{
+    height:2.35em !important;
+    min-height:2.35em !important;
+    max-height:2.35em !important;
+    overflow:hidden !important;
+  }
   .hero h1 .hero-typing-line{
-    min-height:1.08em;
+    display:block !important;
+    height:1.12em !important;
+    min-height:1.12em !important;
+    max-height:1.12em !important;
+    line-height:1.08 !important;
+    white-space:nowrap !important;
+    overflow:hidden !important;
   }
 }
 

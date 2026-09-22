@@ -382,13 +382,9 @@ window.translations = {
     );
 
 
-    /* Hero heading is managed by app.js.
-       Never replace h1.innerHTML here: doing so removes the
-       fixed typing spans and causes the page to jump during
-       language changes. */
-    if (typeof window.LocalJobHubStartHeroTyping === "function") {
-      window.LocalJobHubStartHeroTyping(lang);
-    }
+    /* Hero heading/typing is owned exclusively by app.js.
+       This function must not touch the hero DOM during language
+       changes, otherwise mobile can recalculate the hero height. */
 
 
     setText(
