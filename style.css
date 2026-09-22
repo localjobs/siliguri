@@ -1766,12 +1766,18 @@ body.auth-page .auth-form-panel, body.dashboard-page .dashboard-card, body.dashb
 
 /* Desktop Bengali/Hindi glyph clearance: keep English and mobile unchanged. */
 @media(min-width:901px){
+  /* Bengali/Hindi fonts have taller glyph extents than Latin Arial. Give only
+     those desktop hero lines a taller line box so the top never gets clipped. */
   html[lang="bn"] .hero-copy h1.hero-typing-fixed,
   html[lang="hi"] .hero-copy h1.hero-typing-fixed{
+    height:2.55em;
+    min-height:2.55em;
     padding-top:5px;
   }
   html[lang="bn"] .hero-copy h1.hero-typing-fixed .hero-typing-line,
   html[lang="hi"] .hero-copy h1.hero-typing-fixed .hero-typing-line{
-    line-height:1.1;
+    height:1.2em;
+    min-height:1.2em;
+    line-height:1.2;
   }
 }
