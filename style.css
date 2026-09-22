@@ -1763,3 +1763,15 @@ body.auth-page .auth-form-panel, body.dashboard-page .dashboard-card, body.dashb
 
 /* Desktop typing heading top clearance only */
 @media(min-width:901px){.hero-copy h1.hero-typing-fixed{padding-top:3px;box-sizing:border-box;}}
+
+/* Desktop Bengali/Hindi glyph clearance: keep English and mobile unchanged. */
+@media(min-width:901px){
+  html[lang="bn"] .hero-copy h1.hero-typing-fixed,
+  html[lang="hi"] .hero-copy h1.hero-typing-fixed{
+    padding-top:5px;
+  }
+  html[lang="bn"] .hero-copy h1.hero-typing-fixed .hero-typing-line,
+  html[lang="hi"] .hero-copy h1.hero-typing-fixed .hero-typing-line{
+    line-height:1.1;
+  }
+}
