@@ -127,16 +127,21 @@ document.addEventListener("DOMContentLoaded", async () => {
     const qualification=document.querySelector("#regQualification")?.value.trim()||"";
     const experience=document.querySelector("#regExperience")?.value.trim()||"";
     const companyDetails=document.querySelector("#regCompanyDetails")?.value.trim()||"";
-    const r=await sb.auth.signUp({
-      email,
-      password,
-      options:{data:{full_name:name,role,phone,mobile:phone,location:jobLocation,skills,qualification,experience,company_details:companyDetails}}
-    });
-    if(r.error){alert(r.error.message);return;}
-    alert(r.data.session
-      ? "Account created successfully. You can login now."
-      : "Account created successfully. Check your email for confirmation, then login.");
-    location.href="login.html";
+    try {
+      const r=await sb.auth.signUp({
+        email,
+        password,
+        options:{data:{full_name:name,role,phone,mobile:phone,location:jobLocation,skills,qualification,experience,company_details:companyDetails}}
+      });
+      if(r.error){alert("Registration failed: "+r.error.message);return;}
+      if(!r.data?.user){alert("Registration failed: Supabase did not return a user.");return;}
+      alert(r.data.session
+        ? "Account created successfully. You can login now."
+        : "Account created successfully. Check your email for confirmation, then login.");
+      window.location.href="login.html";
+    } catch(err) {
+      alert("Registration failed: "+(err?.message||String(err)));
+    }
   });
 
   document.querySelector("#loginForm")?.addEventListener("submit", async e => {
