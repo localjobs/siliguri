@@ -255,16 +255,16 @@ document.addEventListener("DOMContentLoaded", () => {
   /* Short, stable phrases keep the mobile hero height identical in every language. */
   const heroSequences = {
     en: [
-      {lines:["Jobs in Siliguri","For Local People."], repeat:3},
-      {lines:["Find Local Jobs","Build Your Career."], repeat:1}
+      {lines:["Find Jobs in Siliguri","For Local People."], repeat:3},
+      {lines:["Local Job Consultancy","Trusted Job Provider"], repeat:1}
     ],
     bn: [
-      {lines:["শিলিগুড়িতে চাকরি","স্থানীয় মানুষের জন্য।"], repeat:3},
-      {lines:["স্থানীয় চাকরি খুঁজুন","ক্যারিয়ার গড়ুন।"], repeat:1}
+      {lines:["শিলিগুড়িতে চাকরি খুঁজুন","স্থানীয় মানুষের জন্য।"], repeat:3},
+      {lines:["স্থানীয় চাকরি কনসালটেন্সি","বিশ্বস্ত চাকরি প্রদানকারী"], repeat:1}
     ],
     hi: [
-      {lines:["सिलीगुड़ी में नौकरी","स्थानीय लोगों के लिए।"], repeat:3},
-      {lines:["स्थानीय नौकरी खोजें","करियर बनाएं।"], repeat:1}
+      {lines:["सिलीगुड़ी में नौकरी ढूंढें","स्थानीय लोगों के लिए।"], repeat:3},
+      {lines:["स्थानीय जॉब कंसल्टेंसी","भरोसेमंद जॉब प्रदाता"], repeat:1}
     ]
   };
 
