@@ -1373,6 +1373,8 @@ td{
   /* Mobile header: brand left, login/register right. No top menu. */
   .site-header{position:sticky;top:0;z-index:1000;background:#fff;border-bottom:1px solid #e2e7eb;box-shadow:0 1px 6px rgba(0,0,0,.06);transition:transform .22s ease}
   .site-header.mobile-scroll-hide{transform:translateY(-100%)}
+  .mobile-bottom-nav{transition:transform .22s ease,opacity .22s ease}
+  .mobile-bottom-nav.mobile-bottom-hide{transform:translateY(calc(100% + env(safe-area-inset-bottom)));opacity:0;pointer-events:none}
   .nav-wrap{width:100%!important;max-width:none!important;min-height:56px!important;display:flex!important;align-items:center;justify-content:space-between;gap:8px;padding:8px 10px!important;box-sizing:border-box}
   .site-header .brand{min-width:0!important;flex:1;justify-content:flex-start;gap:7px;text-align:left}
   .site-header .brand>span:last-child{display:flex;flex-direction:column;align-items:flex-start}

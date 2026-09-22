@@ -1,4 +1,58 @@
 document.addEventListener("DOMContentLoaded", async () => {
+  // MOBILE SCROLL UI only. Desktop is deliberately untouched.
+  // UP  -> hide header; restore 2s after scrolling stops.
+  // DOWN -> hide bottom nav; restore 1s after scrolling stops.
+  if (window.matchMedia("(max-width: 900px)").matches) {
+    const header = document.querySelector(".site-header");
+    const bottomNav = document.querySelector("#mobileBottomNav");
+    let lastY = Math.max(0, window.scrollY || 0);
+    let direction = 0;
+    let headerTimer = null;
+    let bottomTimer = null;
+
+    const restoreHeader = () => {
+      if (header) header.classList.remove("mobile-scroll-hide");
+    };
+    const restoreBottom = () => {
+      if (bottomNav) bottomNav.classList.remove("mobile-bottom-hide");
+    };
+
+    const onScroll = () => {
+      const y = Math.max(0, window.scrollY || 0);
+      const delta = y - lastY;
+      if (Math.abs(delta) < 2) return;
+      lastY = y;
+
+      clearTimeout(headerTimer);
+      clearTimeout(bottomTimer);
+
+      if (y <= 8) {
+        direction = 0;
+        restoreHeader();
+        restoreBottom();
+        return;
+      }
+
+      if (delta < 0) {
+        direction = -1;
+        if (header) header.classList.add("mobile-scroll-hide");
+        restoreBottom();
+        headerTimer = setTimeout(() => {
+          if (direction === -1) restoreHeader();
+        }, 2000);
+      } else {
+        direction = 1;
+        restoreHeader();
+        if (bottomNav) bottomNav.classList.add("mobile-bottom-hide");
+        bottomTimer = setTimeout(() => {
+          if (direction === 1) restoreBottom();
+        }, 1000);
+      }
+    };
+
+    window.addEventListener("scroll", onScroll, {passive:true});
+  }
+
   const sb = window.LocalJobHubSupabase || window.supabase.createClient(window.LOCALJOBHUB_SUPABASE_URL, window.LOCALJOBHUB_SUPABASE_KEY);
   const esc = s => String(s ?? "").replace(/[&<>"']/g, m => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]));
   const defaultImage = "https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=700&q=80";
@@ -30,6 +84,9 @@ document.addEventListener("DOMContentLoaded", async () => {
     tick();
   }
 
+  // Start only after the function above has been initialized.
+  startTyping();
+
   const jobImageByType = [
     {keys:["delivery boy","delivery partner","delivery executive","delivery"], url:"https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=900&q=82"},
     {keys:["sales executive","field sales","sales"], url:"https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=900&q=82"},
@@ -56,7 +113,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     }).join("");
   }
 
-  startTyping();
   const results=await Promise.all([loadApprovedJobs(),loadExternalJobs()]);
   let allJobs=[...results[0],...results[1]];
   renderJobs(allJobs);
