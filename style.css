@@ -48,11 +48,12 @@ button,input,select,textarea{
 .brand-mark{
   width:36px;
   height:36px;
-  border:3px solid #0aa866;
+  border:0;
   border-radius:50%;
-  display:grid;
-  place-items:center;
-  color:#086ca8
+  display:block;
+  background:url("./localjobhub-logo.jpeg?v=1") center/cover no-repeat;
+  font-size:0;
+  flex:0 0 36px
 }
 
 .brand b{
