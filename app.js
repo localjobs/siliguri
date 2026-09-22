@@ -3,15 +3,26 @@ document.addEventListener("DOMContentLoaded", () => {
   const line1 = document.getElementById("heroTypingLine1");
   const line2 = document.getElementById("heroTypingLine2");
 
-  if (line1 && line2) {
-    const first = "Find local jobs that match";
-    const second = "your skills in Siliguri.";
+  const startHeroTyping = (lang = "en") => {
+    const firstEl = document.getElementById("heroTypingLine1");
+    const secondEl = document.getElementById("heroTypingLine2");
+    if (!firstEl || !secondEl) return;
+
+    const phrases = {
+      en: ["Find a Job in Your Own City,", "For the People of Siliguri."],
+      bn: ["নিজের শহরে চাকরি খুঁজুন,", "শিলিগুড়ির মানুষের জন্য।"],
+      hi: ["अपने शहर में नौकरी खोजें,", "सिलीगुड़ी के लोगों के लिए।"]
+    };
+    const [first, second] = phrases[lang] || phrases.en;
+
+    firstEl.textContent = "";
+    secondEl.textContent = "";
     let i = 0, j = 0, phase = 0;
 
     const tick = () => {
       if (phase === 0) {
         if (i <= first.length) {
-          line1.textContent = first.slice(0, i++);
+          firstEl.textContent = first.slice(0, i++);
           setTimeout(tick, 70);
           return;
         }
@@ -19,15 +30,15 @@ document.addEventListener("DOMContentLoaded", () => {
       }
       if (phase === 1) {
         if (j <= second.length) {
-          line2.textContent = second.slice(0, j++);
+          secondEl.textContent = second.slice(0, j++);
           setTimeout(tick, 60);
           return;
         }
-        phase = 2; setTimeout(tick, 3000); return;
+        phase = 2; setTimeout(tick, 2000); return;
       }
       if (phase === 2) {
         if (j >= 0) {
-          line2.textContent = second.slice(0, j--);
+          secondEl.textContent = second.slice(0, j--);
           setTimeout(tick, 35);
           return;
         }
@@ -35,7 +46,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
       if (phase === 3) {
         if (i >= 0) {
-          line1.textContent = first.slice(0, i--);
+          firstEl.textContent = first.slice(0, i--);
           setTimeout(tick, 35);
           return;
         }
@@ -43,7 +54,10 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     };
     tick();
-  }
+  };
+
+  window.LocalJobHubStartHeroTyping = startHeroTyping;
+  startHeroTyping(localStorage.getItem("localjobhub_language") || "en");
 
   if (window.matchMedia("(max-width: 900px)").matches) {
     const header = document.querySelector(".site-header");
@@ -233,4 +247,37 @@ document.addEventListener("DOMContentLoaded", async () => {
     const p=await getProfile();
     location.href=p?.role==="admin"?"admin.html":p?.role==="employer"?"employer-dashboard.html":"seeker-dashboard.html";
   });
+});
+
+/* HERO + LANGUAGE PATCH */
+document.addEventListener("DOMContentLoaded", () => {
+  const bootHero = (lang) => {
+    const h1 = document.querySelector(".hero-copy h1");
+    if (!h1) return;
+    h1.innerHTML = '<span id="heroTypingLine1" class="hero-typing-line hero-typing-line1"></span><span id="heroTypingLine2" class="hero-typing-line hero-typing-line2"></span>';
+    h1.setAttribute("aria-label", "Find a Job in Your Own City, For the People of Siliguri.");
+    if (window.LocalJobHubStartHeroTyping) window.LocalJobHubStartHeroTyping(lang || "en");
+  };
+  bootHero(localStorage.getItem("localjobhub_language") || "en");
+  const select = document.getElementById("languageSelect");
+  const mobile = document.getElementById("mobileLanguageSelect");
+  const sync = (value) => {
+    if (select) select.value = value;
+    if (mobile) mobile.value = value;
+  };
+  if (select) select.addEventListener("change", () => {
+    const lang = select.value;
+    localStorage.setItem("localjobhub_language", lang);
+    sync(lang);
+    setTimeout(() => bootHero(lang), 0);
+  });
+  if (mobile) mobile.addEventListener("change", () => {
+    const lang = mobile.value;
+    localStorage.setItem("localjobhub_language", lang);
+    sync(lang);
+    const main = document.getElementById("languageSelect");
+    if (main) main.dispatchEvent(new Event("change"));
+    else setTimeout(() => bootHero(lang), 0);
+  });
+  sync(localStorage.getItem("localjobhub_language") || "en");
 });
