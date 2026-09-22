@@ -249,35 +249,107 @@ document.addEventListener("DOMContentLoaded", async () => {
   });
 });
 
-/* HERO + LANGUAGE PATCH */
+/* FINAL HERO + LANGUAGE CONTROLLER */
 document.addEventListener("DOMContentLoaded", () => {
-  const bootHero = (lang) => {
+  let heroRun = 0;
+
+  const phrases = {
+    en: ["Find a Job in Your Own City,", "For the People of Siliguri."],
+    bn: ["নিজের শহরে চাকরি খুঁজুন,", "শিলিগুড়ির মানুষের জন্য।"],
+    hi: ["अपने शहर में नौकरी खोजें,", "सिलीगुड़ी के लोगों के लिए।"]
+  };
+
+  const ensureHero = () => {
     const h1 = document.querySelector(".hero-copy h1");
-    if (!h1) return;
-    h1.innerHTML = '<span id="heroTypingLine1" class="hero-typing-line hero-typing-line1"></span><span id="heroTypingLine2" class="hero-typing-line hero-typing-line2"></span>';
-    h1.setAttribute("aria-label", "Find a Job in Your Own City, For the People of Siliguri.");
-    if (window.LocalJobHubStartHeroTyping) window.LocalJobHubStartHeroTyping(lang || "en");
+    if (!h1) return null;
+    if (!h1.querySelector("#heroTypingLine1") || !h1.querySelector("#heroTypingLine2")) {
+      h1.innerHTML = '<span id="heroTypingLine1" class="hero-typing-line hero-typing-line1"></span><span id="heroTypingLine2" class="hero-typing-line hero-typing-line2"></span>';
+    }
+    return h1;
   };
-  bootHero(localStorage.getItem("localjobhub_language") || "en");
-  const select = document.getElementById("languageSelect");
-  const mobile = document.getElementById("mobileLanguageSelect");
-  const sync = (value) => {
-    if (select) select.value = value;
-    if (mobile) mobile.value = value;
+
+  const startHero = (lang = "en") => {
+    const h1 = ensureHero();
+    const firstEl = document.getElementById("heroTypingLine1");
+    const secondEl = document.getElementById("heroTypingLine2");
+    if (!h1 || !firstEl || !secondEl) return;
+    const [first, second] = phrases[lang] || phrases.en;
+    const run = ++heroRun;
+    h1.setAttribute("aria-label", first + " " + second);
+    firstEl.textContent = "";
+    secondEl.textContent = "";
+    let i = 0, j = 0, phase = 0;
+    const tick = () => {
+      if (run !== heroRun) return;
+      if (phase === 0) {
+        if (i <= first.length) { firstEl.textContent = first.slice(0, i++); setTimeout(tick, 65); return; }
+        phase = 1; setTimeout(tick, 250); return;
+      }
+      if (phase === 1) {
+        if (j <= second.length) { secondEl.textContent = second.slice(0, j++); setTimeout(tick, 55); return; }
+        phase = 2; setTimeout(tick, 2000); return;
+      }
+      if (phase === 2) {
+        if (j >= 0) { secondEl.textContent = second.slice(0, j--); setTimeout(tick, 30); return; }
+        phase = 3; setTimeout(tick, 120); return;
+      }
+      if (i >= 0) { firstEl.textContent = first.slice(0, i--); setTimeout(tick, 30); return; }
+      phase = 0; i = 0; j = 0; tick();
+    };
+    tick();
   };
-  if (select) select.addEventListener("change", () => {
-    const lang = select.value;
+
+  window.LocalJobHubStartHeroTyping = startHero;
+
+  const getLang = () => localStorage.getItem("localjobhub_language") || "en";
+  const syncLanguage = lang => {
+    const main = document.getElementById("languageSelect");
+    const mobile = document.getElementById("mobileLanguageSelect");
+    if (main) main.value = lang;
+    if (mobile) mobile.value = lang;
+  };
+
+  const applyFinalLanguage = lang => {
+    if (!phrases[lang]) lang = "en";
     localStorage.setItem("localjobhub_language", lang);
-    sync(lang);
-    setTimeout(() => bootHero(lang), 0);
+    syncLanguage(lang);
+    if (typeof window.applyLanguage === "function") window.applyLanguage(lang);
+    startHero(lang);
+  };
+
+  const main = document.getElementById("languageSelect");
+  const mobile = document.getElementById("mobileLanguageSelect");
+
+  if (main) main.addEventListener("change", () => {
+    const lang = main.value;
+    applyFinalLanguage(lang);
   });
+
   if (mobile) mobile.addEventListener("change", () => {
     const lang = mobile.value;
-    localStorage.setItem("localjobhub_language", lang);
-    sync(lang);
-    const main = document.getElementById("languageSelect");
-    if (main) main.dispatchEvent(new Event("change"));
-    else setTimeout(() => bootHero(lang), 0);
+    syncLanguage(lang);
+    if (main) main.dispatchEvent(new Event("change", {bubbles:true}));
+    else applyFinalLanguage(lang);
+    const details = mobile.closest("details");
+    if (details) setTimeout(() => { details.open = false; }, 0);
   });
-  sync(localStorage.getItem("localjobhub_language") || "en");
+
+  const account = document.querySelector("#mobileBottomNav .mobile-account");
+  account?.addEventListener("toggle", () => {
+    const summary = account.querySelector("summary");
+    summary?.classList.toggle("active", account.open);
+  });
+
+  const h1 = ensureHero();
+  if (h1) {
+    const observer = new MutationObserver(() => {
+      if (!h1.querySelector("#heroTypingLine1") || !h1.querySelector("#heroTypingLine2")) {
+        startHero(getLang());
+      }
+    });
+    observer.observe(h1, {childList:true, subtree:true});
+  }
+
+  syncLanguage(getLang());
+  startHero(getLang());
 });
