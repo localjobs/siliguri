@@ -112,7 +112,7 @@ document.addEventListener("DOMContentLoaded", () => {
 document.addEventListener("DOMContentLoaded", async () => {
   const sb = window.LocalJobHubSupabase || window.supabase.createClient(window.LOCALJOBHUB_SUPABASE_URL, window.LOCALJOBHUB_SUPABASE_KEY);
   const esc = s => String(s ?? "").replace(/[&<>"']/g, m => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]));
-  const defaultImage = "https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=700&q=80";
+
 
   async function getUser() { const {data} = await sb.auth.getUser(); return data.user || null; }
   async function getProfile() { const u=await getUser(); if(!u) return null; const {data}=await sb.from("profiles").select("*").eq("id",u.id).maybeSingle(); return data; }
@@ -127,15 +127,15 @@ document.addEventListener("DOMContentLoaded", async () => {
   }
 
   const jobImageByType = [
-    {keys:["delivery boy"], url:"assets/jobs/delivery-boy.jpg"},
-    {keys:["delivery executive","delivery partner","delivery associate"], url:"assets/jobs/delivery-executive.jpg"},
-    {keys:["retailer","retail","cashier","shopkeeper","store"], url:"assets/jobs/retailer.jpg"},
-    {keys:["electrician","electrical","electronics","technician"], url:"assets/jobs/electrician.jpg"},
-    {keys:["helper","labour","labor","construction","loader","unloader"], url:"assets/jobs/helper-labour.jpg"},
-    {keys:["security guard","security"], url:"assets/jobs/security-guard.jpg"},
-    {keys:["driver","driving"], url:"assets/jobs/driver.jpg"},
-    {keys:["sales assistant","sales executive","field sales","sales"], url:"assets/jobs/sales-assistant.jpg"},
-    {keys:["receptionist","front desk","hotel","back office","computer","office"], url:"assets/jobs/fallback-local.jpg"}
+    {keys:["delivery boy"], url:"https://images.pexels.com/photos/6869064/pexels-photo-6869064.jpeg?auto=compress&fit=crop&w=700&q=80"},
+    {keys:["delivery executive","delivery partner","delivery associate"], url:"https://images.pexels.com/photos/33359127/pexels-photo-33359127.jpeg?auto=compress&fit=crop&w=700&q=80"},
+    {keys:["retailer","retail","cashier","shopkeeper","store"], url:"https://images.pexels.com/photos/35704478/pexels-photo-35704478.jpeg?auto=compress&fit=crop&w=700&q=80"},
+    {keys:["electrician","electrical","electronics","technician"], url:"https://images.pexels.com/photos/34054464/pexels-photo-34054464.jpeg?auto=compress&fit=crop&w=700&q=80"},
+    {keys:["helper","labour","labor","construction","loader","unloader"], url:"https://images.pexels.com/photos/32763736/pexels-photo-32763736.jpeg?auto=compress&fit=crop&w=700&q=80"},
+    {keys:["security guard","security"], url:"https://images.pexels.com/photos/33000403/pexels-photo-33000403.jpeg?auto=compress&fit=crop&w=700&q=80"},
+    {keys:["driver","driving"], url:"https://images.pexels.com/photos/12269330/pexels-photo-12269330.jpeg?auto=compress&fit=crop&w=700&q=80"},
+    {keys:["sales assistant","sales executive","field sales","sales"], url:"https://images.pexels.com/photos/8886953/pexels-photo-8886953.jpeg?auto=compress&fit=crop&w=700&q=80"},
+    {keys:["receptionist","front desk","hotel","back office","computer","office"], url:"https://images.pexels.com/photos/35704478/pexels-photo-35704478.jpeg?auto=compress&fit=crop&w=700&q=80"}
   ];
   function jobImage(job){
     const hay=(job.title+" "+(job.category||"")+" "+(job.company||"")).toLowerCase();
