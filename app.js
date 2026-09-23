@@ -138,6 +138,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     {keys:["receptionist","front desk","hotel","back office","computer","office"], url:"https://images.pexels.com/photos/35704478/pexels-photo-35704478.jpeg?auto=compress&fit=crop&w=700&q=80"}
   ];
   function jobImage(job){
+    if(job.image_url) return job.image_url;
     const hay=(job.title+" "+(job.category||"")+" "+(job.company||"")).toLowerCase();
     return (jobImageByType.find(x=>x.keys.some(k=>hay.includes(k)))||jobImageByType[jobImageByType.length-1]).url;
   }
