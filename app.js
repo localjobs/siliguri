@@ -230,10 +230,12 @@ document.addEventListener("DOMContentLoaded", async () => {
       });
       if(r.error){alert("Registration failed: "+r.error.message);return;}
       if(!r.data?.user){alert("Registration failed: Supabase did not return a user.");return;}
-      alert(r.data.session
-        ? "Account created successfully. You can login now."
-        : "Account created successfully. Check your email for confirmation, then login.");
-      window.location.href="login.html";
+      if (r.data.session) {
+        alert("Account created successfully. You can login now.");
+        window.location.href="login.html";
+      } else {
+        alert("Account created successfully. Please check your email (including Spam/Junk) and confirm your address before logging in.");
+      }
     } catch(err) {
       alert("Registration failed: "+(err?.message||String(err)));
     }
@@ -242,9 +244,25 @@ document.addEventListener("DOMContentLoaded", async () => {
   document.querySelector("#loginForm")?.addEventListener("submit", async e => {
     e.preventDefault();
     const r=await sb.auth.signInWithPassword({email:document.querySelector("#loginId").value.trim(),password:document.querySelector("#loginPassword").value});
-    if(r.error){alert(r.error.message);return;}
+    if(r.error){
+      const msg=String(r.error.message||"");
+      if(/email.*confirm|confirm.*email/i.test(msg)){
+        alert("Please confirm your email address first. If the email did not arrive, use “Resend Confirmation Email” below.");
+      } else {
+        alert(msg);
+      }
+      return;
+    }
     const p=await getProfile();
     location.href=p?.role==="admin"?"admin.html":p?.role==="employer"?"employer-dashboard.html":"seeker-dashboard.html";
+  });
+
+  document.querySelector("#resendConfirmation")?.addEventListener("click", async () => {
+    const email=document.querySelector("#loginId")?.value.trim();
+    if(!email){alert("Enter your registered email address first.");return;}
+    const r=await sb.auth.resend({type:"signup",email});
+    if(r.error){alert("Could not resend confirmation email: "+r.error.message);return;}
+    alert("Confirmation email requested. Check Inbox and Spam/Junk.");
   });
 });
 
