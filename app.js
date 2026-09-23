@@ -127,16 +127,19 @@ document.addEventListener("DOMContentLoaded", async () => {
   }
 
   const jobImageByType = [
-    {keys:["delivery boy","delivery partner","delivery executive","delivery"], url:"https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=900&q=82"},
-    {keys:["sales executive","field sales","sales"], url:"https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=900&q=82"},
-    {keys:["cashier","retail"], url:"https://images.unsplash.com/photo-1556740749-887f6717d7e4?auto=format&fit=crop&w=900&q=82"},
-    {keys:["electrical","electronics","technician","electrician"], url:"https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&w=900&q=82"},
-    {keys:["receptionist","front desk","hotel"], url:"https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=900&q=82"},
-    {keys:["back office","computer","office"], url:"https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=900&q=82"}
+    {keys:["delivery boy"], url:"assets/jobs/delivery-boy.jpg"},
+    {keys:["delivery executive","delivery partner","delivery associate"], url:"assets/jobs/delivery-executive.jpg"},
+    {keys:["retailer","retail","cashier","shopkeeper","store"], url:"assets/jobs/retailer.jpg"},
+    {keys:["electrician","electrical","electronics","technician"], url:"assets/jobs/electrician.jpg"},
+    {keys:["helper","labour","labor","construction","loader","unloader"], url:"assets/jobs/helper-labour.jpg"},
+    {keys:["security guard","security"], url:"assets/jobs/security-guard.jpg"},
+    {keys:["driver","driving"], url:"assets/jobs/driver.jpg"},
+    {keys:["sales assistant","sales executive","field sales","sales"], url:"assets/jobs/sales-assistant.jpg"},
+    {keys:["receptionist","front desk","hotel","back office","computer","office"], url:"assets/jobs/fallback-local.jpg"}
   ];
   function jobImage(job){
     const hay=(job.title+" "+(job.category||"")+" "+(job.company||"")).toLowerCase();
-    return (jobImageByType.find(x=>x.keys.some(k=>hay.includes(k)))||jobImageByType[5]).url;
+    return (jobImageByType.find(x=>x.keys.some(k=>hay.includes(k)))||jobImageByType[jobImageByType.length-1]).url;
   }
 
   function renderJobs(list) {
